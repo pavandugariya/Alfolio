@@ -1,0 +1,843 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00E356F31AD99517003FC87E /* AlfolioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AlfolioTests.m */; };
+		0C80B921A6F3F58F76C31292 /* libPods-Alfolio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Alfolio.a */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		7699B88040F8A987B510C191 /* libPods-Alfolio-AlfolioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Alfolio-AlfolioTests.a */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		50EBFAC54418498C920DE104 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBD317E44A1B44C3A9D65934 /* Montserrat-Black.ttf */; };
+		5AC50775D27A407098B09C44 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A25738CF2AD4523A8CA73F6 /* Montserrat-Bold.ttf */; };
+		9A28308EECCD416EA8EDEA33 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA32D19ABAFC4C8385D81DBF /* Montserrat-ExtraBold.ttf */; };
+		4DB9FF0CC37546DFB82D5390 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B9FA0B0B1FA4B76BB95834B /* Montserrat-ExtraBoldItalic.ttf */; };
+		C877E89AD60941B6BF11810A /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F49811B94C8B47B28C25D003 /* Montserrat-ExtraLight.ttf */; };
+		F59818E3D0104D8F83D66973 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 850CD40DA46A41208949B7A2 /* Montserrat-ExtraLightItalic.ttf */; };
+		0642CD13F40C4BEBAAA6AC9E /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31A7473CFF834507BED1F679 /* Montserrat-Light.ttf */; };
+		A0DD409BF38D4742A9401EC3 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77FA6D85A848451ABC940AAD /* Montserrat-Medium.ttf */; };
+		4031C5B4FD5F4B0AA4026FE3 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4879F1738F749F8BF48CB1B /* Montserrat-MediumItalic.ttf */; };
+		780C5184EB1F4D7BB0607D00 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94EB17A9871243BFA895937C /* Montserrat-Regular.ttf */; };
+		D93A1F10F46A4B88A113A0DB /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AC6452AAC914AB287FBF9B7 /* Montserrat-SemiBold.ttf */; };
+		E48FFD5182434C7BA2B831F8 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AC71E466B0E49DC8A1E49C2 /* Montserrat-SemiBoldItalic.ttf */; };
+		1BA41C47908449E6AB86C516 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAED333B08304DC6896F6BB5 /* Montserrat-Thin.ttf */; };
+		8D72EB044B8449A2828BFFD6 /* Jeko Black Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5780319CE1FB48D680AFE3B8 /* Jeko Black Italic.ttf */; };
+		AE798747934C44848DCA34D0 /* Jeko Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9370BE61BFE64CD0BC428871 /* Jeko Black.ttf */; };
+		C85938834A1C45C8B8614AD6 /* Jeko Bold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03E063134B8847F3B49AF27B /* Jeko Bold Italic.ttf */; };
+		424ECEC0634D455FAB49286A /* Jeko Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9858DE0EDEF46B69B23191D /* Jeko Bold.ttf */; };
+		603122E279E04A80B4BB4BDC /* Jeko Extra Bold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DBAB99018DD4E4E8B8F6837 /* Jeko Extra Bold Italic.ttf */; };
+		AEA8FBA745A24FF998973B9A /* Jeko Extra Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 958286A96695437BAF9B0B00 /* Jeko Extra Bold.ttf */; };
+		4C6DCB7D8CA44D47A385A190 /* Jeko Extra Light Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01AE9AB8171A49F58CD6340E /* Jeko Extra Light Italic.ttf */; };
+		B45BF3F95E14422BABD1DCE6 /* Jeko Extra Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80C7BB06BECC4B75A561128B /* Jeko Extra Light.ttf */; };
+		014ED856A14242CC8A1C8C6E /* Jeko Italic Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0BB5F0FA7F54A2C85DB5DCB /* Jeko Italic Variable.ttf */; };
+		2DB8555B6F1149288073AA70 /* Jeko Light Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01F2EF8F900C4A1782E22903 /* Jeko Light Italic.ttf */; };
+		BFAD1FD3B7714ADF82E172B4 /* Jeko Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 203E732B5F65495288A18F26 /* Jeko Light.ttf */; };
+		A2DD13DD7460405EB24E31BB /* Jeko Medium Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58EA3B5985184794967BAB18 /* Jeko Medium Italic.ttf */; };
+		645802BE1EA7453DBBE0FE69 /* Jeko Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AE1B76E502A40F095711279 /* Jeko Medium.ttf */; };
+		BC8BF3D3A12D479C9DC24D59 /* Jeko Regular Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61F44B669EAF4E2EA7DAB029 /* Jeko Regular Italic.ttf */; };
+		0F85AA932C5C498DA6F374A6 /* Jeko Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94064E6D01FD4DD6BA426531 /* Jeko Regular.ttf */; };
+		7D1BCA5C715948159491AB42 /* Jeko Semi Bold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CE159F616C94455AB5ECAF7 /* Jeko Semi Bold Italic.ttf */; };
+		7CAD9166D0C647FE81EF953F /* Jeko Semi Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFA98D4CED594E28A48B6997 /* Jeko Semi Bold.ttf */; };
+		C0E66A3FBAF64FC8B56AD4B1 /* Jeko Thin Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08735C0208534A7082C454A2 /* Jeko Thin Italic.ttf */; };
+		3B416142F2CB41D7B09CD356 /* Jeko Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 543EBD596F564E3F8D5E0ECA /* Jeko Thin.ttf */; };
+		E3340ED8A777430293E3C6BE /* Jeko Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA241E35019B410688B243F2 /* Jeko Variable.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = Alfolio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00E356EE1AD99517003FC87E /* AlfolioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlfolioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* AlfolioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlfolioTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Alfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Alfolio/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Alfolio/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Alfolio/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Alfolio/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Alfolio/main.m; sourceTree = "<group>"; };
+		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Alfolio-AlfolioTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Alfolio-AlfolioTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B4392A12AC88292D35C810B /* Pods-Alfolio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alfolio.debug.xcconfig"; path = "Target Support Files/Pods-Alfolio/Pods-Alfolio.debug.xcconfig"; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-Alfolio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alfolio.release.xcconfig"; path = "Target Support Files/Pods-Alfolio/Pods-Alfolio.release.xcconfig"; sourceTree = "<group>"; };
+		5B7EB9410499542E8C5724F5 /* Pods-Alfolio-AlfolioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alfolio-AlfolioTests.debug.xcconfig"; path = "Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DCACB8F33CDC322A6C60F78 /* libPods-Alfolio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Alfolio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Alfolio/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		89C6BE57DB24E9ADA2F236DE /* Pods-Alfolio-AlfolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alfolio-AlfolioTests.release.xcconfig"; path = "Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EBD317E44A1B44C3A9D65934 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6A25738CF2AD4523A8CA73F6 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AA32D19ABAFC4C8385D81DBF /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2B9FA0B0B1FA4B76BB95834B /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F49811B94C8B47B28C25D003 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		850CD40DA46A41208949B7A2 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraLightItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		31A7473CFF834507BED1F679 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		77FA6D85A848451ABC940AAD /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C4879F1738F749F8BF48CB1B /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		94EB17A9871243BFA895937C /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0AC6452AAC914AB287FBF9B7 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6AC71E466B0E49DC8A1E49C2 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DAED333B08304DC6896F6BB5 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5780319CE1FB48D680AFE3B8 /* Jeko Black Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Black Italic.ttf"; path = "../assets/fonts/Jeko Black Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9370BE61BFE64CD0BC428871 /* Jeko Black.ttf */ = {isa = PBXFileReference; name = "Jeko Black.ttf"; path = "../assets/fonts/Jeko Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		03E063134B8847F3B49AF27B /* Jeko Bold Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Bold Italic.ttf"; path = "../assets/fonts/Jeko Bold Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A9858DE0EDEF46B69B23191D /* Jeko Bold.ttf */ = {isa = PBXFileReference; name = "Jeko Bold.ttf"; path = "../assets/fonts/Jeko Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6DBAB99018DD4E4E8B8F6837 /* Jeko Extra Bold Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Extra Bold Italic.ttf"; path = "../assets/fonts/Jeko Extra Bold Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		958286A96695437BAF9B0B00 /* Jeko Extra Bold.ttf */ = {isa = PBXFileReference; name = "Jeko Extra Bold.ttf"; path = "../assets/fonts/Jeko Extra Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		01AE9AB8171A49F58CD6340E /* Jeko Extra Light Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Extra Light Italic.ttf"; path = "../assets/fonts/Jeko Extra Light Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		80C7BB06BECC4B75A561128B /* Jeko Extra Light.ttf */ = {isa = PBXFileReference; name = "Jeko Extra Light.ttf"; path = "../assets/fonts/Jeko Extra Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A0BB5F0FA7F54A2C85DB5DCB /* Jeko Italic Variable.ttf */ = {isa = PBXFileReference; name = "Jeko Italic Variable.ttf"; path = "../assets/fonts/Jeko Italic Variable.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		01F2EF8F900C4A1782E22903 /* Jeko Light Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Light Italic.ttf"; path = "../assets/fonts/Jeko Light Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		203E732B5F65495288A18F26 /* Jeko Light.ttf */ = {isa = PBXFileReference; name = "Jeko Light.ttf"; path = "../assets/fonts/Jeko Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		58EA3B5985184794967BAB18 /* Jeko Medium Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Medium Italic.ttf"; path = "../assets/fonts/Jeko Medium Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1AE1B76E502A40F095711279 /* Jeko Medium.ttf */ = {isa = PBXFileReference; name = "Jeko Medium.ttf"; path = "../assets/fonts/Jeko Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		61F44B669EAF4E2EA7DAB029 /* Jeko Regular Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Regular Italic.ttf"; path = "../assets/fonts/Jeko Regular Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		94064E6D01FD4DD6BA426531 /* Jeko Regular.ttf */ = {isa = PBXFileReference; name = "Jeko Regular.ttf"; path = "../assets/fonts/Jeko Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9CE159F616C94455AB5ECAF7 /* Jeko Semi Bold Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Semi Bold Italic.ttf"; path = "../assets/fonts/Jeko Semi Bold Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EFA98D4CED594E28A48B6997 /* Jeko Semi Bold.ttf */ = {isa = PBXFileReference; name = "Jeko Semi Bold.ttf"; path = "../assets/fonts/Jeko Semi Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		08735C0208534A7082C454A2 /* Jeko Thin Italic.ttf */ = {isa = PBXFileReference; name = "Jeko Thin Italic.ttf"; path = "../assets/fonts/Jeko Thin Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		543EBD596F564E3F8D5E0ECA /* Jeko Thin.ttf */ = {isa = PBXFileReference; name = "Jeko Thin.ttf"; path = "../assets/fonts/Jeko Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EA241E35019B410688B243F2 /* Jeko Variable.ttf */ = {isa = PBXFileReference; name = "Jeko Variable.ttf"; path = "../assets/fonts/Jeko Variable.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7699B88040F8A987B510C191 /* libPods-Alfolio-AlfolioTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C80B921A6F3F58F76C31292 /* libPods-Alfolio.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* AlfolioTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F21AD99517003FC87E /* AlfolioTests.m */,
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = AlfolioTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* Alfolio */ = {
+			isa = PBXGroup;
+			children = (
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				13B07FB71A68108700A75B9A /* main.m */,
+			);
+			name = Alfolio;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				5DCACB8F33CDC322A6C60F78 /* libPods-Alfolio.a */,
+				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Alfolio-AlfolioTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				13B07FAE1A68108700A75B9A /* Alfolio */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* AlfolioTests */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				B91F99D072414E0DBEEB5854 /* Resources */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* Alfolio.app */,
+				00E356EE1AD99517003FC87E /* AlfolioTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3B4392A12AC88292D35C810B /* Pods-Alfolio.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-Alfolio.release.xcconfig */,
+				5B7EB9410499542E8C5724F5 /* Pods-Alfolio-AlfolioTests.debug.xcconfig */,
+				89C6BE57DB24E9ADA2F236DE /* Pods-Alfolio-AlfolioTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B91F99D072414E0DBEEB5854 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				EBD317E44A1B44C3A9D65934 /* Montserrat-Black.ttf */,
+				6A25738CF2AD4523A8CA73F6 /* Montserrat-Bold.ttf */,
+				AA32D19ABAFC4C8385D81DBF /* Montserrat-ExtraBold.ttf */,
+				2B9FA0B0B1FA4B76BB95834B /* Montserrat-ExtraBoldItalic.ttf */,
+				F49811B94C8B47B28C25D003 /* Montserrat-ExtraLight.ttf */,
+				850CD40DA46A41208949B7A2 /* Montserrat-ExtraLightItalic.ttf */,
+				31A7473CFF834507BED1F679 /* Montserrat-Light.ttf */,
+				77FA6D85A848451ABC940AAD /* Montserrat-Medium.ttf */,
+				C4879F1738F749F8BF48CB1B /* Montserrat-MediumItalic.ttf */,
+				94EB17A9871243BFA895937C /* Montserrat-Regular.ttf */,
+				0AC6452AAC914AB287FBF9B7 /* Montserrat-SemiBold.ttf */,
+				6AC71E466B0E49DC8A1E49C2 /* Montserrat-SemiBoldItalic.ttf */,
+				DAED333B08304DC6896F6BB5 /* Montserrat-Thin.ttf */,
+				5780319CE1FB48D680AFE3B8 /* Jeko Black Italic.ttf */,
+				9370BE61BFE64CD0BC428871 /* Jeko Black.ttf */,
+				03E063134B8847F3B49AF27B /* Jeko Bold Italic.ttf */,
+				A9858DE0EDEF46B69B23191D /* Jeko Bold.ttf */,
+				6DBAB99018DD4E4E8B8F6837 /* Jeko Extra Bold Italic.ttf */,
+				958286A96695437BAF9B0B00 /* Jeko Extra Bold.ttf */,
+				01AE9AB8171A49F58CD6340E /* Jeko Extra Light Italic.ttf */,
+				80C7BB06BECC4B75A561128B /* Jeko Extra Light.ttf */,
+				A0BB5F0FA7F54A2C85DB5DCB /* Jeko Italic Variable.ttf */,
+				01F2EF8F900C4A1782E22903 /* Jeko Light Italic.ttf */,
+				203E732B5F65495288A18F26 /* Jeko Light.ttf */,
+				58EA3B5985184794967BAB18 /* Jeko Medium Italic.ttf */,
+				1AE1B76E502A40F095711279 /* Jeko Medium.ttf */,
+				61F44B669EAF4E2EA7DAB029 /* Jeko Regular Italic.ttf */,
+				94064E6D01FD4DD6BA426531 /* Jeko Regular.ttf */,
+				9CE159F616C94455AB5ECAF7 /* Jeko Semi Bold Italic.ttf */,
+				EFA98D4CED594E28A48B6997 /* Jeko Semi Bold.ttf */,
+				08735C0208534A7082C454A2 /* Jeko Thin Italic.ttf */,
+				543EBD596F564E3F8D5E0ECA /* Jeko Thin.ttf */,
+				EA241E35019B410688B243F2 /* Jeko Variable.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* AlfolioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AlfolioTests" */;
+			buildPhases = (
+				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
+				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = AlfolioTests;
+			productName = AlfolioTests;
+			productReference = 00E356EE1AD99517003FC87E /* AlfolioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* Alfolio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Alfolio" */;
+			buildPhases = (
+				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
+				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alfolio;
+			productName = Alfolio;
+			productReference = 13B07F961A680F5B00A75B9A /* Alfolio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1120;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Alfolio" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* Alfolio */,
+				00E356ED1AD99517003FC87E /* AlfolioTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				50EBFAC54418498C920DE104 /* Montserrat-Black.ttf in Resources */,
+				5AC50775D27A407098B09C44 /* Montserrat-Bold.ttf in Resources */,
+				9A28308EECCD416EA8EDEA33 /* Montserrat-ExtraBold.ttf in Resources */,
+				4DB9FF0CC37546DFB82D5390 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				C877E89AD60941B6BF11810A /* Montserrat-ExtraLight.ttf in Resources */,
+				F59818E3D0104D8F83D66973 /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				0642CD13F40C4BEBAAA6AC9E /* Montserrat-Light.ttf in Resources */,
+				A0DD409BF38D4742A9401EC3 /* Montserrat-Medium.ttf in Resources */,
+				4031C5B4FD5F4B0AA4026FE3 /* Montserrat-MediumItalic.ttf in Resources */,
+				780C5184EB1F4D7BB0607D00 /* Montserrat-Regular.ttf in Resources */,
+				D93A1F10F46A4B88A113A0DB /* Montserrat-SemiBold.ttf in Resources */,
+				E48FFD5182434C7BA2B831F8 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				1BA41C47908449E6AB86C516 /* Montserrat-Thin.ttf in Resources */,
+				8D72EB044B8449A2828BFFD6 /* Jeko Black Italic.ttf in Resources */,
+				AE798747934C44848DCA34D0 /* Jeko Black.ttf in Resources */,
+				C85938834A1C45C8B8614AD6 /* Jeko Bold Italic.ttf in Resources */,
+				424ECEC0634D455FAB49286A /* Jeko Bold.ttf in Resources */,
+				603122E279E04A80B4BB4BDC /* Jeko Extra Bold Italic.ttf in Resources */,
+				AEA8FBA745A24FF998973B9A /* Jeko Extra Bold.ttf in Resources */,
+				4C6DCB7D8CA44D47A385A190 /* Jeko Extra Light Italic.ttf in Resources */,
+				B45BF3F95E14422BABD1DCE6 /* Jeko Extra Light.ttf in Resources */,
+				014ED856A14242CC8A1C8C6E /* Jeko Italic Variable.ttf in Resources */,
+				2DB8555B6F1149288073AA70 /* Jeko Light Italic.ttf in Resources */,
+				BFAD1FD3B7714ADF82E172B4 /* Jeko Light.ttf in Resources */,
+				A2DD13DD7460405EB24E31BB /* Jeko Medium Italic.ttf in Resources */,
+				645802BE1EA7453DBBE0FE69 /* Jeko Medium.ttf in Resources */,
+				BC8BF3D3A12D479C9DC24D59 /* Jeko Regular Italic.ttf in Resources */,
+				0F85AA932C5C498DA6F374A6 /* Jeko Regular.ttf in Resources */,
+				7D1BCA5C715948159491AB42 /* Jeko Semi Bold Italic.ttf in Resources */,
+				7CAD9166D0C647FE81EF953F /* Jeko Semi Bold.ttf in Resources */,
+				C0E66A3FBAF64FC8B56AD4B1 /* Jeko Thin Italic.ttf in Resources */,
+				3B416142F2CB41D7B09CD356 /* Jeko Thin.ttf in Resources */,
+				E3340ED8A777430293E3C6BE /* Jeko Variable.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+		};
+		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio/Pods-Alfolio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio/Pods-Alfolio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alfolio/Pods-Alfolio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Alfolio-AlfolioTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Alfolio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio/Pods-Alfolio-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio/Pods-Alfolio-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alfolio/Pods-Alfolio-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alfolio-AlfolioTests/Pods-Alfolio-AlfolioTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E356F31AD99517003FC87E /* AlfolioTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* Alfolio */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-Alfolio-AlfolioTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AlfolioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alfolio.app/Alfolio";
+			};
+			name = Debug;
+		};
+		00E356F71AD99517003FC87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-Alfolio-AlfolioTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = AlfolioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alfolio.app/Alfolio";
+			};
+			name = Release;
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Alfolio.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Alfolio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Alfolio;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-Alfolio.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = Alfolio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = Alfolio;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+				);
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AlfolioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Alfolio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Alfolio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

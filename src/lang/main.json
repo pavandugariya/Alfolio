@@ -1,0 +1,21 @@
+{
+    "onboarding": {
+        "swipedata": [
+            {
+                "image": "1",
+                "title": "CLAIM",
+                "message": "Claim your certificate from issuers, partnered with alFolio in just a few taps. It's easy such as 2+2"
+            },
+            {
+                "image": "2",
+                "title": "SEND",
+                "message": "Send your certificate to anyone and they won't need to verify it again. It's algorithm not a theorem."
+            },
+            {
+                "image": "3",
+                "title": "Authenticate ",
+                "message": "alFolio ensures end-to-end encryption and zero data tempering. hacking efforts would be 5/0"
+            }
+        ]
+    }
+}

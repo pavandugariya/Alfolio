@@ -1,0 +1,137 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Jeko Black Italic.ttf",
+      "sha1": "ef3213f1e42ff3e736c0d8e6bebbcb0b8a607751"
+    },
+    {
+      "path": "assets/fonts/Jeko Black.ttf",
+      "sha1": "66706f2dcc123643464470fe941c2018285b3013"
+    },
+    {
+      "path": "assets/fonts/Jeko Bold Italic.ttf",
+      "sha1": "baf25af98dc4e6c00ad955123c469367612fd677"
+    },
+    {
+      "path": "assets/fonts/Jeko Bold.ttf",
+      "sha1": "c952f9b838418866e415f447442ca7e48eabe101"
+    },
+    {
+      "path": "assets/fonts/Jeko Extra Bold Italic.ttf",
+      "sha1": "08232e8dce0570219229afbbffc08d5e468be07e"
+    },
+    {
+      "path": "assets/fonts/Jeko Extra Bold.ttf",
+      "sha1": "b9c0292f327eb30cbe5dd528e9d85e0c45ad5968"
+    },
+    {
+      "path": "assets/fonts/Jeko Extra Light Italic.ttf",
+      "sha1": "616185db0f252e4a7d1e9480f4cc9e0b09da6a4a"
+    },
+    {
+      "path": "assets/fonts/Jeko Extra Light.ttf",
+      "sha1": "35672de7bec3c54a3f517d204adeb211e2adfdd9"
+    },
+    {
+      "path": "assets/fonts/Jeko Italic Variable.ttf",
+      "sha1": "2c63c36843b07c588006f95e8cfcd9be51aee422"
+    },
+    {
+      "path": "assets/fonts/Jeko Light Italic.ttf",
+      "sha1": "a2836abdab4da13ebca0bf7585f62ae19eb38f3f"
+    },
+    {
+      "path": "assets/fonts/Jeko Light.ttf",
+      "sha1": "0010546d4ba76cba4cec92fbe669e6155297f9ac"
+    },
+    {
+      "path": "assets/fonts/Jeko Medium Italic.ttf",
+      "sha1": "5efdd7039e8b9c11d37cf9b665cefc85bdc3cebf"
+    },
+    {
+      "path": "assets/fonts/Jeko Medium.ttf",
+      "sha1": "6b97fc271fd651a1d79639add2debc373c7a78b8"
+    },
+    {
+      "path": "assets/fonts/Jeko Regular Italic.ttf",
+      "sha1": "d683b209919c84f0587d69c216b830249e4784f3"
+    },
+    {
+      "path": "assets/fonts/Jeko Regular.ttf",
+      "sha1": "6bcbb978f8913dd5aeffaa8d4b62c93ebdb46a09"
+    },
+    {
+      "path": "assets/fonts/Jeko Semi Bold Italic.ttf",
+      "sha1": "e25203182eea09edc1fb2f44c03950dc035d885f"
+    },
+    {
+      "path": "assets/fonts/Jeko Semi Bold.ttf",
+      "sha1": "8d9ac95cd80dbb00e166e30555b0f0ed66285a5d"
+    },
+    {
+      "path": "assets/fonts/Jeko Thin Italic.ttf",
+      "sha1": "812d768f5118c6cb1e5572507d76987a3554dbab"
+    },
+    {
+      "path": "assets/fonts/Jeko Thin.ttf",
+      "sha1": "93c31a197b1e8541055ee47d2264738013eff75d"
+    },
+    {
+      "path": "assets/fonts/Jeko Variable.ttf",
+      "sha1": "a8cbf9e647bc3af8637bb83e600ea9cd84d69522"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Black.ttf",
+      "sha1": "fca130f21601346cce37bb8a9526ff01af66d912"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Bold.ttf",
+      "sha1": "04052dc3b846609216de1e0cbcec337c6b6e74f6"
+    },
+    {
+      "path": "assets/fonts/Montserrat-ExtraBold.ttf",
+      "sha1": "1914bc1981e6ceceadb2f6d72455b4e89e04965c"
+    },
+    {
+      "path": "assets/fonts/Montserrat-ExtraBoldItalic.ttf",
+      "sha1": "49758a0ea59fe7f82c639a385a2bacf3d4de3398"
+    },
+    {
+      "path": "assets/fonts/Montserrat-ExtraLight.ttf",
+      "sha1": "7c594b126941460bd2f3b47097fd6222f52277e7"
+    },
+    {
+      "path": "assets/fonts/Montserrat-ExtraLightItalic.ttf",
+      "sha1": "fbbb972b616c3b84d99976ddf84b6fecdeb4c7ca"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Light.ttf",
+      "sha1": "6f21894a80049259ef71fcba135218695b41b67a"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Medium.ttf",
+      "sha1": "6b57d12e018c64352e202f8ef3bf7f431f76d935"
+    },
+    {
+      "path": "assets/fonts/Montserrat-MediumItalic.ttf",
+      "sha1": "8b2c464e42f07fc307fddb9c58d202ecff19be2a"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Regular.ttf",
+      "sha1": "de57aa03e4821fdbe6c34ec2c895e8b5c914e837"
+    },
+    {
+      "path": "assets/fonts/Montserrat-SemiBold.ttf",
+      "sha1": "8580dec824bbdb6ce24d04d3aaf360776339f0a7"
+    },
+    {
+      "path": "assets/fonts/Montserrat-SemiBoldItalic.ttf",
+      "sha1": "51626902f9f2b0aa24b235bb68b2640622f156b9"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Thin.ttf",
+      "sha1": "8c871991960f520a31635f95be6c346b659e2c8c"
+    }
+  ]
+}
