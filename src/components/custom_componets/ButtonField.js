@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 
     },
     txtStyle: {
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: colors.Regularj,
         // fontWeight: 'bold'
 
