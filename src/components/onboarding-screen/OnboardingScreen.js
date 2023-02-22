@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View, FlatList, Image, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
-import { onboarding, } from '../../lang/main.json'
+import React, { useState, } from 'react'
 import { onBoardingColor } from './onBoardingcolors';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const OnboardingScreen = () => {
     // console.log(onboarding.swipedata[0]);
+    const { t, i18n, ready } = useTranslation();
+    const onboardingdata = t('onboarding.swipedata', { returnObjects: true });
     const navigation = useNavigation();
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
@@ -63,7 +65,7 @@ const OnboardingScreen = () => {
         return (
             <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'center' }}>
                 {
-                    onboarding.swipedata.map((_, index) => {
+                    onboardingdata.map((_, index) => {
                         return (
                             <View key={index}
                                 style={{
@@ -91,7 +93,7 @@ const OnboardingScreen = () => {
         }
         const nextSlidePress = () => {
             const nextSlideIndex = currentSlideIndex + 1;
-            if (nextSlideIndex != onboarding.swipedata.length) {
+            if (nextSlideIndex != onboardingdata.length) {
                 const offset = nextSlideIndex * windowWidth;
                 ref?.current?.scrollToOffset({ offset });
                 setcurrentSlideIndex(currentSlideIndex + 1)
@@ -103,18 +105,18 @@ const OnboardingScreen = () => {
         return (
             <View style={styles.footer2_top_box}>
                 {
-                    currentSlideIndex != onboarding.swipedata.length - 1 ?
+                    currentSlideIndex != onboardingdata.length - 1 ?
                         <>
 
                             <TouchableOpacity style={styles.skip_btn_style}
                                 onPress={skipPress}
                             >
-                                <Text style={styles.skip_btn_txt_style}>Skip</Text>
+                                <Text style={styles.skip_btn_txt_style}>{t('onboarding.skip')}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={nextSlidePress}
                                 style={styles.next_btn_style}              >
-                                <Text style={styles.next_btn_txt_style}>Next</Text>
+                                <Text style={styles.next_btn_txt_style}>{t('onboarding.next')}</Text>
                             </TouchableOpacity>
                         </>
                         :
@@ -122,7 +124,7 @@ const OnboardingScreen = () => {
                             onPress={getStart}
                             style={[styles.next_btn_style, { flex: 1 }]}
                         >
-                            <Text style={[styles.next_btn_txt_style,]}>Get Started</Text>
+                            <Text style={[styles.next_btn_txt_style,]}>{t('onboarding.get started')}</Text>
                         </TouchableOpacity>
                 }
             </View>
@@ -140,7 +142,7 @@ const OnboardingScreen = () => {
 
             <FlatList
                 ref={ref}
-                data={onboarding.swipedata}
+                data={onboardingdata}
                 horizontal
                 pagingEnabled
                 onMomentumScrollEnd={updateCurrentSlideIndex}

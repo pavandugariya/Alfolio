@@ -7,39 +7,43 @@ import ButtonField from '../custom_componets/ButtonField'
 import { globalshedow } from '../../globalUtils/globalutil';
 import { useNavigation } from '@react-navigation/native';
 import * as Keychain from 'react-native-keychain';
+import GradientBtn from '../custom_componets/GradientBtn';
 
 const { height, width } = Dimensions.get('screen')
+import { useTranslation } from 'react-i18next';
+
 
 const LoginScreen = () => {
+    const { t, i18n, ready } = useTranslation();
     const navigation = useNavigation();
     const [phoneNumber, setphoneNumber] = useState('');
 
-    useEffect(() => {
-        keyChainCode()
-        Keychain.getSupportedBiometryType()
-            .then(biometryType => {
-                if (!!biometryType) console.log(biometryType);
-                else console.log(biometryType);
-            })
-    }, [])
+    // useEffect(() => {
+    //     keyChainCode()
+    //     Keychain.getSupportedBiometryType()
+    //         .then(biometryType => {
+    //             if (!!biometryType) console.log(biometryType);
+    //             else console.log(biometryType);
+    //         })
+    // }, [])
 
 
 
     const otpVerification = () => {
-        getFinger();
-        // if (phoneNumber.length >= 10) {
-        //     navigation.navigate('OTP', { pn: phoneNumber })
-        // } else {
-        //     Alert.alert('Mobile number ', 'please enter correct mobile number', [
-        //         // {
-        //         //     text: 'Cancel',
-        //         //     onPress: () => console.log('Cancel Pressed'),
-        //         //     style: 'cancel',
-        //         // },
-        //         { text: 'OK', onPress: () => console.log('OK Pressed') },
-        //     ]);
+        // getFinger();
+        if (phoneNumber.length >= 10) {
+            navigation.navigate('OTP', { pn: phoneNumber })
+        } else {
+            Alert.alert(t('login.alertTitle1'), t('login.alertTitle2'), [
+                // {
+                //     text: 'Cancel',
+                //     onPress: () => console.log('Cancel Pressed'),
+                //     style: 'cancel',
+                // },
+                { text: t('login.alertTitle3'), onPress: () => console.log('OK Pressed') },
+            ]);
 
-        // }
+        }
     }
     const keyChainCode = async () => {
         const username = 'deepak';
@@ -104,7 +108,6 @@ const LoginScreen = () => {
         <ImageBackground
             source={require('../../Images/loginformbg.png')}
             style={styles.container}>
-            {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
 
             <View style={styles.logo_top_box}>
                 <Image
@@ -116,49 +119,93 @@ const LoginScreen = () => {
                     }}
                 />
             </View>
-            <View
-                style={[styles.bottom_view_style, globalshedow]}>
-                <ScrollView>
-                    <View style={{ alignItems: 'center', }}>
-                        <Text style={styles.txt_title_style}>Enter Your Phone Number</Text>
-                        <Text style={[styles.txt_title_style, { color: '#424242', fontSize: 14, marginVertical: 15 }]}>We will send you the <Text style={{ fontWeight: 'bold' }}>6 digit</Text> verification code</Text>
-                    </View>
-                    <View style={{ marginTop: 10 }}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
-                        <TextInput
-                            placeholder='9754930302'
-                            placeholderTextColor={'#8a8282'}
-                            value={phoneNumber}
-                            onChangeText={(e) => {
-                                setphoneNumber(e)
-                            }}
-                            maxLength={10}
-                            keyboardType={'number-pad'}
-                            style={{
-                                borderWidth: 1,
-                                borderRadius: 5,
-                                height: 40,
-                                paddingLeft: 50,
-                                fontSize: 15,
-                            }}
+                <View
+                    style={[styles.bottom_view_style, globalshedow]}>
+                    <ScrollView>
+                        <View style={{ alignItems: 'center', }}>
+                            <Text style={styles.txt_title_style}>{t('login.title')}</Text>
+                            <Text style={[styles.txt_title_style, { color: '#424242', fontSize: 14, marginVertical: 15 }]}>{t('login.title2')}</Text>
+                        </View>
+                        <View style={{ marginTop: 10 }}>
 
+                            <TextInput
+                                placeholder='9754930302'
+                                placeholderTextColor={'#8a8282'}
+                                value={phoneNumber}
+                                onChangeText={(e) => {
+                                    setphoneNumber(e)
+                                }}
+                                maxLength={10}
+                                keyboardType={'number-pad'}
+                                style={{
+                                    borderWidth: 1,
+                                    borderRadius: 5,
+                                    height: 40,
+                                    paddingLeft: 50,
+                                    fontSize: 15,
+                                    color: '#000'
+                                }}
+
+                            />
+                            <Text style={{ position: 'absolute', top: -6, left: 10, fontSize: 8, backgroundColor: '#fff', paddingHorizontal: 2, fontFamily: colors.Regularm, color: '#3d3c3c' }}>{t('login.mobile')}</Text>
+                            <Text style={{
+                                position: 'absolute',
+                                top: 8, left: 10,
+                                fontSize: 15, color: '#514f4f'
+                            }}>+91 |</Text>
+                        </View>
+
+
+                        {/* <ButtonField
+                            loginBtnText={t('login.btnText')}
+                            bgColor={colors.txt_color}
+                            color={'#fff'}
+                            // marginTop={40}
+                            height={40}
+                            borderRadius={5}
+                            onPress={otpVerification}
+                        /> */}
+
+                        <GradientBtn
+                            loginBtnText={t('login.btnText')}
+                            bgColor={'#951516'}
+                            bgColor2={'#D84B23'}
+                            color={'#fff'}
+                            marginTop={20}
+                            height={40}
+                            borderRadius={5}
+                            icon_color={'#fff'}
+                            icon_size={24}
+                            // icon_name={'share-social'}
+                            onPress={otpVerification}
                         />
-                        <Text style={{ position: 'absolute', top: -6, left: 10, fontSize: 8, backgroundColor: '#fff', paddingHorizontal: 2, fontFamily: colors.Regularm, color: '#3d3c3c' }}>Mobile</Text>
-                        <Text style={{ position: 'absolute', top: 8, left: 10, fontSize: 15, color: '#514f4f' }}>+91 |</Text>
-                    </View>
+                        {/* <LinearGradient
+                            colors={['#951516', '#D84B23']}
+                            start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }}
+                            locations={[0.0, 0.8]}
+                            style={{
+                                flex: 1,
+                                paddingLeft: 15,
+                                paddingRight: 15,
+                                borderRadius: 5
 
-                    <ButtonField
-                        loginBtnText={'GENERATE OTP'}
-                        bgColor={colors.txt_color}
-                        color={'#fff'}
-                        marginTop={40}
-                        height={40}
-                        borderRadius={5}
-                        onPress={otpVerification}
-                    />
-                </ScrollView>
-            </View>
-            {/* </TouchableWithoutFeedback> */}
+                            }}>
+                            <Text style={{
+                                fontSize: 18,
+                                fontFamily: 'Gill Sans',
+                                textAlign: 'center',
+                                margin: 10,
+                                color: '#ffffff',
+                                backgroundColor: 'transparent',
+                            }}>
+                                Sign
+                            </Text>
+                        </LinearGradient> */}
+                    </ScrollView>
+                </View>
+            </TouchableWithoutFeedback>
         </ImageBackground>
 
     )

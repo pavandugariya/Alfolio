@@ -1,8 +1,9 @@
 export const globalcolors = {
-
+    icon_color: '#951516'
 }
 export const globalfonts = {
-
+    'Regularm': 'Montserrat-Regular',
+    'Regularj': 'Jeko Regular',
 }
 export const globalshedow = {
     shadowColor: "#000",

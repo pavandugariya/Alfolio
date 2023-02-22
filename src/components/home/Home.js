@@ -1,4 +1,7 @@
-import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
+import {
+    StyleSheet, Text, View, ImageBackground, Image,
+    TouchableOpacity, Dimensions, ScrollView
+} from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { homecolors, shedow } from './util';
@@ -35,7 +38,9 @@ const Home = () => {
                         {
                             Array(10).fill('1').map((_, index) => {
                                 return (
-                                    <View key={index} style={[styles.item_box, shedow]}>
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate('ShowMarksheet')}
+                                        key={index} style={[styles.item_box, shedow]}>
                                         <Icon name={'document-outline'} size={45} color={'#494848'}
                                             alignSelf={'center'}
                                         />
@@ -47,7 +52,7 @@ const Home = () => {
                                             source={require('../../Images/verified.png')}
                                             style={{ height: 30, width: 30, alignSelf: 'center', marginTop: 5 }}
                                         />
-                                    </View>
+                                    </TouchableOpacity>
                                 );
                             })
                         }

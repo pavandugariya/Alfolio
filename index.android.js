@@ -8,4 +8,6 @@
 
 // AppRegistry.registerComponent(appName, () => App);
 import './src/native/index.native';
+// import i18n from '../Alfolio/src/lang/i18n'
+
 // import './react/index.native';

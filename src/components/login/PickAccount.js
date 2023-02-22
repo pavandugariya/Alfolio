@@ -6,11 +6,12 @@ import ButtonField from '../custom_componets/ButtonField'
 import { globalshedow } from '../../globalUtils/globalutil';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-
+import { pickAccount } from '../../lang/main.json'
+import { useTranslation } from 'react-i18next';
 const { height, width } = Dimensions.get('screen')
 
 const PickAccount = () => {
-
+    const { t } = useTranslation();
     const navigation = useNavigation();
     const clickHandler = () => {
         navigation.navigate('Drawer')
@@ -33,7 +34,7 @@ const PickAccount = () => {
 
                 <ScrollView>
                     <View style={{ alignItems: 'center', }}>
-                        <Text style={styles.txt_title_style}>Pick an account</Text>
+                        <Text style={styles.txt_title_style}>{t('pickAccount.title')}</Text>
 
                         <TouchableOpacity style={styles.top_text_container}
                             onPress={clickHandler}
@@ -61,7 +62,7 @@ const PickAccount = () => {
 
                         <TouchableOpacity style={[styles.top_text_container, { justifyContent: 'flex-start' }]}>
                             <Icon name={'add-outline'} size={20} color={'#757171'} />
-                            <Text numberOfLines={1} style={[styles.text_style_email, { left: 12 }]}>Use another account</Text>
+                            <Text numberOfLines={1} style={[styles.text_style_email, { left: 12 }]}>{t('pickAccount.use another account')}</Text>
 
                         </TouchableOpacity>
 

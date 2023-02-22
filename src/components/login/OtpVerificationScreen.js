@@ -1,4 +1,7 @@
-import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, KeyboardAvoidingView, ScrollView, Alert, } from 'react-native'
+import {
+    StyleSheet, Text, View, Image, ImageBackground, Dimensions, KeyboardAvoidingView,
+    ScrollView, Alert, TouchableWithoutFeedback, Keyboard
+} from 'react-native'
 import React, { useState, useRef } from 'react'
 import { colors } from './util'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
@@ -6,9 +9,12 @@ import CustomInputField from '../custom_componets/CustomInputField'
 import ButtonField from '../custom_componets/ButtonField'
 import { globalshedow } from '../../globalUtils/globalutil';
 import { useNavigation } from '@react-navigation/native';
-const { height, width } = Dimensions.get('screen')
+import { useTranslation } from 'react-i18next'
+import GradientBtn from '../custom_componets/GradientBtn';
 
+const { height, width } = Dimensions.get('screen')
 const OtpVerificationScreen = (props) => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
     const mobileNumber = props.route.params.pn
     const pin1Ref = useRef(null)
@@ -42,117 +48,121 @@ const OtpVerificationScreen = (props) => {
                     }}
                 />
             </View>
-            <View style={[styles.bottom_view_style, globalshedow]}>
-                <ScrollView>
-                    <View style={{ alignItems: 'center', }}>
-                        <Text style={styles.txt_title_style}>OTP Verification</Text>
-                        <Text style={[styles.txt_title_style, { color: '#424242', fontSize: 14, marginVertical: 15 }]}>Enter the OTP send To +91 {mobileNumber}</Text>
-                    </View>
-                    <View style={
-                        {
-                            marginTop: 10,
-                            flexDirection: 'row',
-                            width: '100%',
-                            justifyContent: 'center'
-                        }}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={[styles.bottom_view_style, globalshedow]}>
+                    <ScrollView>
+                        <View style={{ alignItems: 'center', }}>
+                            <Text style={styles.txt_title_style}>{t('otpVerify.title')}</Text>
+                            <Text style={[styles.txt_title_style, { color: '#424242', fontSize: 14, marginVertical: 15 }]}>{t('otpVerify.title2')} {mobileNumber}</Text>
+                        </View>
+                        <View style={
+                            {
+                                marginTop: 10,
+                                flexDirection: 'row',
+                                width: '100%',
+                                justifyContent: 'center'
+                            }}>
 
-                        <TextInput
-                            ref={pin1Ref}
-                            maxLength={1}
-                            textAlign={'center'}
-                            keyboardType={'number-pad'}
-                            onChangeText={(e) => {
-                                e && pin2Ref.current.focus()
-                                setpin1(e)
+                            <TextInput
+                                ref={pin1Ref}
+                                maxLength={1}
+                                textAlign={'center'}
+                                keyboardType={'number-pad'}
+                                onChangeText={(e) => {
+                                    e && pin2Ref.current.focus()
+                                    setpin1(e)
 
-                            }}
-                            // onSubmitEditing={() => pin2Ref.current.focus()}
+                                }}
+                                // onSubmitEditing={() => pin2Ref.current.focus()}
 
-                            value={pin1}
-                            style={styles.text_input_style}
+                                value={pin1}
+                                style={styles.text_input_style}
+                            />
+                            <TextInput
+                                ref={pin2Ref}
+                                maxLength={1}
+                                textAlign={'center'}
+                                keyboardType={'number-pad'}
+                                value={pin2}
+                                onChangeText={(e) => {
+                                    e ? pin3Ref.current.focus() : pin1Ref.current.focus()
+                                    setpin2(e)
+                                }
+                                }
+                                style={styles.text_input_style}
+                            />
+                            <TextInput
+                                ref={pin3Ref}
+                                textAlign={'center'}
+                                maxLength={1}
+                                value={pin3}
+                                keyboardType={'number-pad'}
+                                onChangeText={(e) => {
+                                    e ? pin4Ref.current.focus() : pin2Ref.current.focus()
+                                    setpin3(e)
+                                }}
+                                style={styles.text_input_style}
+                            />
+                            <TextInput
+                                ref={pin4Ref}
+
+                                textAlign={'center'}
+                                maxLength={1}
+                                keyboardType={'number-pad'}
+                                value={pin4}
+                                onChangeText={(e) => {
+                                    e ? pin5Ref.current.focus() : pin3Ref.current.focus()
+                                    setpin4(e)
+                                }}
+                                style={styles.text_input_style}
+                            />
+                            <TextInput
+                                ref={pin5Ref}
+
+                                maxLength={1}
+                                textAlign={'center'}
+                                keyboardType={'number-pad'}
+                                value={pin5}
+                                onChangeText={(e) => {
+                                    e ? pin6Ref.current.focus() : pin4Ref.current.focus()
+                                    setpin5(e)
+                                }}
+                                style={styles.text_input_style}
+                            />
+                            <TextInput
+                                ref={pin6Ref}
+
+                                maxLength={1}
+                                textAlign={'center'}
+                                keyboardType={'number-pad'}
+                                value={pin6}
+                                onChangeText={(e) => {
+                                    e == '' && pin5Ref.current.focus()
+
+                                    setpin6(e)
+                                }}
+                                style={styles.text_input_style}
+                            />
+                        </View>
+                        <Text style={{ alignSelf: 'center', marginTop: 20, color: '#000' }}>{t('otpVerify.title3')}<Text onPress={() => { }} style={{ color: colors.txt_color, }}>{t('otpVerify.resend')}</Text></Text>
+                        <GradientBtn
+                            loginBtnText={t('otpVerify.btnText')}
+                            bgColor={'#951516'}
+                            bgColor2={'#D84B23'}
+                            color={'#fff'}
+                            marginTop={20}
+                            height={40}
+                            borderRadius={5}
+                            icon_color={'#fff'}
+                            icon_size={24}
+                            onPress={verifyOTP}
                         />
-                        <TextInput
-                            ref={pin2Ref}
-                            maxLength={1}
-                            textAlign={'center'}
-                            keyboardType={'number-pad'}
-                            value={pin2}
-                            onChangeText={(e) => {
-                                e ? pin3Ref.current.focus() : pin1Ref.current.focus()
-                                setpin2(e)
-                            }
-                            }
-                            style={styles.text_input_style}
-                        />
-                        <TextInput
-                            ref={pin3Ref}
-                            textAlign={'center'}
-                            maxLength={1}
-                            value={pin3}
-                            keyboardType={'number-pad'}
-                            onChangeText={(e) => {
-                                e ? pin4Ref.current.focus() : pin2Ref.current.focus()
-                                setpin3(e)
-                            }}
-                            style={styles.text_input_style}
-                        />
-                        <TextInput
-                            ref={pin4Ref}
 
-                            textAlign={'center'}
-                            maxLength={1}
-                            keyboardType={'number-pad'}
-                            value={pin4}
-                            onChangeText={(e) => {
-                                e ? pin5Ref.current.focus() : pin3Ref.current.focus()
-                                setpin4(e)
-                            }}
-                            style={styles.text_input_style}
-                        />
-                        <TextInput
-                            ref={pin5Ref}
+                    </ScrollView>
 
-                            maxLength={1}
-                            textAlign={'center'}
-                            keyboardType={'number-pad'}
-                            value={pin5}
-                            onChangeText={(e) => {
-                                e ? pin6Ref.current.focus() : pin4Ref.current.focus()
-                                setpin5(e)
-                            }}
-                            style={styles.text_input_style}
-                        />
-                        <TextInput
-                            ref={pin6Ref}
+                </View>
+            </TouchableWithoutFeedback>
 
-                            maxLength={1}
-                            textAlign={'center'}
-                            keyboardType={'number-pad'}
-                            value={pin6}
-                            onChangeText={(e) => {
-                                e == '' && pin5Ref.current.focus()
-
-                                setpin6(e)
-                            }}
-                            style={styles.text_input_style}
-                        />
-                    </View>
-                    <Text style={{ alignSelf: 'center', marginTop: 20 }}>Didn't receive OTP? <Text onPress={() => { }} style={{ color: colors.txt_color, }}> RESEND</Text></Text>
-
-
-                    <ButtonField
-                        loginBtnText={'VERIFY & CONTINUE'}
-                        bgColor={colors.txt_color}
-                        color={'#fff'}
-                        marginTop={40}
-                        height={40}
-                        borderRadius={5}
-                        onPress={verifyOTP}
-                    />
-
-                </ScrollView>
-
-            </View>
         </ImageBackground>
 
     )
@@ -199,6 +209,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         width: '12%',
         marginLeft: 8,
-        alignItems: 'center'
+        alignItems: 'center',
+        color: '#000'
     }
 })

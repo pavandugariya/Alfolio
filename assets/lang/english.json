@@ -1,0 +1,62 @@
+{
+    "translation": {
+        "login": {
+            "title": "Enter Your Phone Number",
+            "title2": "We will send you the 6 digit verification code",
+            "mobile": "Mobile",
+            "btnText": "GENERATE OTP",
+            "alertTitle1": "Mobile number",
+            "alertTitle2": "please enter correct mobile number",
+            "alertTitle3": "OK"
+        },
+        "otpVerify": {
+            "title": "OTP Verification",
+            "title2": "Enter the OTP send To +91 ",
+            "title3": "Didn't receive OTP? ",
+            "resend": "RESEND",
+            "btnText": "VERIFY & CONTINUE"
+        },
+        "onboarding": {
+            "next": "Next",
+            "skip": "Skip",
+            "get started": "Get Started",
+            "swipedata": [
+                {
+                    "image": "1",
+                    "title": "CLAIM",
+                    "message": "Claim your certificate from issuers, partnered with alFolio in just a few taps. It's easy such as 2+2"
+                },
+                {
+                    "image": "2",
+                    "title": "SEND",
+                    "message": "Send your certificate to anyone and they won't need to verify it again. It's algorithm not a theorem."
+                },
+                {
+                    "image": "3",
+                    "title": "Authenticate ",
+                    "message": "alFolio ensures end-to-end encryption and zero data tempering. hacking efforts would be 5/0"
+                }
+            ]
+        },
+        "pickAccount": {
+            "title": "Pick an account",
+            "use another account": "Use another account"
+        },
+        "home": {},
+        "drawer": {
+            "screen1": "Home",
+            "screen2": "Profile",
+            "screen3": "Notification",
+            "screen4": "Settings",
+            "signOut": "Sign out"
+        },
+        "showMarksheet": {
+            "school": "Higher Secondary Certificate",
+            "board": "MP BOARD",
+            "send": "Send",
+            "share": "Share",
+            "download": "Download",
+            "send history log": "Send History Log"
+        }
+    }
+}
