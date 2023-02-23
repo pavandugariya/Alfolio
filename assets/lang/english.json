@@ -57,6 +57,17 @@
             "share": "Share",
             "download": "Download",
             "send history log": "Send History Log"
+        },
+        "sendDocuments": {
+            "enter the address": "Enter The Address",
+            "duration": "Duration",
+            "notify on email": "Notify On Email",
+            "enable": "Enable",
+            "send": "Send",
+            "header name": "Send Your Documents"
+        },
+        "sendHistory": {
+            "header name": "Send Log"
         }
     }
 }

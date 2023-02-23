@@ -48,17 +48,21 @@ const styles = StyleSheet.create({
     },
     icon_style: {
         position: 'absolute',
-        left: 15
+        left: 15,
+        // borderWidth: 1,
+        // padding: 20
     },
     second_icon_style: {
         position: 'absolute',
         right: 15
     },
     header_name_style: {
+        letterSpacing: 1,
         fontSize: 20,
         color: '#000',
-        lineHeight: 23,
-        fontFamily: globalfonts.Regularm
+        // lineHeight: 23,
+        fontFamily: globalfonts.Regularm,
+        fontWeight: 'bold'
 
     }
 })

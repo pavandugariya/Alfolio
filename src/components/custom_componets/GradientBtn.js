@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons'
+import { globalfonts } from '../../globalUtils/globalutil';
 
 
 const GradientBtn = ({ loginBtnText, bgColor, bgColor2,
@@ -12,8 +13,11 @@ const GradientBtn = ({ loginBtnText, bgColor, bgColor2,
             <LinearGradient
                 style={[styles.container, { backgroundColor: bgColor }, { ...rest }]} {...rest}
                 colors={[bgColor, bgColor2]}
-                start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }}
-                locations={[0.0, 0.6]}
+                start={{ x: 0.7, y: 0 }} end={{ x: 0, y: 0 }}
+                locations={[0.0, 0.7]}
+                // angle={45}
+                angleCenter={{ x: 0.2, y: 0.2 }}
+                useAngle={true}
             >
                 {icon_name && <Icon name={icon_name} size={icon_size} color={icon_color} style={{ marginRight: 8 }} />}
 
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
     },
     txtStyle: {
         fontSize: 16,
-        // fontFamily: colors.Regularj,
+        fontFamily: globalfonts.Regularm
         // fontWeight: 'bold'
 
 

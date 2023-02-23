@@ -1,10 +1,9 @@
-import { Alert, ImageBackground, StyleSheet, Modal, Text, View, Image, TouchableOpacity } from 'react-native'
+import { Alert, ImageBackground, Modal, Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { styles } from './styles';
 import CustomHeader from '../custom_componets/CustomHeader';
 import { useNavigation } from '@react-navigation/native';
-import { globalfonts } from '../../globalUtils/globalutil';
 import GradientBtn from '../custom_componets/GradientBtn';
 import { useTranslation } from 'react-i18next';
 import Pinchable from 'react-native-pinchable';
@@ -14,6 +13,16 @@ const ShowMarksheet = () => {
     const navigation = useNavigation();
     const { t } = useTranslation();
     const [modalVisible, setModalVisible] = useState(false);
+
+    const sendHandler = () => {
+        navigation.navigate('SendDocuments')
+    }
+    const sendHistoryHandler = () => {
+        navigation.navigate('SendHistory')
+        setModalVisible(!modalVisible)
+    }
+    const shareHandler = () => { }
+    const downloadHandler = () => { }
 
     const Modalcomponent = () => {
         return (
@@ -32,7 +41,9 @@ const ShowMarksheet = () => {
                     onPress={() => setModalVisible(!modalVisible)}
                 >
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.modal_view}>
+                <TouchableOpacity
+                    onPress={sendHistoryHandler}
+                    style={styles.modal_view}>
                     <Text style={styles.modal_text_style}>{t('showMarksheet.send history log')}</Text>
                 </TouchableOpacity>
             </Modal>
@@ -53,26 +64,11 @@ const ShowMarksheet = () => {
                     rightOnpress={() => { setModalVisible(!modalVisible) }}
                 />
                 <Modalcomponent />
+
                 <View style={styles.main_view}>
                     <Text style={styles.school_name_text_style}>{t('showMarksheet.school')}</Text>
                     <Text style={styles.board_name_text_style}>{t('showMarksheet.board')}</Text>
                     <Text style={styles.key_text_text_style}>oxfd.................ea</Text>
-                    {/* <View style={styles.zoom_top_container}>
-                        <TouchableOpacity>
-                            <Image
-                                source={require('../../Images/zoom_in.png')}
-                                style={{ height: 30, width: 30, marginRight: 10 }}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Image
-                                source={require('../../Images/zoom_out.png')}
-                                style={{ height: 30, width: 30 }}
-                            />
-
-                        </TouchableOpacity>
-                    </View> */}
-
                     <Pinchable >
                         <View style={styles.marksheet_view}>
                             <Image
@@ -102,14 +98,13 @@ const ShowMarksheet = () => {
                         icon_size={22}
                         width={100}
                         icon_name={'send'}
-                    // icon_name={'share-social'}
-                    // onPress={otpVerification}
-                    />
+                        onPress={sendHandler}
 
+                    />
                     <GradientBtn
                         loginBtnText={t('showMarksheet.share')}
                         bgColor={'#951516'}
-                        bgColor2={'#d25c34'}
+                        bgColor2={'#D84B23'}
                         color={'#ffffff'}
                         marginTop={20}
                         height={40}
@@ -118,10 +113,8 @@ const ShowMarksheet = () => {
                         icon_size={22}
                         width={100}
                         icon_name={'share-social'}
-                    // icon_name={'share-social'}
                     // onPress={otpVerification}
                     />
-
                     <GradientBtn
                         loginBtnText={t('showMarksheet.download')}
                         bgColor={'#95151500'}
@@ -134,7 +127,6 @@ const ShowMarksheet = () => {
                         icon_size={22}
                         width={100}
                         icon_name={'download'}
-                    // icon_name={'share-social'}
                     // onPress={otpVerification}
                     />
                 </View>

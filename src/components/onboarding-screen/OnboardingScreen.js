@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const OnboardingScreen = () => {
     // console.log(onboarding.swipedata[0]);
+
     const { t, i18n, ready } = useTranslation();
     const onboardingdata = t('onboarding.swipedata', { returnObjects: true });
     const navigation = useNavigation();
@@ -89,6 +90,7 @@ const OnboardingScreen = () => {
             // ref?.current?.scrollToOffset({ offset });
             // setcurrentSlideIndex(lastIndex)
             navigation.replace('Login')
+            // i18n.changeLanguage('en')
 
         }
         const nextSlidePress = () => {
