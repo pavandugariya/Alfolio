@@ -15,7 +15,8 @@ export const styles = StyleSheet.create({
     },
     main_view: {
         flex: 1,
-        padding: 15
+        padding: 15,
+        marginTop: 10
     },
     school_name_text_style: {
         fontSize: 15,
@@ -42,7 +43,7 @@ export const styles = StyleSheet.create({
 
     },
     marksheet_view: {
-        marginTop: 50,
+        marginTop: 30,
         height: 430,
         overflow: 'scroll'
 

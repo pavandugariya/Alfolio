@@ -4,12 +4,15 @@ import {
 } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
+import Icons from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native';
 import { styles } from "../home/styles";
 import { globalshedow as shedow } from '../../globalUtils/globalutil';
+import { useTranslation } from 'react-i18next';
 
 const { height, width } = Dimensions.get('screen')
 const Home = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
     const toggleHandler = () => {
         navigation.openDrawer();
@@ -25,15 +28,16 @@ const Home = () => {
                 <Icon name={'reorder-three-outline'} size={35} color={'#000'} />
             </TouchableOpacity>
             <View style={styles.main_view}>
-                <Image
-                    source={require('../../Images/home_alfolio_logo.png')}
-                    style={{
-                        height: 40,
-                        width: '60%',
-                        alignSelf: 'center',
-                        marginBottom: 10
-                    }} resizeMode={'contain'}
-                />
+                <View style={styles.your_text_box_style}>
+                    <Text style={styles.your_txt_style}>{t('home.your')}</Text>
+                    <Image
+                        source={require('../../Images/logo_name.png')}
+                        style={{
+                            height: 35,
+                            width: 145,
+                        }} resizeMode={'contain'}
+                    />
+                </View>
                 <ScrollView>
                     <View style={styles.item_top_box}>
                         {
@@ -42,16 +46,17 @@ const Home = () => {
                                     <TouchableOpacity
                                         onPress={() => navigation.navigate('ShowMarksheet')}
                                         key={index} style={[styles.item_box, shedow]}>
-                                        <Icon name={'document-outline'} size={45} color={'#494848'}
+                                        <Icon name={'document-text-outline'} size={45} color={'#951516'}
                                             alignSelf={'center'}
                                         />
                                         <Text numberOfLines={1}
-                                            style={styles.item_top_text_style}>High secondary</Text>
+                                            style={styles.item_top_text_style}>{t('home.high secondary')}</Text>
                                         <Text numberOfLines={1}
-                                            style={styles.item_bottom_text_style}>MP BOARD</Text>
-                                        <Image
-                                            source={require('../../Images/verified.png')}
-                                            style={{ height: 30, width: 30, alignSelf: 'center', marginTop: 5 }}
+                                            style={styles.item_bottom_text_style}>{t('home.mp board')}</Text>
+                                        <Icons name={'verified'} size={30}
+                                            color={'#951516'}
+                                            alignSelf={'center'}
+                                            marginTop={5}
                                         />
                                     </TouchableOpacity>
                                 );

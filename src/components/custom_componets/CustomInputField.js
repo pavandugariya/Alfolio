@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { globalfonts } from '../../globalUtils/globalutil'
 
 
 const CustomInputField = ({ leftIcon, textname, placeholderText, textValue, onChangeTextHandler, rightIcon, rightIconOnpressHandler, isVisible, secondRightIcon, colors, ...rest }) => {
     return (
         <View style={styles.container}>
             <View style={styles.top_container}>
-                <Icon name={leftIcon} size={24} color={'#868686'} />
-                <Text style={{ fontFamily: 'Raleway', fontSize: 15, fontWeight: '600', lineHeight: 17, color: '#868686', marginHorizontal: 10 }}>{textname}</Text>
+                {/* <Icon name={leftIcon} size={24} color={'#951516'} /> */}
+                <Text style={{ fontFamily: globalfonts.Regularj, fontSize: 15, fontWeight: '600', color: '#951516', marginHorizontal: leftIcon ? 10 : 0 }}>{textname}</Text>
             </View>
             <TextInput
                 placeholder={placeholderText}
@@ -45,18 +46,26 @@ const styles = StyleSheet.create({
     },
     top_container: {
         flexDirection: 'row',
-        alignItems: 'center',
-        left: -2,
+        alignItems: 'baseline',
+        // left: -,
+        marginBottom: 0
+        // justifyContent: 'center'
     },
     text_input_style: {
         height: 40,
         fontFamily: 'Raleway',
         fontSize: 17,
-        borderBottomWidth: 1,
-        borderBottomColor: '#C9C9C9',
-        left: -5,
+        borderWidth: 1,
+        borderColor: '#951516',
+        // left: -5,
         paddingRight: 45,
-        color: '#000'
+        color: '#000',
+        width: '100%',
+        borderRadius: 5,
+        alignSelf: 'center',
+        paddingLeft: 15,
+        backgroundColor: '#ffff'
+
     },
     rightIcon_style: {
         position: 'absolute',

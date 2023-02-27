@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import { globalcolors, globalfonts } from '../../globalUtils/globalutil';
 const { height, width } = Dimensions.get('screen')
 import { homecolors, shedow } from './util';
 
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
     },
     item_top_box: {
         flex: 1,
-        marginHorizontal: 30,
+        marginHorizontal: 35,
         flexDirection: 'row',
         justifyContent: 'space-between',
         display: 'flex',
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
     item_box: {
         height: 160,
         width: width * 0.37,
-        marginVertical: 20,
+        marginVertical: 15,
         borderRadius: 10,
         padding: 10,
         backgroundColor: '#fff',
@@ -50,14 +51,26 @@ export const styles = StyleSheet.create({
         marginTop: 5,
         fontSize: 15,
         color: '#353434',
-        fontWeight: 'bold',
-        fontFamily: homecolors.Regularj
+        fontFamily: globalfonts.Extra_Bold_j,
     },
     item_bottom_text_style: {
         alignSelf: 'center',
         marginTop: 5,
         fontSize: 15,
         color: '#686868',
-        fontFamily: homecolors.Regularj
+        fontFamily: globalfonts.Regularj,
+    },
+    your_text_box_style: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: "row",
+        alignSelf: 'center',
+        marginBottom: 20,
+    },
+    your_txt_style: {
+        fontSize: 30,
+        color: globalcolors.text_color,
+        fontFamily: globalfonts.Extra_Bold_j,
+        marginRight: -15
     }
 })

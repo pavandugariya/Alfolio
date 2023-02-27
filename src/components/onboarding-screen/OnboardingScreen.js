@@ -3,7 +3,7 @@ import React, { useState, } from 'react'
 import { onBoardingColor } from './onBoardingcolors';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-
+import On from "./on";
 const OnboardingScreen = () => {
     // console.log(onboarding.swipedata[0]);
 
@@ -141,7 +141,7 @@ const OnboardingScreen = () => {
         <View >
             <ImageBackground source={require('../../Images/onboarding_bg.png')}
                 style={[styles.container, { height: windowHeight, width: windowWidth }]} />
-
+            <On />
             <FlatList
                 ref={ref}
                 data={onboardingdata}

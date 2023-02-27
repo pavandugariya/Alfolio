@@ -60,6 +60,7 @@ const ShowMarksheet = () => {
                     left_icon={'chevron-back'}
                     right_icon={'ellipsis-vertical'}
                     header_logo
+                    // header_name={'Your Doc'}
                     leftOnpress={() => navigation.goBack()}
                     rightOnpress={() => { setModalVisible(!modalVisible) }}
                 />

@@ -11,7 +11,7 @@
         },
         "otpVerify": {
             "title": "OTP Verification",
-            "title2": "Enter the OTP send To +91 ",
+            "title2": "Enter the OTP send To +91",
             "title3": "Didn't receive OTP? ",
             "resend": "RESEND",
             "btnText": "VERIFY & CONTINUE"
@@ -42,7 +42,49 @@
             "title": "Pick an account",
             "use another account": "Use another account"
         },
-        "home": {},
+        "home": {
+            "your": "Your",
+            "high secondary": "High secondary",
+            "mp board": "MP BOARD"
+        },
+        "profile": {
+            "profile": "Profile",
+            "name": "Pavan Dugariya",
+            "email": "pavan.mongoosetech@gmail.com",
+            "edit profile": "Edit Profile",
+            "download": "Download",
+            "language": "Language",
+            "location": "Location",
+            "favourites": "Favourites",
+            "clean history": "Clean History"
+        },
+        "editProfile": {
+            "edit profile": "Edit Profile",
+            "edit profile information": "Edit Profile Information",
+            "first name": "First Name",
+            "last name": "Last Name",
+            "location": "Location",
+            "phone no": "Phone No",
+            "email": "Email",
+            "studies": "Studies",
+            "12th": "12TH",
+            "10th": "10TH",
+            "b.tech": "B.Tech",
+            "b.com": "B.Com",
+            "select": "Select",
+            "enter your name": "Enter Your First Name",
+            "enter your last name": "Enter Your Last Name",
+            "enter your location": "Enter Your Location",
+            "enter your phone no": "Enter Your Phone No",
+            "enter your email": "Enter Your Email Address"
+        },
+        "settings": {
+            "settings": "Settings",
+            "push notification": "Push Notification",
+            "email notification": "Email Notification",
+            "sms notification": "SMS Notification",
+            "language": "Language"
+        },
         "drawer": {
             "screen1": "Home",
             "screen2": "Profile",

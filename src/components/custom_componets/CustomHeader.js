@@ -11,12 +11,12 @@ const CustomHeader = ({ left_icon, right_icon, header_name, header_logo, leftOnp
                 <TouchableOpacity
                     onPress={leftOnpress}
                     style={styles.icon_style}>
-                    <Icon name={left_icon} size={24} color={globalcolors.icon_color} />
+                    <Icon name={left_icon} size={25} color={globalcolors.icon_color} />
                 </TouchableOpacity>
             }
             {
                 header_name &&
-                <Text style={styles.header_name_style}>{header_name} </Text>
+                <Text numberOfLines={1} style={styles.header_name_style}>{header_name} </Text>
             }
             {
                 header_logo &&
@@ -30,7 +30,7 @@ const CustomHeader = ({ left_icon, right_icon, header_name, header_logo, leftOnp
                 <TouchableOpacity
                     onPress={rightOnpress}
                     style={styles.second_icon_style}>
-                    <Icon name={right_icon} size={24} color={globalcolors.icon_color} />
+                    <Icon name={right_icon} size={25} color={globalcolors.icon_color} />
                 </TouchableOpacity>
             }
         </View>
@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#000',
         // lineHeight: 23,
-        fontFamily: globalfonts.Regularm,
-        fontWeight: 'bold'
+        fontFamily: globalfonts.Extra_Bold_j,
+        // fontWeight: 'bold'
 
     }
 })

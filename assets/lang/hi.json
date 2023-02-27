@@ -42,7 +42,49 @@
             "title": "एक खाता चुनें",
             "use another account": "दूसरे खाते का उपयोग करें"
         },
-        "home": {},
+        "home": {
+            "your": "आपका",
+            "high secondary": "उच्च माध्यमिक",
+            "mp board": "एमपी बोर्ड"
+        },
+        "profile": {
+            "profile": "प्रोफाइल",
+            "name": "पवन दुगारिया",
+            "email": "pavan.mongoosetech@gmail.com",
+            "edit profile": "प्रोफ़ाइल संपादित करें",
+            "download": "डाउनलोड",
+            "language": "भाषा",
+            "location": "स्थान",
+            "favourites": "पसंदीदा",
+            "clean history": "स्वच्छ इतिहास"
+        },
+        "editProfile": {
+            "edit profile": "प्रोफ़ाइल संपादित करें",
+            "edit profile information": "प्रोफ़ाइल जानकारी संपादित करें",
+            "first name": "पहला नाम",
+            "last name": "अंतिम नाम",
+            "location": "स्थान",
+            "phone no": "फ़ोन नंबर",
+            "email": "ईमेल",
+            "studies": "अध्ययन",
+            "12th": "12वीं",
+            "10th": "10वीं",
+            "b.tech": "बी.टेक",
+            "b.com": "बी.कॉम",
+            "select": "चयन करें",
+            "enter your name": "अपना पहला नाम दर्ज करें",
+            "enter your last name": "अपना अंतिम नाम दर्ज करें",
+            "enter your location": "अपना स्थान दर्ज करें",
+            "enter your phone no": "अपना फ़ोन नंबर दर्ज करें",
+            "enter yout email": "अपना ईमेल दर्ज करें"
+        },
+        "settings": {
+            "settings": "सेटिंग्स",
+            "push notification": "पुश नोटिफिकेशन",
+            "email notification": "ईमेल अधिसूचना",
+            "sms notification": "एसएमएस अधिसूचना",
+            "language": "भाषा"
+        },
         "drawer": {
             "screen1": "होम",
             "screen2": "प्रोफ़ाइल",
@@ -54,7 +96,7 @@
             "school": "उच्चतर माध्यमिक प्रमाणपत्र",
             "board": "एमपी बोर्ड",
             "send": "भेजें",
-            "share": "हिस्सा बाँट",
+            "share": "शेयर",
             "download": "डाउनलोड",
             "send history log": "इतिहास लॉग देखे"
         },
