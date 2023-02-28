@@ -33,12 +33,14 @@ const SendDocuments = () => {
                             <Text style={styles.text_inpute_top_text_style}>{t('sendDocuments.enter the address')}</Text>
                             <TextInput
                                 style={styles.text_input_style}
+                                placeholder={'Enter Your Address'}
                             />
                         </View>
                         <View style={styles.text_input_top_container}>
                             <Text style={styles.text_inpute_top_text_style}>{t('sendDocuments.duration')}</Text>
                             <TextInput
                                 style={[styles.text_input_style, { paddingRight: 40 }]}
+                                placeholder={'Enter The Time Duration'}
 
                             />
                             <View style={styles.icon_box_text_input}>

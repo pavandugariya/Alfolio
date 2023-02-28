@@ -1,20 +1,55 @@
-import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TouchableOpacity, ScrollView, } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TouchableOpacity, ScrollView, Modal } from 'react-native'
+import React, { useState } from 'react'
 import { colors } from './util'
 import CustomInputField from '../custom_componets/CustomInputField'
 import ButtonField from '../custom_componets/ButtonField'
-import { globalshedow } from '../../globalUtils/globalutil';
+import { globalfonts, globalshedow } from '../../globalUtils/globalutil';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { pickAccount } from '../../lang/main.json'
 import { useTranslation } from 'react-i18next';
+import { shadow } from 'react-native-paper'
 const { height, width } = Dimensions.get('screen')
 
 const PickAccount = () => {
     const { t } = useTranslation();
     const navigation = useNavigation();
+    const [modalVisible, setModalVisible] = useState(false);
     const clickHandler = () => {
         navigation.navigate('Drawer')
+    }
+
+    const RemoveModal = () => {
+        return (
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed.');
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.modal_top_box}>
+                    <View style={[styles.modal_main_box, globalshedow]}>
+                        <Icon name={'trash'} color={'#951516'} size={30} alignSelf={'center'} />
+                        <Text style={styles.modal_top_text_style}>Do You Want to Remove This Account </Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <TouchableOpacity style={styles.btn_box}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={{ fontSize: 15, color: '#000', fontFamily: globalfonts.Regularj, }}>No</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => setModalVisible(!modalVisible)}
+                                style={styles.btn_box}>
+                                <Text style={{ fontSize: 15, color: '#000', fontFamily: globalfonts.Regularj, }}>Yes</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        )
     }
     return (
         <ImageBackground
@@ -41,21 +76,26 @@ const PickAccount = () => {
                         >
                             <Icon name={'person-outline'} size={20} color={'#757171'} />
                             <Text numberOfLines={1} style={styles.text_style_email}>Vikrant.mongoose@gmail.com</Text>
-                            <TouchableOpacity style={{ paddingHorizontal: 10 }}>
+                            <TouchableOpacity style={{ paddingHorizontal: 10 }}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
                                 <Icon name={'ellipsis-vertical-outline'} size={20} color={'#757171'} />
+                                <RemoveModal />
                             </TouchableOpacity>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.top_text_container}>
+                        <TouchableOpacity style={styles.top_text_container} >
                             <Icon name={'person-outline'} size={20} color={'#757171'} />
                             <Text numberOfLines={1} style={styles.text_style_email}>Krishnapal.mongoose@gmail.com</Text>
-                            <TouchableOpacity style={{ paddingHorizontal: 10 }}>
+                            <TouchableOpacity style={{ paddingHorizontal: 10 }}
+                                onPress={() => setModalVisible(!modalVisible)}>
                                 <Icon name={'ellipsis-vertical-outline'} size={20} color={'#757171'} />
                             </TouchableOpacity>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.top_text_container}>
+                        <TouchableOpacity style={styles.top_text_container}                     >
                             <Icon name={'person-outline'} size={20} color={'#757171'} />
                             <Text numberOfLines={1} style={styles.text_style_email}>Pawan.mongoose@gmail.com</Text>
-                            <TouchableOpacity style={{ paddingHorizontal: 10 }}>
+                            <TouchableOpacity style={{ paddingHorizontal: 10 }}
+                                onPress={() => setModalVisible(!modalVisible)}>
                                 <Icon name={'ellipsis-vertical-outline'} size={20} color={'#757171'} />
                             </TouchableOpacity>
                         </TouchableOpacity>
@@ -138,5 +178,32 @@ const styles = StyleSheet.create({
         color: '#757171',
         fontFamily: colors.Regularj
 
+    },
+    modal_top_box: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modal_main_box: {
+        width: '80%',
+        backgroundColor: '#ffffff',
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+        borderRadius: 10,
+
+    },
+    modal_top_text_style:
+    {
+        alignSelf: 'center',
+        fontSize: 16,
+        color: '#000',
+        marginVertical: 20
+    },
+    btn_box: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: '#ebc6c625',
+        borderRadius: 10,
+        globalshedow
     }
 })

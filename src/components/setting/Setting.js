@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { globalfonts, globalStyle } from '../../globalUtils/globalutil'
 import CustomHeader from '../custom_componets/CustomHeader'
@@ -9,15 +9,15 @@ import { settingsutils } from './settingsutils';
 import { styles } from './styles';
 import { useTranslation } from 'react-i18next';
 import { Picker } from '@react-native-picker/picker';
+import CustomModal from './CustomModal';
 
 const Setting = () => {
     const { t, i18n } = useTranslation();
     const navigation = useNavigation();
     const [selectedLanguage, setSelectedLanguage] = useState();
-
-    const changeLanguageHandler = () => {
-        selectedLanguage != 'Hindi' && i18n.changeLanguage('hi')
-        selectedLanguage != 'English' && i18n.changeLanguage('en')
+    const changeLanguageHandler = (val) => {
+        val === 'Hindi' && i18n.changeLanguage('hi')
+        val === 'English' && i18n.changeLanguage('en')
     }
 
     return (
@@ -30,6 +30,7 @@ const Setting = () => {
                 left_icon={'chevron-back'}
                 leftOnpress={() => navigation.goBack()}
             />
+            {/* <CustomModal /> */}
             <Image
                 source={require('../../Images/logo_name.png')}
                 style={{ height: 40, width: 123, marginTop: 40, marginLeft: '8%' }}
@@ -86,9 +87,8 @@ const Setting = () => {
                         color={'#951516'}
                         selectedValue={selectedLanguage}
                         onValueChange={(itemValue, itemIndex) => {
-
                             setSelectedLanguage(itemValue)
-                            changeLanguageHandler()
+                            changeLanguageHandler(itemValue)
                         }
                         }>
                         <Picker.Item label={"Language"} value="select" />

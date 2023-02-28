@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { globalfonts } from '../../globalUtils/globalutil'
+import { globalcolors, globalfonts } from '../../globalUtils/globalutil'
 
 
 const CustomInputField = ({ leftIcon, textname, placeholderText, textValue, onChangeTextHandler, rightIcon, rightIconOnpressHandler, isVisible, secondRightIcon, colors, ...rest }) => {
@@ -17,6 +17,7 @@ const CustomInputField = ({ leftIcon, textname, placeholderText, textValue, onCh
                 onChangeText={onChangeTextHandler}
                 style={styles.text_input_style}
                 secureTextEntry={isVisible}
+                placeholderTextColor={globalcolors.place_holder_text_color}
                 {...rest}
 
             />

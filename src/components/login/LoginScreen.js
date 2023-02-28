@@ -4,7 +4,7 @@ import { colors } from './util'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import CustomInputField from '../custom_componets/CustomInputField'
 import ButtonField from '../custom_componets/ButtonField'
-import { globalshedow } from '../../globalUtils/globalutil';
+import { globalshedow, globalcolors } from '../../globalUtils/globalutil';
 import { useNavigation } from '@react-navigation/native';
 import * as Keychain from 'react-native-keychain';
 import GradientBtn from '../custom_componets/GradientBtn';
@@ -131,8 +131,8 @@ const LoginScreen = () => {
                         <View style={{ marginTop: 10 }}>
 
                             <TextInput
-                                placeholder='9754930302'
-                                placeholderTextColor={'#8a8282'}
+                                placeholder={t('login.enter your phone no')}
+                                placeholderTextColor={globalcolors.place_holder_text_color}
                                 value={phoneNumber}
                                 onChangeText={(e) => {
                                     setphoneNumber(e)

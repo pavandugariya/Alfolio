@@ -7,7 +7,8 @@
             "btnText": "GENERATE OTP",
             "alertTitle1": "Mobile number",
             "alertTitle2": "please enter correct mobile number",
-            "alertTitle3": "OK"
+            "alertTitle3": "OK",
+            "enter your phone no": "Enter Your Phone No"
         },
         "otpVerify": {
             "title": "OTP Verification",
@@ -34,7 +35,7 @@
                 {
                     "image": "3",
                     "title": "Authenticate ",
-                    "message": "alFolio ensures end-to-end encryption and zero data tempering. hacking efforts would be 5/0"
+                    "message": "alFolio ensures end-to-end encryption and zero data tempering. Hacking efforts would be 5%0"
                 }
             ]
         },
@@ -98,7 +99,7 @@
             "send": "Send",
             "share": "Share",
             "download": "Download",
-            "send history log": "Send History Log"
+            "send history log": "View History"
         },
         "sendDocuments": {
             "enter the address": "Enter The Address",

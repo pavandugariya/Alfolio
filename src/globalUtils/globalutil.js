@@ -1,7 +1,8 @@
 import { StyleSheet, } from 'react-native'
 export const globalcolors = {
     icon_color: '#951516',
-    text_color: '#951516'
+    text_color: '#951516',
+    place_holder_text_color: '#8a8282'
 }
 export const globalfonts = {
     'Regularm': 'Montserrat-Regular',

@@ -1,6 +1,6 @@
 import {
     StyleSheet, Text, View, Image, ImageBackground, Dimensions, KeyboardAvoidingView,
-    ScrollView, Alert, TouchableWithoutFeedback, Keyboard
+    ScrollView, Alert, TouchableWithoutFeedback, Keyboard, ToastAndroid
 } from 'react-native'
 import React, { useState, useRef } from 'react'
 import { colors } from './util'
@@ -33,6 +33,9 @@ const OtpVerificationScreen = (props) => {
 
     const verifyOTP = () => {
         navigation.navigate('PickAccount');
+    }
+    const resentHandler = () => {
+        ToastAndroid.show('OTP Is Resend Your Mobile No', ToastAndroid.SHORT);
     }
     return (
         <ImageBackground
@@ -144,7 +147,7 @@ const OtpVerificationScreen = (props) => {
                                 style={styles.text_input_style}
                             />
                         </View>
-                        <Text style={{ alignSelf: 'center', marginTop: 20, color: '#000' }}>{t('otpVerify.title3')}<Text onPress={() => { }} style={{ color: colors.txt_color, }}>{t('otpVerify.resend')}</Text></Text>
+                        <Text style={{ alignSelf: 'center', marginTop: 20, color: '#000' }}>{t('otpVerify.title3')}<Text onPress={() => { resentHandler() }} style={{ color: colors.txt_color, }}>{t('otpVerify.resend')}</Text></Text>
                         <GradientBtn
                             loginBtnText={t('otpVerify.btnText')}
                             bgColor={'#951516'}

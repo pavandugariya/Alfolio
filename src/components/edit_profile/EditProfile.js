@@ -1,18 +1,52 @@
-import { StyleSheet, Text, View, ImageBackground, ScrollView, Image } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, ScrollView, Image, TouchableOpacity, Alert, Platform } from 'react-native'
 import React, { useState } from 'react'
-import { globalfonts, globalStyle } from '../../globalUtils/globalutil'
+import { globalcolors, globalfonts, globalStyle } from '../../globalUtils/globalutil'
 import CustomHeader from '../custom_componets/CustomHeader'
 import { useNavigation } from '@react-navigation/native';
 import CustomInputField from '../custom_componets/CustomInputField';
 import { Picker, } from '@react-native-picker/picker';
 import { styles } from '../edit_profile/styles';
 import { useTranslation } from 'react-i18next';
+import Icon from 'react-native-vector-icons/Ionicons'
+import ImagePicker from 'react-native-image-crop-picker';
 
 const EditProfile = () => {
     const { t } = useTranslation();
     const navigation = useNavigation();
+    const [userImage, setuserImage] = useState("https://cdn-icons-png.flaticon.com/512/147/147144.png")
     const [selectedLanguage, setSelectedLanguage] = useState();
+    const imagePickerHandler = async () => {
+        try {
 
+            await ImagePicker.openPicker({
+                width: 100,
+                height: 100,
+                cropping: true,
+            }).then(image => {
+                console.log(image.path);
+                setuserImage(image.path);
+            });
+        } catch (error) {
+            console.log('No select');
+        }
+    }
+    const imagePickerCameraHandler = async () => {
+        try {
+
+            await ImagePicker.openCamera({
+                width: 100,
+                height: 100,
+                cropping: true,
+                cropperToolbarTitle: 'AlFolio',
+                useFrontCamera: true,
+            }).then(image => {
+                console.log(image.path);
+                setuserImage(image.path);
+            });
+        } catch (error) {
+            console.log('No select');
+        }
+    }
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -28,10 +62,45 @@ const EditProfile = () => {
                 <View style={styles.top_box_style}>
                     <View style={styles.img_container}>
                         <Image
-                            source={{ uri: "https://cdn-icons-png.flaticon.com/512/147/147144.png" }}
-                            style={{ height: '100%', width: '100%' }}
+                            source={{ uri: userImage }}
+                            style={{
+                                height: '100%', width: '100%',
+                                borderWidth: 2,
+                                borderRadius: 80,
+                            }}
+                            // style={styles.img_container}
                             resizeMode={'contain'}
                         />
+                        <TouchableOpacity style={styles.edit_image_icon_box}
+                            onPress={() => {
+                                Alert.alert('Upload Photo', 'Choose Your Profile Picture',
+                                    [
+                                        { text: 'Cancel', onPress: () => console.log('OK Pressed') },
+                                        {
+                                            text: 'Open Gallary',
+                                            onPress: () => imagePickerHandler(),
+                                            style: 'destructive',
+                                        },
+                                        { text: 'Open  Camera', onPress: () => imagePickerCameraHandler() },
+
+                                    ],
+                                    {
+                                        cancelable: true,
+                                        onDismiss: () =>
+                                            Alert.alert(
+                                                'This alert was dismissed by tapping outside of the alert dialog.',
+                                            ),
+                                    },
+                                );
+
+                                // alert('')
+                                // imagePickerHandler()
+                            }
+
+                            }
+                        >
+                            <Icon name={'camera-reverse-outline'} size={14} color={globalcolors.icon_color} />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.top_text_box}>
                         <Text style={styles.top_text_style}>{t('editProfile.edit profile information')}</Text>
@@ -56,7 +125,7 @@ const EditProfile = () => {
                             />
                             <CustomInputField
                                 textname={t('editProfile.email')}
-                                placeholderText={t('editProfile.enter yout email')}
+                                placeholderText={t('editProfile.enter your email')}
                             />
                             <View style={styles.studies_top_container}>
 
@@ -69,7 +138,8 @@ const EditProfile = () => {
                                 }}>
                                     <Picker
                                         style={{
-                                            marginTop: -10
+                                            marginTop: -10,
+                                            color: '#000'
                                         }}
                                         dropdownIconColor={'#951516'}
                                         mode={'dropdown'}

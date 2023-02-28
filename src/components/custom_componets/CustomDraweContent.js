@@ -18,7 +18,7 @@ const CustomDraweContent = ({ iconColor, iconSize }) => {
         <View style={styles.container}>
             <ImageBackground
                 source={require('../../Images/drawer_bg.png')}
-                style={styles.bg_img_style}
+                style={[styles.bg_img_style]}
             >
 
                 <DrawerContentScrollView>

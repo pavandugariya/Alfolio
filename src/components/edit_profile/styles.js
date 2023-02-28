@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         color: editprofileutils.font_color
     },
     text_input_top_container: {
-        paddingBottom: 150,
+        paddingBottom: 15,
         flex: 1,
     },
     studies_top_container: {
@@ -45,7 +45,22 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: '600',
         color: '#951516',
-        marginBottom: 5
+        marginBottom: 5,
+    },
+    edit_image_icon_box: {
+        height: 25,
+        width: 25,
+        borderWidth: 1,
+        backgroundColor: '#fff',
+        borderColor: '#951516',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 0,
+        right: 0
+
+
     }
 
 
