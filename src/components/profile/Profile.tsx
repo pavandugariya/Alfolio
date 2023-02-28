@@ -10,19 +10,20 @@ import { profileutils } from './utils';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
 import { useTranslation } from 'react-i18next';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigation/types';
 
 const Profile = () => {
     const { t } = useTranslation();
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../../Images/profile_bg.png')}
                 style={globalStyle.bg_image_style}
             >
                 <CustomHeader
-                    header_name={t('profile.profile')}
+                    header_name={t<string>('profile.profile')}
                     left_icon={'chevron-back'}
-                    leftOnpress={() => navigation.goBack()}
                 />
                 <View style={styles.img_box_top_container}>
                     <View style={styles.img_container}>
@@ -37,7 +38,7 @@ const Profile = () => {
                         <Text numberOfLines={1} style={styles.name_txt_style}>{t('profile.name')}</Text>
                         <Text numberOfLines={1} style={styles.email_txt_style}>{t('profile.email')}</Text>
                         <GradientBtn
-                            loginBtnText={t('profile.edit profile')}
+                            loginBtnText={t<string>('profile.edit profile')}
                             bgColor2={'#D84B23'}
                             bgColor={'#951516'}
                             color={'#ffffff'}

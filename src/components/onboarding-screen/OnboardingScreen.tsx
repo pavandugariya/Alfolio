@@ -1,22 +1,33 @@
-import { StyleSheet, Text, View, FlatList, Image, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
-import React, { useState, } from 'react'
+import { StyleSheet, Text, View, FlatList, ListRenderItemInfo, Image, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
+import React, { useState, useRef } from 'react'
 import { onBoardingColor } from './onBoardingcolors';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import On from "./on";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigation/StackNavigator';
 const OnboardingScreen = () => {
     // console.log(onboarding.swipedata[0]);
 
     const { t, i18n, ready } = useTranslation();
-    const onboardingdata = t('onboarding.swipedata', { returnObjects: true });
-    const navigation = useNavigation();
+    const onboardingdata: string[] | object | any = t('onboarding.swipedata', { returnObjects: true });
+    type OnboardProps = StackNavigationProp<RootStackParamList, 'OTP'>;
+
+    const navigation = useNavigation<OnboardProps>();
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
-    const [currentSlideIndex, setcurrentSlideIndex] = useState(0)
-    const ref = React.useRef();
+    const [currentSlideIndex, setcurrentSlideIndex] = useState<number>(0)
+    const ref = useRef<any>();
+    // object: ListRenderItemInfo < PlayerDataStructure >
+    interface PlayerDataStructure {
+        image: string,
+        title: string,
+        message: string,
+    }
+    const Slide = ({ item }: { item: PlayerDataStructure }) => {
+        // const { item } = object;
 
-    const Slide = ({ item }) => {
-        const getImage = (e) => {
+        const getImage = (e: string) => {
             switch (e) {
                 case '1':
                     return require('../../Images/onboarding1.png')
@@ -28,7 +39,6 @@ const OnboardingScreen = () => {
                     return require('../../Images/onboarding3.png')
                     break;
             }
-
         }
         return (
             <View style={[styles.img_box, { width: windowWidth * 0.95, height: windowHeight * 0.95, }]}>
@@ -49,7 +59,6 @@ const OnboardingScreen = () => {
                     fontWeight: '800',
                     marginVertical: 20,
                     fontFamily: onBoardingColor.FontH
-
                 }}>{item.title}</Text>
                 <Text style={{
                     fontSize: 18,
@@ -66,7 +75,7 @@ const OnboardingScreen = () => {
         return (
             <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'center' }}>
                 {
-                    onboardingdata.map((_, index) => {
+                    onboardingdata?.map((_: string | undefined, index: number) => {
                         return (
                             <View key={index}
                                 style={{
@@ -132,7 +141,7 @@ const OnboardingScreen = () => {
             </View>
         )
     }
-    const updateCurrentSlideIndex = e => {
+    const updateCurrentSlideIndex = (e: any) => {
         const contentOffsetX = e.nativeEvent.contentOffset.x;
         const currentIndex = Math.round(contentOffsetX / windowWidth);
         setcurrentSlideIndex(currentIndex)

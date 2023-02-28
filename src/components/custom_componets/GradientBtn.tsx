@@ -4,10 +4,24 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { globalfonts } from '../../globalUtils/globalutil';
 
+interface props {
+    loginBtnText: string,
+    bgColor: string,
+    bgColor2: string,
+    icon_name?: string,
+    icon_color?: string,
+    icon_size?: number,
+    color: string,
+    // rest: string | number | undefined,
+    [x: string]: any;
 
-const GradientBtn = ({ loginBtnText, bgColor, bgColor2,
+}
+
+const GradientBtn = ({
+    loginBtnText, bgColor, bgColor2,
     icon_name, icon_color, icon_size,
-    color, ...rest }) => {
+    color, ...rest
+}: props) => {
     return (
         <TouchableOpacity {...rest} >
             <LinearGradient

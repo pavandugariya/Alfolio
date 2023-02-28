@@ -11,11 +11,14 @@ import GradientBtn from '../custom_componets/GradientBtn';
 
 const { height, width } = Dimensions.get('screen')
 import { useTranslation } from 'react-i18next';
-
+import { RootStackParamList } from "../../navigation/types";
+import { StackNavigationProp } from '@react-navigation/stack'
 
 const LoginScreen = () => {
     const { t, i18n, ready } = useTranslation();
-    const navigation = useNavigation();
+    type OTPScreenProp = StackNavigationProp<RootStackParamList, 'OTP'>;
+
+    const navigation = useNavigation<OTPScreenProp>();
     const [phoneNumber, setphoneNumber] = useState('');
 
     // useEffect(() => {
@@ -26,24 +29,31 @@ const LoginScreen = () => {
     //             else console.log(biometryType);
     //         })
     // }, [])
-
+    // (() => {
+    //     console.log('hellp');
+    // })()
 
 
     const otpVerification = () => {
         // getFinger();
         if (phoneNumber.length >= 10) {
-            navigation.navigate('OTP', { pn: phoneNumber })
+            navigation.navigate('OTP', { phoneNu: phoneNumber })
         } else {
-            Alert.alert(t('login.alertTitle1'), t('login.alertTitle2'), [
+            Alert.alert(t('login.alertTitle1'), t<string>('login.alertTitle2'), [
                 // {
                 //     text: 'Cancel',
                 //     onPress: () => console.log('Cancel Pressed'),
                 //     style: 'cancel',
                 // },
-                { text: t('login.alertTitle3'), onPress: () => console.log('OK Pressed') },
+                { text: t<string>('login.alertTitle3'), onPress: () => console.log('OK Pressed') },
             ]);
-
         }
+    }
+
+    interface IsetGenericPass {
+        accessControl: string,
+        accessible: string,
+        authenticationType: string,
     }
     const keyChainCode = async () => {
         const username = 'deepak';
@@ -131,7 +141,7 @@ const LoginScreen = () => {
                         <View style={{ marginTop: 10 }}>
 
                             <TextInput
-                                placeholder={t('login.enter your phone no')}
+                                placeholder={t<string>('login.enter your phone no')}
                                 placeholderTextColor={globalcolors.place_holder_text_color}
                                 value={phoneNumber}
                                 onChangeText={(e) => {
@@ -216,8 +226,8 @@ export default LoginScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: null,
-        height: null,
+        width: null!,
+        height: null!,
         resizeMode: 'contain',
 
     },

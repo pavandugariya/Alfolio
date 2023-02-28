@@ -2,14 +2,25 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { globalcolors, globalfonts } from '../../globalUtils/globalutil';
+import { useNavigation } from '@react-navigation/native';
 
-const CustomHeader = ({ left_icon, right_icon, header_name, header_logo, leftOnpress, rightOnpress }) => {
+interface IcustomHeader {
+    left_icon?: string,
+    right_icon?: string,
+    header_name?: string,
+    header_logo?: string,
+    leftOnpress?: string,
+    rightOnpress?: string
+}
+
+const CustomHeader = ({ left_icon, right_icon, header_name, header_logo, leftOnpress, rightOnpress }: IcustomHeader) => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             {
                 left_icon &&
                 <TouchableOpacity
-                    onPress={leftOnpress}
+                    onPress={() => navigation.goBack()}
                     style={styles.icon_style}>
                     <Icon name={left_icon} size={25} color={globalcolors.icon_color} />
                 </TouchableOpacity>

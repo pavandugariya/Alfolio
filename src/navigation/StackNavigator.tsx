@@ -11,7 +11,10 @@ import ShowMarksheet from '../components/show_marksheet/ShowMarksheet';
 import SendDocuments from '../components/send_document/SendDocuments';
 import SendHistory from '../components/send_log_history/SendHistory';
 import EditProfile from '../components/edit_profile/EditProfile';
-const Stack = createNativeStackNavigator();
+import { RootStackParamList } from "./types";
+
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const StackNavigator = () => {
     return (

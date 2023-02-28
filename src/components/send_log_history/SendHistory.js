@@ -55,7 +55,6 @@ const SendHistory = () => {
                                         </View>
                                     </View>
                                 </View>
-
                             )
                         })}
 

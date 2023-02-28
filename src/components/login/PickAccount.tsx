@@ -1,19 +1,19 @@
-import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TouchableOpacity, ScrollView, Modal } from 'react-native'
+import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TouchableOpacity, ScrollView, Modal, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { colors } from './util'
-import CustomInputField from '../custom_componets/CustomInputField'
-import ButtonField from '../custom_componets/ButtonField'
 import { globalfonts, globalshedow } from '../../globalUtils/globalutil';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { pickAccount } from '../../lang/main.json'
 import { useTranslation } from 'react-i18next';
-import { shadow } from 'react-native-paper'
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigation/types';
 const { height, width } = Dimensions.get('screen')
 
 const PickAccount = () => {
     const { t } = useTranslation();
-    const navigation = useNavigation();
+
+    type PickAccountProps = StackNavigationProp<RootStackParamList, 'Drawer'>;
+    const navigation = useNavigation<PickAccountProps>();
     const [modalVisible, setModalVisible] = useState(false);
     const clickHandler = () => {
         navigation.navigate('Drawer')
@@ -32,7 +32,8 @@ const PickAccount = () => {
             >
                 <View style={styles.modal_top_box}>
                     <View style={[styles.modal_main_box, globalshedow]}>
-                        <Icon name={'trash'} color={'#951516'} size={30} alignSelf={'center'} />
+                        <Icon name={'trash'} color={'#951516'} size={30}
+                            style={{ alignSelf: 'center' }} />
                         <Text style={styles.modal_top_text_style}>Do You Want to Remove This Account </Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <TouchableOpacity style={styles.btn_box}
@@ -120,8 +121,8 @@ export default PickAccount
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: null,
-        height: null,
+        width: null!,
+        height: null!,
         resizeMode: 'contain',
 
     },

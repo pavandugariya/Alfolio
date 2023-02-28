@@ -5,24 +5,31 @@ import {
 import React, { useState, useRef } from 'react'
 import { colors } from './util'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
-import CustomInputField from '../custom_componets/CustomInputField'
-import ButtonField from '../custom_componets/ButtonField'
 import { globalshedow } from '../../globalUtils/globalutil';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next'
 import GradientBtn from '../custom_componets/GradientBtn';
-
+import { OTPScreenRoutProps, RootStackParamList } from "../../navigation/types";
+import { StackNavigationProp } from '@react-navigation/stack'
 const { height, width } = Dimensions.get('screen')
-const OtpVerificationScreen = (props) => {
+
+interface IitemProps {
+    pn: number,
+}
+
+const OtpVerificationScreen = () => {
     const { t } = useTranslation();
-    const navigation = useNavigation();
-    const mobileNumber = props.route.params.pn
-    const pin1Ref = useRef(null)
-    const pin2Ref = useRef(null)
-    const pin3Ref = useRef(null)
-    const pin4Ref = useRef(null)
-    const pin5Ref = useRef(null)
-    const pin6Ref = useRef(null)
+
+    type PickAccountProps = StackNavigationProp<RootStackParamList, 'PickAccount'>;
+    const navigation = useNavigation<PickAccountProps>();
+    const route = useRoute<OTPScreenRoutProps>();
+    const mobileNumber = route.params.phoneNu
+    const pin1Ref = useRef<any>(null)
+    const pin2Ref = useRef<any>(null)
+    const pin3Ref = useRef<any>(null)
+    const pin4Ref = useRef<any>(null)
+    const pin5Ref = useRef<any>(null)
+    const pin6Ref = useRef<any>(null)
 
     const [pin1, setpin1] = useState('')
     const [pin2, setpin2] = useState('')
@@ -72,7 +79,7 @@ const OtpVerificationScreen = (props) => {
                                 textAlign={'center'}
                                 keyboardType={'number-pad'}
                                 onChangeText={(e) => {
-                                    e && pin2Ref.current.focus()
+                                    e && pin2Ref?.current?.focus()
                                     setpin1(e)
 
                                 }}
@@ -176,8 +183,8 @@ export default OtpVerificationScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: null,
-        height: null,
+        width: null!,
+        height: null!,
         resizeMode: 'contain',
 
     },
