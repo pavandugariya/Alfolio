@@ -10,25 +10,28 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {
   globalcolors,
   globalfonts,
   globalStyle,
 } from '../../globalUtils/globalutil';
-import {Provider, TextInput} from 'react-native-paper';
+import { Provider, TextInput } from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import CustomInputField from '../custom_componets/CustomInputField';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {postData} from '../../Api/Api';
+import { postData } from '../../Api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import DropDown from 'react-native-paper-dropdown';
+import { base_url } from '../../../env';
+import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
+import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
 
 const ProfileSetup = () => {
   const data = [
@@ -42,7 +45,7 @@ const ProfileSetup = () => {
       name: 'Others ',
     },
   ];
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [firstName, setFirstName] = useState();
   const [middleName, setmiddleName] = useState();
   const [lastName, setLastName] = useState();
@@ -55,7 +58,7 @@ const ProfileSetup = () => {
   const AuthDispatch = useDispatch();
 
   const navigation = useNavigation();
-  const {height, width} = Dimensions.get('screen');
+  const { height, width } = Dimensions.get('screen');
   const [clicked, setClicked] = useState(false);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -81,40 +84,35 @@ const ProfileSetup = () => {
 
   const SetProfileAccount = async () => {
     const DataObj = {
-      firstName: firstName,
-      middleName: middleName,
-      lastName: lastName,
-      gender: 'male',
-      dob: '15/04/2002',
-      fatherOrGuardianOrSpouseName: fathername,
-    };
-    console.log(DataObj);
+      "firstName": "Vikash",
+      "middleName": "",
+      "lastName": "Singh",
+      "gender": "Male",
+      "dob": "1998-10-15",
+      "parentOrGuardianOrSpouseName": "Gagan"
+    }
+    // console.log(DataObj);
     try {
-      const res = await postData(
-        'https://api-testnet.alfolio.io/auth/native/me/accounts',
-        DataObj,
+      const res = await postData(`${base_url}/auth/native/me/accounts`, DataObj,
       );
       if (res.status === 201) {
-        _userTockenHandler(res.data.accessToken);
+        setUserToken(res.data.accessToken);
       }
-      console.log(res);
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const _userTockenHandler = async value => {
-    const token = value;
-    console.log(token);
+  const setUserToken = async (token) => {
     try {
-      const res = await AsyncStorage.setItem('userToken', token);
-      AuthDispatch(IsLoginHandler(token));
-      console.log(res);
-      navigation.navigate('kyc');
+      const res = await RNSecureStorage.set("userToken", token, { accessible: ACCESSIBLE.WHEN_UNLOCKED })
+      AuthDispatch(UserTokenHandler(token));
+      navigation.replace('kyc');
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
     }
-  };
+  }
 
   // const _userTockenHandler = async value => {
   //   try {
@@ -136,7 +134,7 @@ const ProfileSetup = () => {
             width: '100%',
           }}>
           <View style={styles.input_box_style}>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
               <Text
                 style={{
                   fontFamily: '',
@@ -153,7 +151,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.FirstName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Full Name'}
                 onChangeText={setFirstName}
                 value={firstName}
@@ -166,7 +164,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.MiddleName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Meddle Name'}
                 onChangeText={setmiddleName}
                 value={middleName}
@@ -179,7 +177,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.LastName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Last Name'}
                 onChangeText={setLastName}
                 value={lastName}
@@ -192,7 +190,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.FatherName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Father Name'}
                 onChangeText={setFatherName}
                 value={fathername}
@@ -205,7 +203,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.Gender')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Gender'}
                 onChangeText={setGender}
                 value={gender}
@@ -238,7 +236,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.Dob')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Dob'}
                 onChangeText={text => setSelectedDate(text)}
                 value={selectedDate}
@@ -386,7 +384,7 @@ const ProfileSetup = () => {
             <View style={styles.dropdown_text}>
               <FlatList
                 data={data}
-                renderItem={({item, index}) => {
+                renderItem={({ item, index }) => {
                   return (
                     <View style={styles.item_listing_data}>
                       <Text style={styles.subitem_text}>{item.name}</Text>

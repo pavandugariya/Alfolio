@@ -141,7 +141,6 @@ const OnboardingScreen = () => {
         <View >
             <ImageBackground source={require('../../Images/onboarding_bg.png')}
                 style={[styles.container, { height: windowHeight, width: windowWidth }]} />
-            <On />
             <FlatList
                 ref={ref}
                 data={onboardingdata}

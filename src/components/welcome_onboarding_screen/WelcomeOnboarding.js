@@ -12,22 +12,20 @@ import React from 'react';
 
 import CustomInputField from '../custom_componets/CustomInputField';
 import ButtonField from '../custom_componets/ButtonField';
-import {globalshedow} from '../../globalUtils/globalutil';
+import { globalshedow } from '../../globalUtils/globalutil';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
-import {pickAccount} from '../../lang/main.json';
-import {useTranslation} from 'react-i18next';
-const {height, width} = Dimensions.get('screen');
+import { useNavigation } from '@react-navigation/native';
+import { pickAccount } from '../../lang/main.json';
+import { useTranslation } from 'react-i18next';
+const { height, width } = Dimensions.get('screen');
 
 const WelcomeOnboad = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const toggleHandler = () => {
     navigation.openDrawer();
   };
-  // const clickHandler = () => {
-  //   navigation.navigate('Drawer');
-  // };
+
   return (
     <ImageBackground
       source={require('../../Images/home_bg2.png')}

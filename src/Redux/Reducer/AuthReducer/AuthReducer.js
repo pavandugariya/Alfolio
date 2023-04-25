@@ -1,5 +1,5 @@
 const initialState = {
-  splashLoading: true,
+  splashLoading: false,
   userToken: null,
   userphone: null,
   isLoading: true,

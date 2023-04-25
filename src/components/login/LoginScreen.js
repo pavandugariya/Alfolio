@@ -6,72 +6,65 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Dimensions,
-  KeyboardAvoidingView,
   ScrollView,
-  Alert,
-  Platform,
-  Keyboard,
+  Keyboard, TextInput,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {colors} from './util';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
-import CustomInputField from '../custom_componets/CustomInputField';
+import React, { useState, useEffect } from 'react';
+import { colors } from './util';
 import ButtonField from '../custom_componets/ButtonField';
-import {globalshedow} from '../../globalUtils/globalutil';
-import {useNavigation} from '@react-navigation/native';
+import { globalshedow } from '../../globalUtils/globalutil';
+import { useNavigation } from '@react-navigation/native';
 import * as Keychain from 'react-native-keychain';
 import GradientBtn from '../custom_componets/GradientBtn';
 
-const {height, width} = Dimensions.get('screen');
-import {useTranslation} from 'react-i18next';
-import {base_url} from '../../../env';
-import {postData} from '../../Api/Api';
+const { height, width } = Dimensions.get('screen');
+import { useTranslation } from 'react-i18next';
+import { base_url } from '../../../env';
+import { postData } from '../../Api/Api';
+import { showMessage } from 'react-native-flash-message';
 
 const LoginScreen = () => {
-  const {t, i18n, ready} = useTranslation();
+  const { t, i18n, ready } = useTranslation();
   const navigation = useNavigation();
   const [phoneNumber, setphoneNumber] = useState('');
 
-  // const DataObj = () => {
-  //   phoneNumber = phoneNumber;
-  // };
-
-  // const LoginHander = async () => {
-  //   const dataObj = {
-  //     mobile: phoneNumber,
-  //     type: 'authenticate-user',
-  //   };
-  //   try {
-  //     const res = await postData(
-  //       `https://api-testnet.alfolio.io/auth/send-code`,
-  //       dataObj,
-  //       console.log(res),
-  //     );
-  //     navigation.navigate('OTP', {pn: phoneNumber});
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const LoginHander = async () => {
     const dataObj = {
-      mobile: phoneNumber,
-      type: 'authenticate-user',
-      sentAt: '2023-04-24T10:22:45.187Z',
-      timeout: '120000',
-      attempt: '2',
-      maxAttempt: '10',
-    };
-    console.log(dataObj);
-    try {
-      const res = await postData(`${base_url}/auth/send-code`, dataObj);
-      if (res.status == 201) {
-        navigation.navigate('OTP', {pn: phoneNumber});
-      }
-      console.log(res.data, 'res');
-    } catch (error) {
-      console.log('error', error);
+      "mobile": phoneNumber,
+      "type": "authenticate-user"
     }
+    console.log(dataObj);
+    if (phoneNumber.length >= 10) {
+      try {
+        const res = await postData(`${base_url}/auth/send-code`, dataObj);
+        if (res.status == 201) {
+          showMessage({
+            message: `OTP Send Your Mobile No ${phoneNumber}`,
+            type: 'success'
+          })
+          navigation.navigate('OTP', { pn: phoneNumber });
+        }
+        if (res.message === 'Request failed with status code 500') {
+          showMessage({
+            message: 'please wait two minute ',
+            type: 'default'
+          })
+        };
+      } catch (error) {
+        console.log('error', error);
+        showMessage({
+          message: error.message,
+          type: 'default'
+        })
+      }
+    } else {
+      showMessage({
+        message: 'Please Enter Correct Mobile Number',
+        type: 'info'
+      });
+    }
+
   };
 
   // useEffect(() => {
@@ -85,7 +78,7 @@ const LoginScreen = () => {
 
   const otpVerification = () => {
     // getFinger();
-    navigation.navigate('OTP', {pn: phoneNumber});
+    navigation.navigate('OTP', { pn: phoneNumber });
     // if (phoneNumber.length >= 10) {
     // } else {
     //   Alert.alert(t('login.alertTitle1'), t('login.alertTitle2'), [
@@ -161,6 +154,7 @@ const LoginScreen = () => {
         }
       });
   };
+
   return (
     <ImageBackground
       source={require('../../Images/loginformbg.png')}
@@ -177,19 +171,19 @@ const LoginScreen = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={[styles.bottom_view_style, globalshedow]}>
           <ScrollView>
-            <View style={{alignItems: 'center'}}>
-              <Text style={[styles.txt_title_style, {fontWeight: '700'}]}>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={[styles.txt_title_style, { fontWeight: '700' }]}>
                 {t('login.title')}
               </Text>
               <Text
                 style={[
                   styles.txt_title_style,
-                  {color: '#424242', fontSize: 14, marginVertical: 15},
+                  { color: '#424242', fontSize: 14, marginVertical: 15 },
                 ]}>
                 {t('login.title2')}
               </Text>
             </View>
-            <View style={{marginTop: 10}}>
+            <View style={{ marginTop: 10 }}>
               <TextInput
                 placeholder="9754930302"
                 placeholderTextColor={'#8a8282'}
@@ -250,7 +244,7 @@ const LoginScreen = () => {
               style={styles.btn_parent_style}
               googleImage
               onPress={() => {
-                navigation.navigate('OTP', {pn: phoneNumber});
+                navigation.navigate('OTP', { pn: phoneNumber });
               }}
             />
 

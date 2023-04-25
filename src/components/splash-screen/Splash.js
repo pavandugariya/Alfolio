@@ -1,17 +1,34 @@
-import {StyleSheet, Text, View, Image, ImageBackground} from 'react-native';
-import React, {useEffect} from 'react';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import React, { useEffect } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {useNavigation} from '@react-navigation/native';
-import {globalfonts, globalStyle} from '../../globalUtils/globalutil';
+import { useNavigation } from '@react-navigation/native';
+import { globalfonts, globalStyle } from '../../globalUtils/globalutil';
+import { useDispatch } from 'react-redux';
+import { _splashLoadingHandler, UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
+import RNSecureStorage from 'rn-secure-storage';
 
 const Splash = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   useEffect(() => {
+    _getUserTokenHandler();
     setTimeout(() => {
-      navigation.replace('onboarding');
+      dispatch(_splashLoadingHandler(true));
     }, 2000);
   }, []);
 
+  const _getUserTokenHandler = async () => {
+    try {
+      RNSecureStorage.get("userToken").then((value) => {
+        console.log('get user token..>', value) // Will return direct value
+        dispatch(UserTokenHandler(value));
+      }).catch((err) => {
+        console.log(err)
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <ImageBackground
       source={require('../../Images/home_bg2.png')}

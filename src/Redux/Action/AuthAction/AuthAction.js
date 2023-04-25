@@ -1,6 +1,6 @@
-export const SplashLoadingHandler = value => {
+export const _splashLoadingHandler = value => {
   return {
-    type: 'Splash_Loading',
+    type: 'SPLASH_LOADING',
     payloade: value,
   };
 };

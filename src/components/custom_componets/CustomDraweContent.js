@@ -6,20 +6,20 @@ import {
   ImageBackground,
   Image,
   Dimensions,
+  ScrollView
 } from 'react-native';
 import React from 'react';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icone from 'react-native-vector-icons/Ionicons';
 import Icones from 'react-native-vector-icons/MaterialIcons';
-import {Drawer, Divider} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
-import {globalfonts} from '../../globalUtils/globalutil';
-import {useTranslation} from 'react-i18next';
-import {ScrollView} from 'react-native-gesture-handler';
+import { Drawer, Divider } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import { globalfonts } from '../../globalUtils/globalutil';
+import { useTranslation } from 'react-i18next';
 
-const {height, width} = Dimensions.get('screen');
-const CustomDraweContent = ({iconColor, iconSize}) => {
-  const {t} = useTranslation();
+const { height, width } = Dimensions.get('screen');
+const CustomDraweContent = ({ iconColor, iconSize }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -27,8 +27,8 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
         source={require('../../Images/drawer_bg.png')}
         style={styles.bg_img_style}>
         <DrawerContentScrollView>
-          <View style={{flex: 1, height: height * 0.7}}>
-            <Drawer.Section style={{marginTop: 20}} showDivider={false}>
+          <View style={{ flex: 1, height: height * 0.7 }}>
+            <Drawer.Section style={{ marginTop: 20 }} showDivider={false}>
               <Image
                 source={require('../../Images/logo_name.png')}
                 style={{
@@ -54,7 +54,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'home'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen1')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Home');
                 }}
@@ -64,7 +64,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'person'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen2')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Profile');
                 }}
@@ -74,7 +74,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'star'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen3')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Achivement');
                 }}
@@ -88,7 +88,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   />
                 )}
                 label={t('drawer.screen4')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Notification');
                 }}
@@ -102,7 +102,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   />
                 )}
                 label={t('drawer.screen5')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('ScanQrCode');
                 }}
@@ -112,7 +112,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'settings'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen6')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Settings');
                 }}
@@ -134,7 +134,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                 <Icones name={'person-add'} size={iconSize} color={iconColor} />
               )}
               label={t('drawer.name1')}
-              labelStyle={[styles.txt_style, {color: iconColor}]}
+              labelStyle={[styles.txt_style, { color: iconColor }]}
               onPress={async () => {
                 // navigation.navigate('onboarding');
               }}
@@ -144,7 +144,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                 <Icone name={'person-add'} size={iconSize} color={iconColor} />
               )}
               label={t('drawer.name')}
-              labelStyle={[styles.txt_style, {color: iconColor}]}
+              labelStyle={[styles.txt_style, { color: iconColor }]}
               onPress={async () => {
                 // navigation.navigate('onboarding');
               }}
@@ -158,15 +158,15 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                 />
               )}
               label={t('drawer.addprofile')}
-              labelStyle={[styles.txt_style, {color: iconColor}]}
+              labelStyle={[styles.txt_style, { color: iconColor }]}
               onPress={async () => {
                 // navigation.navigate('onboarding');
               }}
             />
           </ScrollView>
         </View>
-        <Divider bold={true} style={{backgroundColor: iconColor}} />
-        <Drawer.Section style={{marginBottom: 20}} showDivider={false}>
+        <Divider bold={true} style={{ backgroundColor: iconColor }} />
+        <Drawer.Section style={{ marginBottom: 20 }} showDivider={false}>
           <DrawerItem
             icon={() => (
               <Icones
@@ -176,7 +176,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
               />
             )}
             label={t('drawer.switchAccount')}
-            labelStyle={[styles.txt_style, {color: iconColor}]}
+            labelStyle={[styles.txt_style, { color: iconColor }]}
             onPress={async () => {
               // navigation.navigate('onboarding');
             }}
@@ -186,7 +186,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
               <Icone name={'log-out'} size={iconSize} color={iconColor} />
             )}
             label={t('drawer.signOut')}
-            labelStyle={[styles.txt_style, {color: iconColor}]}
+            labelStyle={[styles.txt_style, { color: iconColor }]}
             onPress={async () => {
               navigation.navigate('onboarding');
             }}
