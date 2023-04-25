@@ -10,28 +10,28 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {
   globalcolors,
   globalfonts,
   globalStyle,
 } from '../../globalUtils/globalutil';
-import { Provider, TextInput } from 'react-native-paper';
+import {Provider, TextInput} from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import CustomInputField from '../custom_componets/CustomInputField';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { postData } from '../../Api/Api';
+import {postData} from '../../Api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import DropDown from 'react-native-paper-dropdown';
-import { base_url } from '../../../env';
-import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
-import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
+import {base_url} from '../../../env';
+import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
+import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
 
 const ProfileSetup = () => {
   const data = [
@@ -45,7 +45,7 @@ const ProfileSetup = () => {
       name: 'Others ',
     },
   ];
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const [firstName, setFirstName] = useState();
   const [middleName, setmiddleName] = useState();
   const [lastName, setLastName] = useState();
@@ -58,11 +58,11 @@ const ProfileSetup = () => {
   const AuthDispatch = useDispatch();
 
   const navigation = useNavigation();
-  const { height, width } = Dimensions.get('screen');
+  const {height, width} = Dimensions.get('screen');
   const [clicked, setClicked] = useState(false);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [selectedDate, setSelectedDate] = useState('select data');
+  const [selectedDate, setSelectedDate] = useState();
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -73,7 +73,7 @@ const ProfileSetup = () => {
   };
 
   const handleConfirm = date => {
-    console.warn('A date has been picked: ', date);
+    // console.warn('A date has been picked: ', date);
     const dt = new Date(date);
     const x = dt.toISOString().split('T');
     const x1 = x[0].split('-');
@@ -84,16 +84,18 @@ const ProfileSetup = () => {
 
   const SetProfileAccount = async () => {
     const DataObj = {
-      "firstName": "Vikash",
-      "middleName": "",
-      "lastName": "Singh",
-      "gender": "Male",
-      "dob": "1998-10-15",
-      "parentOrGuardianOrSpouseName": "Gagan"
-    }
-    // console.log(DataObj);
+      firstName: firstName,
+      middleName: middleName,
+      lastName: lastName,
+      gender: 'Male',
+      dob: '1998-10-15',
+      parentOrGuardianOrSpouseName: fathername,
+    };
+    console.log(DataObj);
     try {
-      const res = await postData(`${base_url}/auth/native/me/accounts`, DataObj,
+      const res = await postData(
+        `${base_url}/auth/native/me/accounts`,
+        DataObj,
       );
       if (res.status === 201) {
         setUserToken(res.data.accessToken);
@@ -104,15 +106,17 @@ const ProfileSetup = () => {
     }
   };
 
-  const setUserToken = async (token) => {
+  const setUserToken = async token => {
     try {
-      const res = await RNSecureStorage.set("userToken", token, { accessible: ACCESSIBLE.WHEN_UNLOCKED })
+      const res = await RNSecureStorage.set('userToken', token, {
+        accessible: ACCESSIBLE.WHEN_UNLOCKED,
+      });
       AuthDispatch(UserTokenHandler(token));
       navigation.replace('kyc');
     } catch (error) {
       console.log('error', error);
     }
-  }
+  };
 
   // const _userTockenHandler = async value => {
   //   try {
@@ -129,21 +133,10 @@ const ProfileSetup = () => {
         source={require('../../Images/home_bg2.png')}
         blurRadius={50}
         style={styles.container}>
-        <ScrollView
-          style={{
-            width: '100%',
-          }}>
+        <ScrollView style={styles.scrollView_style}>
           <View style={styles.input_box_style}>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-              <Text
-                style={{
-                  fontFamily: '',
-                  fontSize: 20,
-                  fontWeight: '700',
-                  color: '#000',
-                }}>
-                Profile Setup{' '}
-              </Text>
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={styles.profile_heading_style}>Profile Setup </Text>
             </View>
 
             <View style={styles.text_input_top_container}>
@@ -151,7 +144,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.FirstName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Full Name'}
                 onChangeText={setFirstName}
                 value={firstName}
@@ -164,7 +157,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.MiddleName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Meddle Name'}
                 onChangeText={setmiddleName}
                 value={middleName}
@@ -177,7 +170,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.LastName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Last Name'}
                 onChangeText={setLastName}
                 value={lastName}
@@ -190,7 +183,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.FatherName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Father Name'}
                 onChangeText={setFatherName}
                 value={fathername}
@@ -203,7 +196,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.Gender')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Gender'}
                 onChangeText={setGender}
                 value={gender}
@@ -236,7 +229,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.Dob')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Dob'}
                 onChangeText={text => setSelectedDate(text)}
                 value={selectedDate}
@@ -379,22 +372,27 @@ const ProfileSetup = () => {
               }}
             />
           </View>
-
-          {clicked ? (
-            <View style={styles.dropdown_text}>
-              <FlatList
-                data={data}
-                renderItem={({ item, index }) => {
-                  return (
-                    <View style={styles.item_listing_data}>
-                      <Text style={styles.subitem_text}>{item.name}</Text>
-                    </View>
-                  );
-                }}
-              />
-            </View>
-          ) : null}
         </ScrollView>
+
+        {clicked ? (
+          <View style={styles.dropdown_text}>
+            <FlatList
+              data={data}
+              renderItem={({item, index}) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setGender(item.name);
+                      setClicked(false);
+                    }}
+                    style={styles.item_listing_data}>
+                    <Text style={styles.subitem_text}>{item.name}</Text>
+                  </TouchableOpacity>
+                );
+              }}
+            />
+          </View>
+        ) : null}
       </ImageBackground>
     </>
   );
@@ -473,5 +471,14 @@ const styles = StyleSheet.create({
     color: '#000',
     paddingLeft: 10,
     marginTop: 10,
+  },
+  profile_heading_style: {
+    fontFamily: '',
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#000',
+  },
+  scrollView_style: {
+    width: '100%',
   },
 });
