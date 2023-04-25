@@ -21,7 +21,6 @@ const Splash = () => {
     try {
       RNSecureStorage.exists("userToken").then((res) => {
         if (res) {
-
           RNSecureStorage.get("userToken").then((value) => {
             console.log('get user token..>', value) // Will return direct value
             dispatch(UserTokenHandler(value));

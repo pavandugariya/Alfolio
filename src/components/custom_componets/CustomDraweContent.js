@@ -61,7 +61,7 @@ const CustomDraweContent = ({ iconColor, iconSize }) => {
                   <Icone name={'home'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen1')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('WelcomOnboard');
                 }}

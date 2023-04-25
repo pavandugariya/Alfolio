@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNSecureStorage from 'rn-secure-storage';
 
 export const getData = async (url, options) => {
-  const val = getUserTokenData();
+  const val = await getUserTokenData();
   const res = await axios
     .get(url, {
       headers: { Authorization: `Bearer ${val}`, ...options },
@@ -12,7 +12,7 @@ export const getData = async (url, options) => {
       console.log(err, 'error');
       return err;
     });
-  return res.data;
+  return res;
 };
 
 export const postData = async (url, data) => {
@@ -29,7 +29,7 @@ export const postData = async (url, data) => {
 };
 
 export const putData = async (url, data) => {
-  const val = getUserTokenData();
+  const val = await getUserTokenData();
 
   const res = await axios
     .put(url, data, {
@@ -58,8 +58,11 @@ export const DeletData = async (url, data) => {
 
 export const getUserTokenData = async () => {
   try {
-    const res = await RNSecureStorage.get("userToken");
-    return res;
+    const exist = await RNSecureStorage.exists('userToken');
+    if (exist) {
+      const res = await RNSecureStorage.get("userToken");
+      return res;
+    }
   } catch (error) {
     console.error(error);
   }

@@ -7,24 +7,41 @@ import {
   Dimensions,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import React from 'react';
 
-import CustomInputField from '../custom_componets/CustomInputField';
-import ButtonField from '../custom_componets/ButtonField';
 import { globalshedow } from '../../globalUtils/globalutil';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { pickAccount } from '../../lang/main.json';
 import { useTranslation } from 'react-i18next';
+import { useWelcomeOnboarding } from './Action';
 const { height, width } = Dimensions.get('screen');
 
 const WelcomeOnboad = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const { isLoading, isAccount, numberOfAccount, userData } = useWelcomeOnboarding();
+
+  if (isLoading) {
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, }}>
+        <ActivityIndicator size={50} color={'#951516'} />
+      </View>
+    )
+  };
   const toggleHandler = () => {
     navigation.openDrawer();
   };
+  if (numberOfAccount.length > 0) {
+    navigation.navigate('Home');
+    console.log('hello jack');
+    // toggleHandler();
+
+  }
+
+
+
 
   return (
     <ImageBackground

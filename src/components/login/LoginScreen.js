@@ -38,6 +38,7 @@ const LoginScreen = () => {
     try {
       if (phoneNumber.length >= 10) {
         const res = await postData(`${base_url}/auth/send-code`, dataObj);
+        // const res = {}
         if (res.status == 201) {
           showMessage({
             message: `OTP Send Your Mobile No ${phoneNumber}`,
@@ -57,8 +58,6 @@ const LoginScreen = () => {
           type: 'info'
         });
       }
-
-
     } catch (error) {
       console.log('error', error);
       showMessage({
@@ -68,6 +67,9 @@ const LoginScreen = () => {
     }
 
   };
+
+
+
 
   // useEffect(() => {
   //     keyChainCode()
