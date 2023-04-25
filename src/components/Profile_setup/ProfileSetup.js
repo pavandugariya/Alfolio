@@ -10,28 +10,28 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {
   globalcolors,
   globalfonts,
   globalStyle,
 } from '../../globalUtils/globalutil';
-import {Provider, TextInput} from 'react-native-paper';
+import { Provider, TextInput } from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import CustomInputField from '../custom_componets/CustomInputField';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {postData} from '../../Api/Api';
+import { postData } from '../../Api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import DropDown from 'react-native-paper-dropdown';
-import {base_url} from '../../../env';
-import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
-import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
+import { base_url } from '../../../env';
+import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
+import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
 
 const ProfileSetup = () => {
   const data = [
@@ -45,7 +45,7 @@ const ProfileSetup = () => {
       name: 'Others ',
     },
   ];
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [firstName, setFirstName] = useState();
   const [middleName, setmiddleName] = useState();
   const [lastName, setLastName] = useState();
@@ -58,7 +58,7 @@ const ProfileSetup = () => {
   const AuthDispatch = useDispatch();
 
   const navigation = useNavigation();
-  const {height, width} = Dimensions.get('screen');
+  const { height, width } = Dimensions.get('screen');
   const [clicked, setClicked] = useState(false);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -135,7 +135,7 @@ const ProfileSetup = () => {
         style={styles.container}>
         <ScrollView style={styles.scrollView_style}>
           <View style={styles.input_box_style}>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
               <Text style={styles.profile_heading_style}>Profile Setup </Text>
             </View>
 
@@ -144,7 +144,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.FirstName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Full Name'}
                 onChangeText={setFirstName}
                 value={firstName}
@@ -157,7 +157,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.MiddleName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Meddle Name'}
                 onChangeText={setmiddleName}
                 value={middleName}
@@ -170,7 +170,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.LastName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Last Name'}
                 onChangeText={setLastName}
                 value={lastName}
@@ -183,7 +183,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.FatherName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Father Name'}
                 onChangeText={setFatherName}
                 value={fathername}
@@ -196,10 +196,11 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.Gender')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Gender'}
                 onChangeText={setGender}
                 value={gender}
+                disabled
                 placeholder="Male"
                 placeholderTextColor="#000"
               />
@@ -229,7 +230,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.Dob')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, {paddingRight: 40}]}
+                style={[styles.text_input_style, { paddingRight: 40 }]}
                 textname={'Dob'}
                 onChangeText={text => setSelectedDate(text)}
                 value={selectedDate}
@@ -378,7 +379,7 @@ const ProfileSetup = () => {
           <View style={styles.dropdown_text}>
             <FlatList
               data={data}
-              renderItem={({item, index}) => {
+              renderItem={({ item, index }) => {
                 return (
                   <TouchableOpacity
                     onPress={() => {
@@ -452,7 +453,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 7,
     position: 'absolute',
-    bottom: 70,
+    bottom: 130,
     justifyContent: 'center',
     alignSelf: 'center',
     borderRadius: 10,
