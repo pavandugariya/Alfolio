@@ -155,7 +155,6 @@ const OnboardingScreen = () => {
             />
             <Footer />
             <Footer2 />
-
         </View>
     )
 }

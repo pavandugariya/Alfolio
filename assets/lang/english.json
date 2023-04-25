@@ -2,9 +2,10 @@
     "translation": {
         "login": {
             "title": "Enter Your Phone Number",
-            "title2": "We will send you the 6 digit verification code",
+            "title2": "We will send you the 4 digit verification code",
             "mobile": "Mobile",
             "btnText": "GENERATE OTP",
+            "btnText2": "Sign in with Google",
             "alertTitle1": "Mobile number",
             "alertTitle2": "please enter correct mobile number",
             "alertTitle3": "OK"
@@ -58,6 +59,16 @@
             "favourites": "Favourites",
             "clean history": "Clean History"
         },
+        // "achivement": {
+        //     "achivement": "Achivement",
+        //     "name": "Pavan Dugariya",
+        //     "email": "pavan.mongoosetech@gmail.com",
+        //     // "download": "Download",
+        //     // "language": "Language",
+        //     // "location": "Location",
+        //     // "favourites": "Favourites",
+        //     // "clean history": "Clean History"
+        // },
         "editProfile": {
             "edit profile": "Edit Profile",
             "edit profile information": "Edit Profile Information",
@@ -88,9 +99,15 @@
         "drawer": {
             "screen1": "Home",
             "screen2": "Profile",
-            "screen3": "Notification",
-            "screen4": "Settings",
-            "signOut": "Sign out"
+            "screen3": "Achivement",
+            "screen4": "Notification",
+            "screen5": "Scan QR Code",
+            "screen6": "Settings",
+            "signOut": "Sign out",
+            "switchAccount": "Switch Account",
+            "addprofile": "Add a Profile",
+            "name": "Janak Patel",
+            "name1": "Kalika Prasad"
         },
         "showMarksheet": {
             "school": "Higher Secondary Certificate",
@@ -110,6 +127,23 @@
         },
         "sendHistory": {
             "header name": "Send Log"
+        },
+        "ProfileSetup": {
+            "FirstName": "First Name",
+            "MiddleName": "Middle Name",
+            "LastName": "Last Name",
+            "FatherName": "Father's",
+            "Gender": "Gender",
+            "Dob": "DOB",
+            "City": "City",
+            "State": "State",
+            "Country": "Country"
+        },
+        "kyc": {
+            "Aadhar": "Enter your Aadhar No."
+        },
+        "VerifyOtp": {
+            "Verify": "Enter Otp"
         }
     }
 }
