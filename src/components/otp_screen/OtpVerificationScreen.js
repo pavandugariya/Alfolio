@@ -64,7 +64,7 @@ const OtpVerificationScreen = props => {
           setUserToken(res.data.accessToken);
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     } else {
       showMessage({

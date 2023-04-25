@@ -19,11 +19,17 @@ const Splash = () => {
 
   const _getUserTokenHandler = async () => {
     try {
-      RNSecureStorage.get("userToken").then((value) => {
-        console.log('get user token..>', value) // Will return direct value
-        dispatch(UserTokenHandler(value));
-      }).catch((err) => {
-        console.log(err)
+      RNSecureStorage.exists("userToken").then((res) => {
+        if (res) {
+
+          RNSecureStorage.get("userToken").then((value) => {
+            console.log('get user token..>', value) // Will return direct value
+            dispatch(UserTokenHandler(value));
+          }).catch((err) => {
+            console.log(err)
+          })
+        }
+
       })
     } catch (error) {
       console.error(error);

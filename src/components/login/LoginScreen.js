@@ -35,8 +35,8 @@ const LoginScreen = () => {
       "type": "authenticate-user"
     }
     console.log(dataObj);
-    if (phoneNumber.length >= 10) {
-      try {
+    try {
+      if (phoneNumber.length >= 10) {
         const res = await postData(`${base_url}/auth/send-code`, dataObj);
         if (res.status == 201) {
           showMessage({
@@ -44,25 +44,25 @@ const LoginScreen = () => {
             type: 'success'
           })
           navigation.navigate('OTP', { pn: phoneNumber });
-        }
-        if (res.message === 'Request failed with status code 500') {
+        } else if (res.message === 'Request failed with status code 500') {
           showMessage({
             message: 'please wait two minute ',
             type: 'default'
           })
         };
-      } catch (error) {
-        console.log('error', error);
-        showMessage({
-          message: error.message,
-          type: 'default'
-        })
       }
-    } else {
+      else {
+        showMessage({
+          message: 'Please Enter Correct Mobile Number',
+          type: 'info'
+        });
+      }
+    } catch (error) {
+      console.log('error', error);
       showMessage({
-        message: 'Please Enter Correct Mobile Number',
-        type: 'info'
-      });
+        message: error.message,
+        type: 'default'
+      })
     }
 
   };
@@ -259,7 +259,7 @@ const LoginScreen = () => {
               icon_color={'#fff'}
               icon_size={24}
               // icon_name={'share-social'}
-              onPress={LoginHander}
+              onPress={() => LoginHander()}
             />
           </ScrollView>
         </View>

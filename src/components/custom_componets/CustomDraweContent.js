@@ -16,11 +16,28 @@ import { Drawer, Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { globalfonts } from '../../globalUtils/globalutil';
 import { useTranslation } from 'react-i18next';
+import RNSecureStorage from 'rn-secure-storage';
+import { useDispatch } from 'react-redux';
+import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
 
 const { height, width } = Dimensions.get('screen');
 const CustomDraweContent = ({ iconColor, iconSize }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const _logOutHandler = () => {
+    try {
+      dispatch(UserTokenHandler(null));
+      RNSecureStorage.exists('userToken').then((res) => {
+        if (res) {
+          const response = RNSecureStorage.remove("userToken");
+        }
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -187,9 +204,7 @@ const CustomDraweContent = ({ iconColor, iconSize }) => {
             )}
             label={t('drawer.signOut')}
             labelStyle={[styles.txt_style, { color: iconColor }]}
-            onPress={async () => {
-              navigation.navigate('onboarding');
-            }}
+            onPress={_logOutHandler}
           />
         </Drawer.Section>
       </ImageBackground>

@@ -37,7 +37,7 @@ const StackNavigator = () => {
               <Stack.Screen name="OTP" component={OtpVerificationScreen} options={{ headerShown: false }} />
             </>
           )
-          : (
+          : AuthData?.userToken !== null && (
             <>
               <Stack.Screen name="Drawer" component={DrawerNavigator} options={{ headerShown: false }} />
               <Stack.Screen name="PickAccount" component={PickAccount} options={{ headerShown: false }} />
