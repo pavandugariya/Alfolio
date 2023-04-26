@@ -6,18 +6,24 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from '../home/styles';
 import {globalshedow as shedow} from '../../globalUtils/globalutil';
 import {useTranslation} from 'react-i18next';
+import {useWelcomeOnboarding} from '../welcome_onboarding_screen/Action';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {height, width} = Dimensions.get('screen');
 const Home = () => {
+  // useEffect(() => {
+  //   checkHander;
+  // });
   const Array = [
     {
       id: 1,
@@ -40,6 +46,37 @@ const Home = () => {
   const navigation = useNavigation();
   const toggleHandler = () => {
     navigation.openDrawer();
+  };
+
+  const {isLoading, isAccount, numberOfAccount, userData} =
+    useWelcomeOnboarding();
+
+  if (isLoading) {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+        <ActivityIndicator size={50} color={'#951516'} />
+      </View>
+    );
+  }
+
+  // const checkHander = async () => {
+  //   const nFirstName = await AsyncStorage.getItem('firstName');
+  //   const nLastName = await AsyncStorage.getItem('lastName');
+  //   console.log(nFirstName + ' ' + nLastName);
+
+  //   if (nFirstName !== null || nFirstName !== undefined || nFirstName !== '') {
+  //     navigation.navigate('home');
+  //   } else navigation.navigate('kyc');
+  //   ShowModal();
+  // };
+
+  const ShowModal = () => {
+    return (
+      <View>
+        {/* <SuccessfulRegistration /> */}
+        <text>LSFJSL</text>
+      </View>
+    );
   };
   return (
     <ImageBackground

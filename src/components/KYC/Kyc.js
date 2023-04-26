@@ -55,6 +55,7 @@ const Kyc = () => {
               textname={'Kyc'}
               onChangeText={setkycs}
               value={kycs}
+              keyboardType="numeric"
               placeholder="5249 1581 9551"
               placeholderTextColor="#000"
             />
@@ -76,6 +77,22 @@ const Kyc = () => {
               navigation.navigate('verifyOtp');
             }}
           />
+          <View style={styles.skip_button_bottom}>
+            <GradientBtn
+              loginBtnText={'Skip'}
+              bgColor={'#D25C34'}
+              bgColor2={'#951516'}
+              color={'#fff'}
+              height={40}
+              width={130}
+              borderRadius={5}
+              icon_color={'#fff'}
+              icon_size={24}
+              onPress={() => {
+                navigation.navigate('Home');
+              }}
+            />
+          </View>
         </View>
       </ImageBackground>
     </>
@@ -118,5 +135,17 @@ const styles = StyleSheet.create({
   },
   text_input_top_container: {
     marginTop: 20,
+  },
+  skip_button_bottom: {
+    // background: linear - gradient(`270.08deg, #951516 1.59%, #D25C34 100.31%`),
+    padding: 20,
+    borderRadius: 15,
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });

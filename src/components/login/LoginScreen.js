@@ -7,33 +7,36 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   ScrollView,
-  Keyboard, TextInput,
+  Keyboard,
+  TextInput,
 } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import { colors } from './util';
+import React, {useState, useEffect} from 'react';
+import {colors} from './util';
 import ButtonField from '../custom_componets/ButtonField';
-import { globalshedow } from '../../globalUtils/globalutil';
-import { useNavigation } from '@react-navigation/native';
+import {globalshedow} from '../../globalUtils/globalutil';
+import {useNavigation} from '@react-navigation/native';
 import * as Keychain from 'react-native-keychain';
 import GradientBtn from '../custom_componets/GradientBtn';
 
-const { height, width } = Dimensions.get('screen');
-import { useTranslation } from 'react-i18next';
-import { base_url } from '../../../env';
-import { postData } from '../../Api/Api';
-import { showMessage } from 'react-native-flash-message';
+const {height, width} = Dimensions.get('screen');
+import {useTranslation} from 'react-i18next';
+import {base_url} from '../../../env';
+import {postData} from '../../Api/Api';
+import {showMessage} from 'react-native-flash-message';
+import {Customcolor} from '../../Utility/Customcolor';
+import {horizScale, vertScale} from '../../Utility/Layout';
+import {fontSize} from '../../Utility/Fontsize';
 
 const LoginScreen = () => {
-  const { t, i18n, ready } = useTranslation();
+  const {t, i18n, ready} = useTranslation();
   const navigation = useNavigation();
   const [phoneNumber, setphoneNumber] = useState('');
 
-
   const LoginHander = async () => {
     const dataObj = {
-      "mobile": phoneNumber,
-      "type": "authenticate-user"
-    }
+      mobile: phoneNumber,
+      type: 'authenticate-user',
+    };
     console.log(dataObj);
     try {
       if (phoneNumber.length >= 10) {
@@ -42,34 +45,29 @@ const LoginScreen = () => {
         if (res.status == 201) {
           showMessage({
             message: `OTP Send Your Mobile No ${phoneNumber}`,
-            type: 'success'
-          })
-          navigation.navigate('OTP', { pn: phoneNumber });
+            type: 'success',
+          });
+          navigation.navigate('OTP', {pn: phoneNumber});
         } else if (res.message === 'Request failed with status code 500') {
           showMessage({
             message: 'please wait two minute ',
-            type: 'default'
-          })
-        };
-      }
-      else {
+            type: 'default',
+          });
+        }
+      } else {
         showMessage({
           message: 'Please Enter Correct Mobile Number',
-          type: 'info'
+          type: 'info',
         });
       }
     } catch (error) {
       console.log('error', error);
       showMessage({
         message: error.message,
-        type: 'default'
-      })
+        type: 'default',
+      });
     }
-
   };
-
-
-
 
   // useEffect(() => {
   //     keyChainCode()
@@ -82,7 +80,7 @@ const LoginScreen = () => {
 
   const otpVerification = () => {
     // getFinger();
-    navigation.navigate('OTP', { pn: phoneNumber });
+    navigation.navigate('OTP', {pn: phoneNumber});
     // if (phoneNumber.length >= 10) {
     // } else {
     //   Alert.alert(t('login.alertTitle1'), t('login.alertTitle2'), [
@@ -165,29 +163,26 @@ const LoginScreen = () => {
       style={styles.container}>
       <View style={styles.logo_top_box}>
         <Image
+          style={styles.logo_top_image}
           source={require('../../Images/logo_name.png')}
-          style={{
-            height: 60,
-            width: '68%',
-          }}
         />
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={[styles.bottom_view_style, globalshedow]}>
           <ScrollView>
-            <View style={{ alignItems: 'center' }}>
-              <Text style={[styles.txt_title_style, { fontWeight: '700' }]}>
+            <View style={{alignItems: 'center'}}>
+              <Text style={[styles.txt_title_style, {fontWeight: '700'}]}>
                 {t('login.title')}
               </Text>
               <Text
                 style={[
                   styles.txt_title_style,
-                  { color: '#424242', fontSize: 14, marginVertical: 15 },
+                  {color: '#424242', fontSize: 14, marginVertical: 15},
                 ]}>
                 {t('login.title2')}
               </Text>
             </View>
-            <View style={{ marginTop: 10 }}>
+            <View style={{marginTop: 10}}>
               <TextInput
                 placeholder="9754930302"
                 placeholderTextColor={'#8a8282'}
@@ -197,28 +192,9 @@ const LoginScreen = () => {
                 }}
                 maxLength={10}
                 keyboardType={'number-pad'}
-                style={{
-                  borderWidth: 1,
-                  borderRadius: 5,
-                  height: 40,
-                  paddingLeft: 50,
-                  fontSize: 15,
-                  color: '#000',
-                }}
+                style={styles.inputText_phone}
               />
-              <Text
-                style={{
-                  position: 'absolute',
-                  top: -6,
-                  left: 10,
-                  fontSize: 8,
-                  backgroundColor: '#fff',
-                  paddingHorizontal: 2,
-                  fontFamily: colors.Regularm,
-                  color: '#3d3c3c',
-                }}>
-                {t('login.mobile')}
-              </Text>
+              <Text style={styles.mobile_text_style}>{t('login.mobile')}</Text>
               <Text
                 style={{
                   position: 'absolute',
@@ -248,7 +224,7 @@ const LoginScreen = () => {
               style={styles.btn_parent_style}
               googleImage
               onPress={() => {
-                navigation.navigate('OTP', { pn: phoneNumber });
+                navigation.navigate('OTP', {pn: phoneNumber});
               }}
             />
 
@@ -290,31 +266,31 @@ const styles = StyleSheet.create({
   bottom_view_style: {
     // width: width * 0.95,
     width: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: Customcolor.white,
     position: 'relative',
     bottom: 0,
-    borderTopEndRadius: 20,
-    borderTopLeftRadius: 20,
+    borderTopEndRadius: vertScale(20),
+    borderTopLeftRadius: vertScale(20),
     borderRadius: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    top: 70,
+    paddingHorizontal: horizScale(20),
+    paddingVertical: vertScale(30),
+    top: vertScale(70),
     alignSelf: 'center',
   },
   txt_title_style: {
-    color: '#951516',
-    fontSize: 20,
+    color: Customcolor.textcolor,
+    fontSize: fontSize.h5,
     fontFamily: colors.Regularj,
   },
   or_text_style: {
-    marginVertical: 20,
+    marginVertical: vertScale(20),
     alignSelf: 'center',
-    color: '#951516',
+    color: Customcolor.textcolor,
     fontWeight: '600',
   },
   btn_parent_style: {
     width: '60%',
-    height: 50,
+    height: vertScale(45),
     backgroundColor: '#fff',
     borderRadius: 40,
     elevation: 5,
@@ -324,7 +300,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   btn_text_style: {
-    color: '#951516',
+    color: Customcolor.textcolor,
     fontWeight: '500',
+  },
+  logo_top_image: {
+    height: vertScale(60),
+    width: '68%',
+  },
+  inputText_phone: {
+    borderWidth: 1,
+    borderRadius: 5,
+    height: vertScale(40),
+    paddingLeft: vertScale(50),
+    fontSize: fontSize.reqular,
+    color: Customcolor.black,
+  },
+  mobile_text_style: {
+    position: 'absolute',
+    top: vertScale(-6),
+    left: horizScale(10),
+    fontSize: fontSize.tiny,
+    backgroundColor: Customcolor.white,
+    paddingHorizontal: 2,
+    fontFamily: colors.Regularm,
+    color: '#3d3c3c',
   },
 });

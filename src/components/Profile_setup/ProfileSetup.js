@@ -10,28 +10,28 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {
   globalcolors,
   globalfonts,
   globalStyle,
 } from '../../globalUtils/globalutil';
-import { Provider, TextInput } from 'react-native-paper';
+import {Provider, TextInput} from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import CustomInputField from '../custom_componets/CustomInputField';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { postData } from '../../Api/Api';
+import {postData} from '../../Api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import DropDown from 'react-native-paper-dropdown';
-import { base_url } from '../../../env';
-import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
-import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
+import {base_url} from '../../../env';
+import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
+import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
 
 const ProfileSetup = () => {
   const data = [
@@ -45,7 +45,7 @@ const ProfileSetup = () => {
       name: 'Others ',
     },
   ];
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const [firstName, setFirstName] = useState();
   const [middleName, setmiddleName] = useState();
   const [lastName, setLastName] = useState();
@@ -58,7 +58,7 @@ const ProfileSetup = () => {
   const AuthDispatch = useDispatch();
 
   const navigation = useNavigation();
-  const { height, width } = Dimensions.get('screen');
+  const {height, width} = Dimensions.get('screen');
   const [clicked, setClicked] = useState(false);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -127,6 +127,54 @@ const ProfileSetup = () => {
   //     console.log(error);
   //   }
   // };
+
+  const [BadfirstName, setBadfirstName] = useState();
+  const [BadmiddleName, setBadmiddleName] = useState();
+  const [BadlastName, setBadlastName] = useState();
+  const [BadfatherName, setBadfatherName] = useState();
+
+  const [buttonDisabled, setButtonDisabled] = useState();
+
+  const [error, setError] = useState('');
+  const handleSubmit = async firstName => {
+    const isValid = await sendEmailValidationRequest(firstName);
+    if (isValid) {
+      setError('');
+      console.log('SUBMITTED! ', firstName);
+    } else {
+      setError('Email not valid. Please try again.');
+      console.log('EMAIL WAS INVALID.');
+    }
+    return isValid;
+  };
+
+  const signup = () => {
+    setButtonDisabled(true);
+    if (firstName == '') {
+      setBadfirstName(true);
+      setButtonDisabled(false);
+    } else {
+      setBadfirstName(false);
+    }
+    if (middleName === '') {
+      setBadmiddleName(true);
+      setButtonDisabled(false);
+    } else {
+      setBadmiddleName(false);
+    }
+    if (lastName === '') {
+      setBadlastName(true);
+      setButtonDisabled(false);
+    } else {
+      setBadlastName(false);
+    }
+    if (fathername === '') {
+      setBadfatherName(true);
+      setButtonDisabled(false);
+    } else {
+      setBadfatherName(false);
+    }
+  };
   return (
     <>
       <ImageBackground
@@ -135,7 +183,7 @@ const ProfileSetup = () => {
         style={styles.container}>
         <ScrollView style={styles.scrollView_style}>
           <View style={styles.input_box_style}>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <Text style={styles.profile_heading_style}>Profile Setup </Text>
             </View>
 
@@ -144,59 +192,80 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.FirstName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Full Name'}
                 onChangeText={setFirstName}
                 value={firstName}
                 placeholder="Enter your FirstName"
                 placeholderTextColor="#000"
               />
+              {/* {BadfirstName === true && (
+                <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
+                  Enter your First Name
+                </Text>
+              )} */}
+              <Text style={{color: 'red'}}>{error}</Text>
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
                 {t('ProfileSetup.MiddleName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Meddle Name'}
                 onChangeText={setmiddleName}
                 value={middleName}
                 placeholder="Enter your Middle Name"
                 placeholderTextColor="#000"
               />
+              {BadmiddleName === true && (
+                <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
+                  Enter your Middle Name
+                </Text>
+              )}
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
                 {t('ProfileSetup.LastName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Last Name'}
                 onChangeText={setLastName}
                 value={lastName}
                 placeholder="Enter your LastName"
                 placeholderTextColor="#000"
               />
+              {BadlastName === true && (
+                <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
+                  Enter your Last Name
+                </Text>
+              )}
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
                 {t('ProfileSetup.FatherName')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Father Name'}
                 onChangeText={setFatherName}
                 value={fathername}
                 placeholder="Enter your Father's Name"
                 placeholderTextColor="#000"
               />
+              {BadfatherName === true && (
+                <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
+                  Enter your Father's Name
+                </Text>
+              )}
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
                 {t('ProfileSetup.Gender')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Gender'}
                 onChangeText={setGender}
                 value={gender}
@@ -230,7 +299,7 @@ const ProfileSetup = () => {
                 {t('ProfileSetup.Dob')}
               </Text>
               <TextInput
-                style={[styles.text_input_style, { paddingRight: 40 }]}
+                style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Dob'}
                 onChangeText={text => setSelectedDate(text)}
                 value={selectedDate}
@@ -370,6 +439,8 @@ const ProfileSetup = () => {
               onPress={() => {
                 // navigation.navigate('kyc');
                 SetProfileAccount();
+                signup();
+                handleSubmit();
               }}
             />
           </View>
@@ -379,7 +450,7 @@ const ProfileSetup = () => {
           <View style={styles.dropdown_text}>
             <FlatList
               data={data}
-              renderItem={({ item, index }) => {
+              renderItem={({item, index}) => {
                 return (
                   <TouchableOpacity
                     onPress={() => {

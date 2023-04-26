@@ -11,25 +11,29 @@ import {
 } from 'react-native';
 import React from 'react';
 
-import { globalshedow } from '../../globalUtils/globalutil';
+import {globalshedow} from '../../globalUtils/globalutil';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
-import { useWelcomeOnboarding } from './Action';
-const { height, width } = Dimensions.get('screen');
+import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
+import {useWelcomeOnboarding} from './Action';
+import {horizScale, vertScale} from '../../Utility/Layout';
+import {Customcolor} from '../../Utility/Customcolor';
+import {fontSize} from '../../Utility/Fontsize';
+const {height, width} = Dimensions.get('screen');
 
 const WelcomeOnboad = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const navigation = useNavigation();
-  const { isLoading, isAccount, numberOfAccount, userData } = useWelcomeOnboarding();
+  const {isLoading, isAccount, numberOfAccount, userData} =
+    useWelcomeOnboarding();
 
   if (isLoading) {
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, }}>
+      <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
         <ActivityIndicator size={50} color={'#951516'} />
       </View>
-    )
-  };
+    );
+  }
   const toggleHandler = () => {
     navigation.openDrawer();
   };
@@ -37,11 +41,7 @@ const WelcomeOnboad = () => {
     navigation.navigate('Home');
     console.log('hello jack');
     // toggleHandler();
-
   }
-
-
-
 
   return (
     <ImageBackground
@@ -97,55 +97,52 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: vertScale(20),
   },
   bottom_view_style: {
     width: width * 0.85,
-    backgroundColor: '#fff',
+    backgroundColor: Customcolor.white,
     position: 'relative',
     bottom: 0,
-    borderTopEndRadius: 20,
-    borderTopLeftRadius: 20,
+    borderTopEndRadius: vertScale(20),
+    borderTopLeftRadius: vertScale(20),
     borderRadius: 20,
-    paddingHorizontal: 40,
-    paddingVertical: 60,
-    // top: 60,
+    paddingHorizontal: horizScale(40),
+    paddingVertical: vertScale(60),
     opacity: 0.8,
     alignSelf: 'center',
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
   heading_text_style: {
     fontFamily: 'Jeko DEMO',
     fontWeight: 700,
-    fontSize: 20,
+    fontSize: fontSize.h5,
     alignSelf: 'center',
-    color: '#951516',
+    color: Customcolor.textcolor,
   },
   subheading_text_style: {
     fontFamily: 'Jeko DEMO',
     fontWeight: 700,
-    fontSize: 16,
+    fontSize: fontSize.reqular,
     alignSelf: 'center',
-    color: '#000000',
-    marginVertical: 20,
+    color: Customcolor.black,
+    marginVertical: vertScale(20),
   },
 
   top_icon_box: {
-    backgroundColor: '#fff',
+    backgroundColor: Customcolor.white,
     borderRadius: 8,
-    width: 40,
-    height: 40,
-    left: 20,
-    top: 20,
+    width: horizScale(40),
+    height: vertScale(40),
+    left: horizScale(20),
+    top: vertScale(20),
     justifyContent: 'center',
     alignItems: 'center',
   },
   logo_heading_Text_style: {
     fontFamily: '',
     fontWeight: '700',
-    fontSize: 36,
-    color: '#951516',
-    marginRight: 10,
+    fontSize: fontSize.h1,
+    color: Customcolor.textcolor,
+    marginRight: horizScale(10),
   },
 });

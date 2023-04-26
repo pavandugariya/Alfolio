@@ -18,6 +18,8 @@ import {TextInput} from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
 import CustomInputField from '../custom_componets/CustomInputField';
 import {useTranslation} from 'react-i18next';
+import {Customcolor} from '../../Utility/Customcolor';
+import {fontSize} from '../../Utility/Fontsize';
 
 const VerifyOtp = () => {
   const {t} = useTranslation();
@@ -34,15 +36,7 @@ const VerifyOtp = () => {
         style={styles.container}>
         <View style={styles.input_box_style}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Text
-              style={{
-                fontFamily: '',
-                fontSize: 20,
-                fontWeight: '700',
-                color: '#000',
-              }}>
-              Verify Otp
-            </Text>
+            <Text style={styles.verify_otp_style}>Verify Otp</Text>
           </View>
 
           {/* <CustomInputField
@@ -134,5 +128,11 @@ const styles = StyleSheet.create({
   },
   text_input_top_container: {
     marginTop: 20,
+  },
+  verify_otp_style: {
+    fontFamily: '',
+    fontSize: fontSize.h5,
+    fontWeight: '700',
+    color: Customcolor.black,
   },
 });

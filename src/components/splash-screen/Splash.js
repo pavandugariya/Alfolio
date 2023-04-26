@@ -1,11 +1,17 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
-import React, { useEffect } from 'react';
+import {StyleSheet, Text, View, Image, ImageBackground} from 'react-native';
+import React, {useEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native';
-import { globalfonts, globalStyle } from '../../globalUtils/globalutil';
-import { useDispatch } from 'react-redux';
-import { _splashLoadingHandler, UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
+import {useNavigation} from '@react-navigation/native';
+import {globalfonts, globalStyle} from '../../globalUtils/globalutil';
+import {useDispatch} from 'react-redux';
+import {
+  _splashLoadingHandler,
+  UserTokenHandler,
+} from '../../Redux/Action/AuthAction/AuthAction';
 import RNSecureStorage from 'rn-secure-storage';
+import {Customcolor} from '../../Utility/Customcolor';
+import {horizScale, vertScale} from '../../Utility/Layout';
+import {fontSize} from '../../Utility/Fontsize';
 
 const Splash = () => {
   const navigation = useNavigation();
@@ -19,21 +25,22 @@ const Splash = () => {
 
   const _getUserTokenHandler = async () => {
     try {
-      RNSecureStorage.exists("userToken").then((res) => {
+      RNSecureStorage.exists('userToken').then(res => {
         if (res) {
-          RNSecureStorage.get("userToken").then((value) => {
-            console.log('get user token..>', value) // Will return direct value
-            dispatch(UserTokenHandler(value));
-          }).catch((err) => {
-            console.log(err)
-          })
+          RNSecureStorage.get('userToken')
+            .then(value => {
+              console.log('get user token..>', value); // Will return direct value
+              dispatch(UserTokenHandler(value));
+            })
+            .catch(err => {
+              console.log(err);
+            });
         }
-
-      })
+      });
     } catch (error) {
       console.error(error);
     }
-  }
+  };
   return (
     <ImageBackground
       source={require('../../Images/home_bg2.png')}
@@ -45,7 +52,7 @@ const Splash = () => {
       />
       <View style={styles.text_box}>
         <Animatable.Text animation={'slideInLeft'} style={styles.txt_style}>
-          Al
+          al
         </Animatable.Text>
         {/* <Animatable.Text animation={'slideInUp'} style={styles.txt_style}>
           Fo
@@ -63,26 +70,28 @@ export default Splash;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Customcolor.white,
     justifyContent: 'center',
     alignItems: 'center',
     blurRadius: 50,
   },
   logo_style: {
-    height: 137,
-    width: 137,
+    height: vertScale(100),
+    width: horizScale(130),
+    resizeMode: 'cover',
   },
   txt_style: {
-    color: '#000',
-    fontSize: 45,
+    color: Customcolor.textcolor,
+    fontSize: fontSize.lagar,
     alignSelf: 'center',
-    fontFamily: globalfonts.Medium_m,
+    fontFamily: 'jeko',
+    fontWeight: '800',
   },
   text_box: {
     flexDirection: 'row',
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 15,
+    marginTop: vertScale(15),
   },
 });
