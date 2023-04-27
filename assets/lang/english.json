@@ -132,7 +132,7 @@
             "FirstName": "First Name",
             "MiddleName": "Middle Name",
             "LastName": "Last Name",
-            "FatherName": "Father's",
+            "parentGuardianSpouseName": "Parent/Guardian/SpouseName",
             "Gender": "Gender",
             "Dob": "DOB",
             "City": "City",
