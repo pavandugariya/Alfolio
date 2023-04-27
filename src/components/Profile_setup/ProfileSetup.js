@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import * as Animatable from 'react-native-animatable';
@@ -25,13 +26,14 @@ import Icons from 'react-native-vector-icons/MaterialIcons';
 import CustomInputField from '../custom_componets/CustomInputField';
 import {useTranslation} from 'react-i18next';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {postData} from '../../Api/Api';
+import {getData, postData} from '../../Api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import DropDown from 'react-native-paper-dropdown';
 import {base_url} from '../../../env';
 import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
 import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
+import {vertScale} from '../../Utility/Layout';
 
 const ProfileSetup = () => {
   const data = [
@@ -50,7 +52,7 @@ const ProfileSetup = () => {
   const [middleName, setmiddleName] = useState();
   const [lastName, setLastName] = useState();
   const [gender, setGender] = useState();
-  const [fathername, setFatherName] = useState();
+  const [parentGuardianSpouseName, setparentGuardianSpouseName] = useState();
   const [dob, setDOB] = useState();
   // const [city, setCity] = useState();
   // const [state, setState] = useState();
@@ -89,18 +91,15 @@ const ProfileSetup = () => {
       lastName: lastName,
       gender: 'Male',
       dob: '1998-10-15',
-      parentOrGuardianOrSpouseName: fathername,
+      parentOrGuardianOrSpouseName: parentGuardianSpouseName,
     };
     console.log(DataObj);
     try {
-      const res = await postData(
-        `${base_url}/auth/native/me/accounts`,
-        DataObj,
-      );
+      const res = await postData(`${base_url}/auth/register-account`, DataObj);
       if (res.status === 201) {
         setUserToken(res.data.accessToken);
       }
-      console.log(res.data);
+      console.log('res.data', res.data);
     } catch (error) {
       console.log(error);
     }
@@ -128,53 +127,52 @@ const ProfileSetup = () => {
   //   }
   // };
 
-  const [BadfirstName, setBadfirstName] = useState();
+  const [BadfirstName, setBadfirstName] = useState('');
   const [BadmiddleName, setBadmiddleName] = useState();
   const [BadlastName, setBadlastName] = useState();
   const [BadfatherName, setBadfatherName] = useState();
 
   const [buttonDisabled, setButtonDisabled] = useState();
-
-  const [error, setError] = useState('');
-  const handleSubmit = async firstName => {
-    const isValid = await sendEmailValidationRequest(firstName);
-    if (isValid) {
-      setError('');
-      console.log('SUBMITTED! ', firstName);
-    } else {
-      setError('Email not valid. Please try again.');
-      console.log('EMAIL WAS INVALID.');
-    }
-    return isValid;
-  };
-
-  const signup = () => {
+  const length = 'sfsf';
+  const handleSubmit = () => {
     setButtonDisabled(true);
-    if (firstName == '') {
-      setBadfirstName(true);
+    if (firstName === '') {
+      setBadfirstName('First Name is required');
       setButtonDisabled(false);
+    } else if (firstName?.length > 2) {
+      setBadfirstName('');
     } else {
-      setBadfirstName(false);
+      setBadfirstName('First Name is required');
     }
+
     if (middleName === '') {
-      setBadmiddleName(true);
+      setBadmiddleName('Middle Name is required');
       setButtonDisabled(false);
+    } else if (middleName?.length > 2) {
+      setBadmiddleName('');
     } else {
-      setBadmiddleName(false);
+      setBadmiddleName('Middle Name is required');
     }
+
     if (lastName === '') {
-      setBadlastName(true);
+      setBadlastName('Last Name is required');
       setButtonDisabled(false);
+    } else if (lastName?.length > 2) {
+      setBadlastName('');
     } else {
-      setBadlastName(false);
+      setBadlastName('Last Name is required');
     }
-    if (fathername === '') {
-      setBadfatherName(true);
+
+    if (parentGuardianSpouseName === '') {
+      setBadfatherName('Last Name is required');
       setButtonDisabled(false);
+    } else if (parentGuardianSpouseName?.length > 2) {
+      setBadfatherName('');
     } else {
-      setBadfatherName(false);
+      setBadfatherName('Last Name is required');
     }
   };
+
   return (
     <>
       <ImageBackground
@@ -194,17 +192,24 @@ const ProfileSetup = () => {
               <TextInput
                 style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Full Name'}
-                onChangeText={setFirstName}
+                onChangeText={text => setFirstName(text)}
                 value={firstName}
                 placeholder="Enter your FirstName"
                 placeholderTextColor="#000"
               />
-              {/* {BadfirstName === true && (
+              {/* {BadfirstName === false && (
                 <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
-                  Enter your First Name
+                  {BadfirstName}
                 </Text>
               )} */}
-              <Text style={{color: 'red'}}>{error}</Text>
+              <Text
+                style={{
+                  color: 'red',
+                  position: 'absolute',
+                  marginTop: vertScale(60),
+                }}>
+                {BadfirstName}
+              </Text>
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
@@ -218,11 +223,14 @@ const ProfileSetup = () => {
                 placeholder="Enter your Middle Name"
                 placeholderTextColor="#000"
               />
-              {BadmiddleName === true && (
-                <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
-                  Enter your Middle Name
-                </Text>
-              )}
+              <Text
+                style={{
+                  color: 'red',
+                  position: 'absolute',
+                  marginTop: vertScale(60),
+                }}>
+                {BadmiddleName}
+              </Text>
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
@@ -236,29 +244,35 @@ const ProfileSetup = () => {
                 placeholder="Enter your LastName"
                 placeholderTextColor="#000"
               />
-              {BadlastName === true && (
-                <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
-                  Enter your Last Name
-                </Text>
-              )}
+              <Text
+                style={{
+                  color: 'red',
+                  position: 'absolute',
+                  marginTop: vertScale(60),
+                }}>
+                {BadlastName}
+              </Text>
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
-                {t('ProfileSetup.FatherName')}
+                {t('ProfileSetup.parentGuardianSpouseName')}
               </Text>
               <TextInput
                 style={[styles.text_input_style, {paddingRight: 40}]}
                 textname={'Father Name'}
-                onChangeText={setFatherName}
-                value={fathername}
-                placeholder="Enter your Father's Name"
+                onChangeText={setparentGuardianSpouseName}
+                value={parentGuardianSpouseName}
+                placeholder="Parent/Guardian/SpouseName"
                 placeholderTextColor="#000"
               />
-              {BadfatherName === true && (
-                <Text style={{marginTop: 0, marginLeft: 0, color: 'red'}}>
-                  Enter your Father's Name
-                </Text>
-              )}
+              <Text
+                style={{
+                  color: 'red',
+                  position: 'absolute',
+                  marginTop: vertScale(60),
+                }}>
+                {BadfatherName}
+              </Text>
             </View>
             <View style={styles.text_input_top_container}>
               <Text style={styles.text_inpute_top_text_style}>
@@ -439,7 +453,6 @@ const ProfileSetup = () => {
               onPress={() => {
                 // navigation.navigate('kyc');
                 SetProfileAccount();
-                signup();
                 handleSubmit();
               }}
             />

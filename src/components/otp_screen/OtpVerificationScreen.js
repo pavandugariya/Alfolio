@@ -10,23 +10,23 @@ import {
   Keyboard,
   TextInput,
 } from 'react-native';
-import React, { useState, useRef } from 'react';
-import { colors } from '../login/util';
-import { globalshedow } from '../../globalUtils/globalutil';
-import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
+import React, {useState, useRef} from 'react';
+import {colors} from '../login/util';
+import {globalshedow} from '../../globalUtils/globalutil';
+import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 import GradientBtn from '../custom_componets/GradientBtn';
-import { postData } from '../../Api/Api';
+import {postData} from '../../Api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { base_url } from '../../../env';
-import { showMessage } from 'react-native-flash-message';
-import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
-import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage'
-import { useDispatch } from 'react-redux';
+import {base_url} from '../../../env';
+import {showMessage} from 'react-native-flash-message';
+import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
+import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
+import {useDispatch} from 'react-redux';
 
-const { height, width } = Dimensions.get('screen');
+const {height, width} = Dimensions.get('screen');
 const OtpVerificationScreen = props => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const mobileNumber = props.route.params.pn;
   const pin1Ref = useRef(null);
@@ -54,13 +54,14 @@ const OtpVerificationScreen = props => {
 
     if (otp.length >= 6) {
       try {
-        const res = await postData(`${base_url}/auth/native/login`, dataObj);
+        const res = await postData(`${base_url}/auth/login`, dataObj);
         console.log(res.data);
         if (res.status == 200) {
           showMessage({
-            message: "Congratulations, your account has been successfully created.",
-            type: 'success'
-          })
+            message:
+              'Congratulations, your account has been successfully created.',
+            type: 'success',
+          });
           setUserToken(res.data.accessToken);
         }
       } catch (error) {
@@ -69,20 +70,21 @@ const OtpVerificationScreen = props => {
     } else {
       showMessage({
         message: 'Fill Six Digit OTP',
-        type: 'default'
-      })
+        type: 'default',
+      });
     }
-
   };
-  const setUserToken = async (token) => {
+  const setUserToken = async token => {
     console.log(token);
     try {
-      const res = await RNSecureStorage.set("userToken", token, { accessible: ACCESSIBLE.WHEN_UNLOCKED })
+      const res = await RNSecureStorage.set('userToken', token, {
+        accessible: ACCESSIBLE.WHEN_UNLOCKED,
+      });
       AuthDispatch(UserTokenHandler(token));
     } catch (error) {
       console.log('error', error);
     }
-  }
+  };
 
   return (
     <ImageBackground
@@ -100,12 +102,12 @@ const OtpVerificationScreen = props => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={[styles.bottom_view_style, globalshedow]}>
           <ScrollView>
-            <View style={{ alignItems: 'center' }}>
+            <View style={{alignItems: 'center'}}>
               <Text style={styles.txt_title_style}>{t('otpVerify.title')}</Text>
               <Text
                 style={[
                   styles.txt_title_style,
-                  { color: '#424242', fontSize: 14, marginVertical: 15 },
+                  {color: '#424242', fontSize: 14, marginVertical: 15},
                 ]}>
                 {t('otpVerify.title2')} {mobileNumber}
               </Text>
@@ -193,9 +195,9 @@ const OtpVerificationScreen = props => {
                 style={styles.text_input_style}
               />
             </View>
-            <Text style={{ alignSelf: 'center', marginTop: 20, color: '#000' }}>
+            <Text style={{alignSelf: 'center', marginTop: 20, color: '#000'}}>
               {t('otpVerify.title3')}
-              <Text onPress={() => { }} style={{ color: colors.txt_color }}>
+              <Text onPress={() => {}} style={{color: colors.txt_color}}>
                 {t('otpVerify.resend')}
               </Text>
             </Text>

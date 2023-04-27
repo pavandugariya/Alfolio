@@ -18,6 +18,10 @@ import {TextInput} from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
 import CustomInputField from '../custom_componets/CustomInputField';
 import {useTranslation} from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {postData} from '../../Api/Api';
+import {base_url} from '../../../env';
+import {vertScale} from '../../Utility/Layout';
 
 const Kyc = () => {
   const {t} = useTranslation();
@@ -26,6 +30,27 @@ const Kyc = () => {
 
   const navigation = useNavigation();
   const {height, width} = Dimensions.get('screen');
+
+  // const sendOtpHander = async () => {
+  //   const ObjData = {
+  //     identificationNumber: '859654145698',
+  //   };
+  //   const res = await postData(`${base_url}/auth/send-code`, ObjData);
+  //   console.log(res);
+  // };
+
+  const [errorKyc, setRrrorKyc] = useState('');
+
+  const validationkyc = () => {
+    if (kycs === '') {
+      setRrrorKyc('KYC is required');
+    } else if (kycs?.length > 12) {
+      setRrrorKyc('');
+      navigation.navigate('verifyOtp');
+    } else {
+      setRrrorKyc('KYC is required');
+    }
+  };
 
   return (
     <>
@@ -59,6 +84,14 @@ const Kyc = () => {
               placeholder="5249 1581 9551"
               placeholderTextColor="#000"
             />
+            <Text
+              style={{
+                color: 'red',
+                position: 'absolute',
+                marginTop: vertScale(65),
+              }}>
+              {errorKyc}
+            </Text>
           </View>
 
           <GradientBtn
@@ -66,7 +99,7 @@ const Kyc = () => {
             bgColor={'#D25C34'}
             bgColor2={'#951516'}
             color={'#fff'}
-            marginTop={20}
+            marginTop={25}
             height={40}
             borderRadius={5}
             icon_color={'#fff'}
@@ -74,7 +107,7 @@ const Kyc = () => {
             // icon_name={'share-social'}
             // onPress={otpVerification}
             onPress={() => {
-              navigation.navigate('verifyOtp');
+              validationkyc();
             }}
           />
           <View style={styles.skip_button_bottom}>

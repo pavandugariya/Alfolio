@@ -20,6 +20,9 @@ import CustomInputField from '../custom_componets/CustomInputField';
 import {useTranslation} from 'react-i18next';
 import {Customcolor} from '../../Utility/Customcolor';
 import {fontSize} from '../../Utility/Fontsize';
+import {base_url} from '../../../env';
+import {postData} from '../../Api/Api';
+import {showMessage} from 'react-native-flash-message';
 
 const VerifyOtp = () => {
   const {t} = useTranslation();
@@ -27,6 +30,35 @@ const VerifyOtp = () => {
 
   const navigation = useNavigation();
   const {height, width} = Dimensions.get('screen');
+
+  const _otpSubmitHandler = async () => {
+    const dataObj = {
+      identificationNumber: '859654145698',
+      verificationCode: '000000',
+    };
+
+    if (otp.length >= 6) {
+      try {
+        const res = await postData(`${base_url}/auth/verify-account`, dataObj);
+        console.log(res.data);
+        if (res.status == 200) {
+          showMessage({
+            message:
+              'Congratulations, your account has been successfully created.',
+            type: 'success',
+          });
+          //setUserToken(res.data.accessToken);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      showMessage({
+        message: 'Fill Six Digit OTP',
+        type: 'default',
+      });
+    }
+  };
 
   return (
     <>
@@ -74,7 +106,7 @@ const VerifyOtp = () => {
             // icon_name={'share-social'}
             // onPress={otpVerification}
             onPress={() => {
-              navigation.navigate('youdidis');
+              _otpSubmitHandler();
             }}
           />
         </View>

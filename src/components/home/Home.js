@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
@@ -17,13 +17,13 @@ import {styles} from '../home/styles';
 import {globalshedow as shedow} from '../../globalUtils/globalutil';
 import {useTranslation} from 'react-i18next';
 import {useWelcomeOnboarding} from '../welcome_onboarding_screen/Action';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Profile from '../profile/Profile';
+import {useDispatch} from 'react-redux';
+import ProfileReducer from '../../Redux/Reducer/ProfileReducer/ProfileReducer';
 
 const {height, width} = Dimensions.get('screen');
 const Home = () => {
-  // useEffect(() => {
-  //   checkHander;
-  // });
+  const profiledispatch = useDispatch();
   const Array = [
     {
       id: 1,
@@ -44,9 +44,9 @@ const Home = () => {
 
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const toggleHandler = () => {
-    navigation.openDrawer();
-  };
+  // const toggleHandler = () => {
+  //   navigation.openDrawer();
+  // };
 
   const {isLoading, isAccount, numberOfAccount, userData} =
     useWelcomeOnboarding();
@@ -58,17 +58,23 @@ const Home = () => {
       </View>
     );
   }
+  const toggleHandler = () => {
+    navigation.openDrawer();
+  };
+  if (numberOfAccount.length > 0) {
+    navigation.navigate('Home');
+  }
 
-  // const checkHander = async () => {
-  //   const nFirstName = await AsyncStorage.getItem('firstName');
-  //   const nLastName = await AsyncStorage.getItem('lastName');
-  //   console.log(nFirstName + ' ' + nLastName);
-
-  //   if (nFirstName !== null || nFirstName !== undefined || nFirstName !== '') {
-  //     navigation.navigate('home');
-  //   } else navigation.navigate('kyc');
-  //   ShowModal();
-  // };
+  const ProfileHandler = () => {
+    try {
+      if (isAccount.length > 1) {
+        profiledispatch(ProfileReducer.isAccount.verified);
+        navigation.navigate('kyc');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const ShowModal = () => {
     return (
