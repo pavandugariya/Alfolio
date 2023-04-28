@@ -1,6 +1,6 @@
-export const _AddprofileHandler = value => {
+export const _addProfileHandler = value => {
   return {
     type: 'ADD_PROFILE',
-    payloade: value,
+    payload: value,
   };
 };

@@ -7,10 +7,10 @@ const ProfileReducer = (state = initialState, action) => {
     case 'ADD_PROFILE':
       return {
         ...state,
-        addprofile: action.payload,
+        profileData: action.payload,
       };
     default:
-      return state;
+      return { ...state };
   }
 };
 
