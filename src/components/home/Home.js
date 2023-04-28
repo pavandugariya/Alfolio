@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
@@ -20,9 +20,13 @@ import {useWelcomeOnboarding} from '../welcome_onboarding_screen/Action';
 import Profile from '../profile/Profile';
 import {useDispatch} from 'react-redux';
 import ProfileReducer from '../../Redux/Reducer/ProfileReducer/ProfileReducer';
+import {getData} from '../../Api/Api';
+import {base_url} from '../../../env';
 
 const {height, width} = Dimensions.get('screen');
 const Home = () => {
+  const [data, setdata] = useState([]);
+
   const profiledispatch = useDispatch();
   const Array = [
     {
@@ -42,6 +46,19 @@ const Home = () => {
     },
   ];
 
+  useEffect(() => {
+    CategoriesData();
+    // ProfileHandler();
+  });
+  const CategoriesData = async () => {
+    try {
+      const res = await getData(`${base_url}/partners/categories`);
+      console.log('response data', res.data);
+      setdata(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const {t} = useTranslation();
   const navigation = useNavigation();
   // const toggleHandler = () => {
@@ -68,7 +85,7 @@ const Home = () => {
   const ProfileHandler = () => {
     try {
       if (isAccount.length > 1) {
-        profiledispatch(ProfileReducer.isAccount.verified);
+        // profiledispatch(ProfileReducer.isAccount.verified);
         navigation.navigate('kyc');
       }
     } catch (error) {
@@ -76,14 +93,14 @@ const Home = () => {
     }
   };
 
-  const ShowModal = () => {
-    return (
-      <View>
-        {/* <SuccessfulRegistration /> */}
-        <text>LSFJSL</text>
-      </View>
-    );
-  };
+  // const ShowModal = () => {
+  //   return (
+  //     <View>
+  //       {/* <SuccessfulRegistration /> */}
+  //       <text>LSFJSL</text>
+  //     </View>
+  //   );
+  // };
   return (
     <ImageBackground
       source={require('../../Images/home_bg2.png')}
@@ -106,6 +123,7 @@ const Home = () => {
         <ScrollView>
           <View style={styles.item_top_box}>
             {Array.map((item, index) => {
+              console.log('item data home', item.item.data);
               return (
                 <TouchableOpacity
                   onPress={() => navigation.navigate('ShowMarksheet')}

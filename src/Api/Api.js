@@ -2,11 +2,11 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNSecureStorage from 'rn-secure-storage';
 
-export const getData = async (url, options) => {
+export const getData = async (url, data) => {
   const val = await getUserTokenData();
   const res = await axios
     .get(url, {
-      headers: {Authorization: `Bearer ${val}`, ...options},
+      headers: {Authorization: `Bearer ${val}`, ...data},
     })
     .catch(err => {
       console.log(err, 'error');

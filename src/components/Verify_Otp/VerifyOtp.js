@@ -23,6 +23,10 @@ import {fontSize} from '../../Utility/Fontsize';
 import {base_url} from '../../../env';
 import {postData} from '../../Api/Api';
 import {showMessage} from 'react-native-flash-message';
+import {useDispatch} from 'react-redux';
+import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
+import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
+import {color} from 'react-native-reanimated';
 
 const VerifyOtp = () => {
   const {t} = useTranslation();
@@ -30,36 +34,31 @@ const VerifyOtp = () => {
 
   const navigation = useNavigation();
   const {height, width} = Dimensions.get('screen');
+  const AuthDispatch = useDispatch();
 
   const _otpSubmitHandler = async () => {
     const dataObj = {
-      identificationNumber: '859654145698',
-      verificationCode: '000000',
+      identificationNumber: '859654145998',
+      verificationCode: otp,
     };
-
-    if (otp.length >= 6) {
-      try {
-        const res = await postData(`${base_url}/auth/verify-account`, dataObj);
-        console.log(res.data);
-        if (res.status == 200) {
-          showMessage({
-            message:
-              'Congratulations, your account has been successfully created.',
-            type: 'success',
-          });
-          //setUserToken(res.data.accessToken);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      showMessage({
-        message: 'Fill Six Digit OTP',
-        type: 'default',
-      });
+    console.log(dataObj);
+    try {
+      const res = await postData(`${base_url}/auth/verify-account`, dataObj);
+      console.log('response', res);
+      navigation.navigate('SuccessfulRegistration');
+    } catch (error) {
+      console.log(error);
     }
   };
 
+  const [errOtp, seterrOtp] = useState();
+  const validationOtp = () => {
+    if (otp === '') {
+      seterrOtp('sucessfully');
+    } else {
+      seterrOtp('Enter the opt');
+    }
+  };
   return (
     <>
       <ImageBackground
@@ -90,7 +89,10 @@ const VerifyOtp = () => {
               value={otp}
               placeholder="5 2 4 9 6 8"
               placeholderTextColor="#000"
+              keyboardType={'number-pad'}
+              maxLength={6}
             />
+            <Text style={{color: 'red'}}>{errOtp}</Text>
           </View>
 
           <GradientBtn
@@ -107,6 +109,7 @@ const VerifyOtp = () => {
             // onPress={otpVerification}
             onPress={() => {
               _otpSubmitHandler();
+              validationOtp();
             }}
           />
         </View>

@@ -44,7 +44,7 @@ const Kyc = () => {
   const validationkyc = () => {
     if (kycs === '') {
       setRrrorKyc('KYC is required');
-    } else if (kycs?.length > 12) {
+    } else if (kycs?.length === 12) {
       setRrrorKyc('');
       navigation.navigate('verifyOtp');
     } else {
@@ -83,6 +83,7 @@ const Kyc = () => {
               keyboardType="numeric"
               placeholder="5249 1581 9551"
               placeholderTextColor="#000"
+              maxLength={12}
             />
             <Text
               style={{
