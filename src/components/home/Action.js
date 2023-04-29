@@ -8,8 +8,8 @@ export const useHomeAction = () => {
     const navigation = useNavigation();
     const [isLoading, setIsLoading] = useState(false);
     const [categoryData, setCategoryData] = useState([]);
-    const profileData = useSelector((state) => state.ProfileR);
-    console.log(profileData);
+    // const profileData = useSelector((state) => state.ProfileReducer);
+    // console.log(profileData);
     const Array = [
         {
             id: 1,
@@ -37,12 +37,14 @@ export const useHomeAction = () => {
     const _categoriesDataHadler = async () => {
         try {
             const res = await getData(`${base_url}/partners/categories`);
-            console.log('response data', res.data[0]);
+            // console.log('response data', res.data[0]);
             setCategoryData(res.data);
         } catch (error) {
             console.log(error);
         }
     };
-    return { isLoading, categoryData, _toggleHandler, Array };
+    return {
+        isLoading, categoryData, _toggleHandler, Array, navigation
+    };
 
 }

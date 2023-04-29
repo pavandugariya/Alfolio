@@ -6,48 +6,46 @@ import {
   ImageBackground,
   Dimensions,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {
   globalcolors,
   globalfonts,
   globalStyle,
 } from '../../globalUtils/globalutil';
-import {TextInput} from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
-import CustomInputField from '../custom_componets/CustomInputField';
-import {useTranslation} from 'react-i18next';
-import {Customcolor} from '../../Utility/Customcolor';
-import {fontSize} from '../../Utility/Fontsize';
-import {base_url} from '../../../env';
-import {postData} from '../../Api/Api';
-import {showMessage} from 'react-native-flash-message';
-import {useDispatch} from 'react-redux';
-import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
-import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
-import {color} from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
+import { Customcolor } from '../../Utility/Customcolor';
+import { fontSize } from '../../Utility/Fontsize';
+import { base_url } from '../../../env';
+import { postData } from '../../Api/Api';
+import { useDispatch } from 'react-redux';
+import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
+import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
+import { color } from 'react-native-reanimated';
 
 const VerifyOtp = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [otp, setOtp] = useState();
 
   const navigation = useNavigation();
-  const {height, width} = Dimensions.get('screen');
+  const { height, width } = Dimensions.get('screen');
   const AuthDispatch = useDispatch();
 
   const _otpSubmitHandler = async () => {
     const dataObj = {
       identificationNumber: '859654145998',
-      verificationCode: otp,
+      verificationCode: '000000',
     };
     console.log(dataObj);
     try {
       const res = await postData(`${base_url}/auth/verify-account`, dataObj);
-      console.log('response', res);
-      navigation.navigate('SuccessfulRegistration');
+      console.log('response', res.message);
+      // navigation.navigate('SuccessfulRegistration');
     } catch (error) {
-      console.log(error);
+      console.log('error...>', error);
     }
   };
 
@@ -66,7 +64,7 @@ const VerifyOtp = () => {
         blurRadius={50}
         style={styles.container}>
         <View style={styles.input_box_style}>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Text style={styles.verify_otp_style}>Verify Otp</Text>
           </View>
 
@@ -83,7 +81,7 @@ const VerifyOtp = () => {
               {t('VerifyOtp.Verify')}
             </Text>
             <TextInput
-              style={[styles.input_text_style, {paddingRight: 40}]}
+              style={[styles.input_text_style, { paddingRight: 40 }]}
               textname={'State'}
               onChangeText={setOtp}
               value={otp}
@@ -92,7 +90,7 @@ const VerifyOtp = () => {
               keyboardType={'number-pad'}
               maxLength={6}
             />
-            <Text style={{color: 'red'}}>{errOtp}</Text>
+            <Text style={{ color: 'red' }}>{errOtp}</Text>
           </View>
 
           <GradientBtn

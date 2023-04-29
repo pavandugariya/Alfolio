@@ -12,14 +12,17 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import { styles } from '../home/styles';
-import { globalshedow as shedow } from '../../globalUtils/globalutil';
+import { globalshedow, globalshedow as shedow } from '../../globalUtils/globalutil';
 import { useTranslation } from 'react-i18next';
 import { useHomeAction } from './Action';
+import { useWelcomeOnboarding } from '../welcome_onboarding_screen/Action';
 
 const { height, width } = Dimensions.get('screen');
 const Home = () => {
   const { t } = useTranslation();
-  const { isLoading, categoryData, _toggleHandler, Array } = useHomeAction();
+  const { isLoading, categoryData, _toggleHandler, Array, navigation } = useHomeAction();
+  const { isAccount, numberOfAccount, userData } = useWelcomeOnboarding();
+  // console.log(numberOfAccount);
 
   return (
     <ImageBackground
@@ -44,6 +47,9 @@ const Home = () => {
             resizeMode={'contain'}
           />
         </View>
+
+
+
         <ScrollView>
           <View style={styles.item_top_box}>
             {Array.map((item, index) => {
