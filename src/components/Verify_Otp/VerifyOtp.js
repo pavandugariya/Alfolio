@@ -36,20 +36,20 @@ const VerifyOtp = () => {
   const {height, width} = Dimensions.get('screen');
   const AuthDispatch = useDispatch();
 
-  const _otpSubmitHandler = async () => {
-    const dataObj = {
-      identificationNumber: '859654145998',
-      verificationCode: otp,
-    };
-    console.log(dataObj);
-    try {
-      const res = await postData(`${base_url}/auth/verify-account`, dataObj);
-      console.log('response', res);
-      navigation.navigate('SuccessfulRegistration');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const _otpSubmitHandler = async () => {
+  //   const dataObj = {
+  //     identificationNumber: '859654145998',
+  //     verificationCode: otp,
+  //   };
+  //   console.log(dataObj);
+  //   try {
+  //     const res = await postData(`${base_url}/auth/verify-account`, dataObj);
+  //     console.log('response', res);
+  //     navigation.navigate('SuccessfulRegistration');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const [errOtp, seterrOtp] = useState();
   const validationOtp = () => {

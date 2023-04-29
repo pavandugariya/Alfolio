@@ -25,7 +25,7 @@ export const postData = async (url, data) => {
       console.log(err, 'error');
       return err;
     });
-  // console.log(res.message);
+  console.log(res.message);
   return res;
 };
 

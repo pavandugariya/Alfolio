@@ -10,7 +10,7 @@ const ProfileReducer = (state = initialState, action) => {
         profileData: action.payload,
       };
     default:
-      return { ...state };
+      return {...state};
   }
 };
 

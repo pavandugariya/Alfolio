@@ -1,8 +1,8 @@
-import { getData } from '../../Api/Api';
-import { base_url } from '../../../env';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { _AddprofileHandler } from '../../Redux/Action/ProfileAction/ProfileAction';
+import {getData} from '../../Api/Api';
+import {base_url} from '../../../env';
+import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {_AddprofileHandler} from '../../Redux/Action/ProfileAction/ProfileAction';
 
 export const useWelcomeOnboarding = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,11 +27,10 @@ export const useWelcomeOnboarding = () => {
         dispatch(_AddprofileHandler(response.data));
       }
       setIsLoading(false);
-
     } catch (error) {
       setIsLoading(false);
       console.log('error', error);
     }
   };
-  return { isLoading, userData, isAccount, numberOfAccount };
+  return {isLoading, userData, isAccount, numberOfAccount};
 };
