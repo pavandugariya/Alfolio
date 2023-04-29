@@ -26,7 +26,7 @@ const WelcomeOnboad = () => {
   const navigation = useNavigation();
   const {isLoading, isAccount, numberOfAccount, userData} =
     useWelcomeOnboarding();
-
+  console.log(numberOfAccount.length);
   if (isLoading) {
     return (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
@@ -34,16 +34,26 @@ const WelcomeOnboad = () => {
       </View>
     );
   }
+
+  if (numberOfAccount.length > 0 && !isLoading) {
+    setTimeout(() => {
+      navigation.navigate('Home');
+    }, 500);
+  };
+
   const toggleHandler = () => {
     navigation.openDrawer();
   };
-  if (numberOfAccount.length > 0) {
-    setTimeout(() => {
-      navigation.navigate('Home');
-      console.log('hello jack');
-      // toggleHandler();
-    }, 300);
-  }
+// <<<<<<< HEAD
+//   if (numberOfAccount.length > 0) {
+//     setTimeout(() => {
+//       navigation.navigate('Home');
+//       console.log('hello jack');
+//       // toggleHandler();
+//     }, 300);
+//   }
+=======
+>>>>>>> 8c75a3395616698c49cbaf9f2749a68009fe7817
 
   return (
     <ImageBackground

@@ -19,12 +19,7 @@ import {useHomeAction} from './Action';
 const {height, width} = Dimensions.get('screen');
 const Home = () => {
   const {t} = useTranslation();
-  const {isLoading, categoryData, _toggleHandler, Array, navigation} =
-    useHomeAction();
-
-  if (categoryData.length >= 0) {
-    navigation.navigate('kyc');
-  }
+  const {isLoading, categoryData, _toggleHandler, Array} = useHomeAction();
 
   // const SkipModal = () => {
   //   return (
@@ -53,6 +48,7 @@ const Home = () => {
             resizeMode={'contain'}
           />
         </View>
+
         <ScrollView>
           <View style={styles.item_top_box}>
             {Array.map((item, index) => {

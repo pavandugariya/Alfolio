@@ -16,13 +16,11 @@ import {
 } from '../../globalUtils/globalutil';
 import {TextInput} from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
-import CustomInputField from '../custom_componets/CustomInputField';
 import {useTranslation} from 'react-i18next';
 import {Customcolor} from '../../Utility/Customcolor';
 import {fontSize} from '../../Utility/Fontsize';
 import {base_url} from '../../../env';
 import {postData} from '../../Api/Api';
-import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
 import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
 import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
@@ -36,20 +34,20 @@ const VerifyOtp = () => {
   const {height, width} = Dimensions.get('screen');
   const AuthDispatch = useDispatch();
 
-  // const _otpSubmitHandler = async () => {
-  //   const dataObj = {
-  //     identificationNumber: '859654145998',
-  //     verificationCode: otp,
-  //   };
-  //   console.log(dataObj);
-  //   try {
-  //     const res = await postData(`${base_url}/auth/verify-account`, dataObj);
-  //     console.log('response', res);
-  //     navigation.navigate('SuccessfulRegistration');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const _otpSubmitHandler = async () => {
+    const dataObj = {
+      identificationNumber: '859654145998',
+      verificationCode: otp,
+    };
+    console.log(dataObj);
+    try {
+      const res = await postData(`${base_url}/auth/verify-account`, dataObj);
+      console.log('response', res);
+      navigation.navigate('SuccessfulRegistration');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const [errOtp, seterrOtp] = useState();
   const validationOtp = () => {
