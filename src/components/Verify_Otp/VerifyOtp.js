@@ -16,13 +16,11 @@ import {
 } from '../../globalUtils/globalutil';
 import {TextInput} from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
-import CustomInputField from '../custom_componets/CustomInputField';
 import {useTranslation} from 'react-i18next';
 import {Customcolor} from '../../Utility/Customcolor';
 import {fontSize} from '../../Utility/Fontsize';
 import {base_url} from '../../../env';
 import {postData} from '../../Api/Api';
-import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
 import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
 import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
