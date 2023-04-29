@@ -2,16 +2,14 @@ const initialState = {
   profileData: '',
 };
 
-const ProfileReducer = (state = initialState, action) => {
+export const ProfileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_PROFILE':
+    case 'ADD_PROFILE_DATA':
       return {
         ...state,
         profileData: action.payload,
       };
     default:
-      return { ...state };
+      return {...state};
   }
 };
-
-export default ProfileReducer;

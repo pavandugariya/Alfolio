@@ -1,7 +1,10 @@
-import {StyleSheet, Dimensions} from 'react-native';
-import {globalcolors, globalfonts} from '../../globalUtils/globalutil';
-const {height, width} = Dimensions.get('screen');
-import {homecolors, shedow} from './util';
+import { StyleSheet, Dimensions } from 'react-native';
+import { globalcolors, globalfonts } from '../../globalUtils/globalutil';
+const { height, width } = Dimensions.get('screen');
+import { homecolors, shedow } from './util';
+import { Customcolor } from '../../Utility/Customcolor';
+import { horizScale, vertScale } from '../../Utility/Layout';
+import { fontSize } from '../../Utility/Fontsize';
 
 export const styles = StyleSheet.create({
   container: {
@@ -70,5 +73,51 @@ export const styles = StyleSheet.create({
     color: globalcolors.text_color,
     fontFamily: globalfonts.Extra_Bold_j,
     marginRight: -15,
+  },
+  bottom_view_style: {
+    width: width * 0.85,
+    backgroundColor: Customcolor.white,
+    position: 'relative',
+    bottom: 0,
+    borderTopEndRadius: vertScale(20),
+    borderTopLeftRadius: vertScale(20),
+    borderRadius: 20,
+    paddingHorizontal: horizScale(40),
+    paddingVertical: vertScale(60),
+    opacity: 0.8,
+    alignSelf: 'center',
+  },
+  heading_text_style: {
+    fontFamily: 'Jeko DEMO',
+    fontWeight: 700,
+    fontSize: fontSize.h5,
+    alignSelf: 'center',
+    color: Customcolor.textcolor,
+  },
+  subheading_text_style: {
+    fontFamily: 'Jeko DEMO',
+    fontWeight: 700,
+    fontSize: fontSize.reqular,
+    alignSelf: 'center',
+    color: Customcolor.black,
+    marginVertical: vertScale(20),
+  },
+
+  top_icon_box: {
+    backgroundColor: Customcolor.white,
+    borderRadius: 8,
+    width: horizScale(40),
+    height: vertScale(40),
+    left: horizScale(20),
+    top: vertScale(20),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo_heading_Text_style: {
+    fontFamily: '',
+    fontWeight: '700',
+    fontSize: fontSize.h1,
+    color: Customcolor.textcolor,
+    marginRight: horizScale(10),
   },
 });

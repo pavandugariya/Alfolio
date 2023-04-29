@@ -11,24 +11,28 @@ import {
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
-import { styles } from '../home/styles';
-import { globalshedow as shedow } from '../../globalUtils/globalutil';
-import { useTranslation } from 'react-i18next';
-import { useHomeAction } from './Action';
+import {styles} from '../home/styles';
+import {globalshedow as shedow} from '../../globalUtils/globalutil';
+import {useTranslation} from 'react-i18next';
+import {useHomeAction} from './Action';
 
-const { height, width } = Dimensions.get('screen');
+const {height, width} = Dimensions.get('screen');
 const Home = () => {
-  const { t } = useTranslation();
-  const { isLoading, categoryData, _toggleHandler, Array } = useHomeAction();
+  const {t} = useTranslation();
+  const {isLoading, categoryData, _toggleHandler, Array} = useHomeAction();
 
+  // const SkipModal = () => {
+  //   return (
+  //     <View style={{color: '#fff'}}>
+  //       <Text>lsjgfslf</Text>
+  //     </View>
+  //   );
+  // };
   return (
     <ImageBackground
       source={require('../../Images/home_bg2.png')}
       style={styles.container}>
-
-      {isLoading &&
-        <ActivityIndicator size={50} color={'#951516'} />
-      }
+      {isLoading && <ActivityIndicator size={50} color={'#951516'} />}
       <TouchableOpacity onPress={_toggleHandler} style={styles.top_icon_box}>
         <Icon name={'reorder-three-outline'} size={35} color={'#000'} />
       </TouchableOpacity>
@@ -44,6 +48,7 @@ const Home = () => {
             resizeMode={'contain'}
           />
         </View>
+
         <ScrollView>
           <View style={styles.item_top_box}>
             {Array.map((item, index) => {
