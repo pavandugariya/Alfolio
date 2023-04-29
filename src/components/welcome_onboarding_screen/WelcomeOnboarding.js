@@ -39,21 +39,19 @@ const WelcomeOnboad = () => {
     setTimeout(() => {
       navigation.navigate('Home');
     }, 500);
-  };
+  }
 
   const toggleHandler = () => {
     navigation.openDrawer();
+
+    if (numberOfAccount.length > 0) {
+      setTimeout(() => {
+        navigation.navigate('Home');
+        console.log('hello jack');
+        // toggleHandler();
+      }, 300);
+    }
   };
-// <<<<<<< HEAD
-//   if (numberOfAccount.length > 0) {
-//     setTimeout(() => {
-//       navigation.navigate('Home');
-//       console.log('hello jack');
-//       // toggleHandler();
-//     }, 300);
-//   }
-=======
->>>>>>> 8c75a3395616698c49cbaf9f2749a68009fe7817
 
   return (
     <ImageBackground
