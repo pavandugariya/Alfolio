@@ -19,44 +19,19 @@ import GradientBtn from '../custom_componets/GradientBtn';
 import {useTranslation} from 'react-i18next';
 import {Customcolor} from '../../Utility/Customcolor';
 import {fontSize} from '../../Utility/Fontsize';
-import {base_url} from '../../../env';
-import {postData} from '../../Api/Api';
-import {useDispatch} from 'react-redux';
-import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
-import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
-import {color} from 'react-native-reanimated';
+import {useVerifyAction} from './ActionVerify';
 
 const VerifyOtp = () => {
   const {t} = useTranslation();
-  const [otp, setOtp] = useState();
-
-  const navigation = useNavigation();
-  const {height, width} = Dimensions.get('screen');
-  const AuthDispatch = useDispatch();
-
-  const _otpSubmitHandler = async () => {
-    const dataObj = {
-      identificationNumber: '859654145998',
-      verificationCode: otp,
-    };
-    console.log(dataObj);
-    try {
-      const res = await postData(`${base_url}/auth/verify-account`, dataObj);
-      console.log('response', res);
-      navigation.navigate('SuccessfulRegistration');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const [errOtp, seterrOtp] = useState();
-  const validationOtp = () => {
-    if (otp === '') {
-      seterrOtp('sucessfully');
-    } else {
-      seterrOtp('Enter the opt');
-    }
-  };
+  const {
+    validationOtp,
+    seterrOtp,
+    _otpSubmitHandler,
+    AuthDispatch,
+    otp,
+    setOtp,
+    errOtp,
+  } = useVerifyAction();
   return (
     <>
       <ImageBackground

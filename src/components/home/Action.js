@@ -43,5 +43,5 @@ export const useHomeAction = () => {
       console.log(error);
     }
   };
-  return {isLoading, categoryData, _toggleHandler, Array};
+  return {isLoading, categoryData, _toggleHandler, Array, navigation};
 };

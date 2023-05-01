@@ -17,28 +17,42 @@ import {useNavigation} from '@react-navigation/native';
 import {globalfonts} from '../../globalUtils/globalutil';
 import {useTranslation} from 'react-i18next';
 import RNSecureStorage from 'rn-secure-storage';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
+import {useActionSwitchAccount} from './ActionSwitchAccount';
 
 const {height, width} = Dimensions.get('screen');
 const CustomDraweContent = ({iconColor, iconSize}) => {
-  const [clicked, setClicked] = useState();
   const {t} = useTranslation();
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const _logOutHandler = () => {
-    try {
-      dispatch(UserTokenHandler(null));
-      RNSecureStorage.exists('userToken').then(res => {
-        if (res) {
-          const response = RNSecureStorage.remove('userToken');
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  // const _logOutHandler = () => {
+  //   try {
+  //     dispatch(UserTokenHandler(null));
+  //     RNSecureStorage.exists('userToken').then(res => {
+  //       if (res) {
+  //         const response = RNSecureStorage.remove('userToken');
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const {
+    isAccount,
+    numberOfAccount,
+    userData,
+    clicked,
+    setClicked,
+    _Actionswitchaccount,
+  } = useActionSwitchAccount();
+  // console.log(numberOfAccount.length);
+  const _switchAccountHander = () => {
+    _Actionswitchaccount();
   };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -147,20 +161,33 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
               height: 150,
             }}>
             <ScrollView>
-              <DrawerItem
-                icon={() => (
-                  <Icones
-                    name={'person-add'}
-                    size={iconSize}
-                    color={iconColor}
-                  />
-                )}
-                label={t('drawer.name1')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
-                onPress={async () => {
-                  navigation.navigate('Home');
-                }}
-              />
+              <View>
+                <DrawerItem
+                  icon={() => (
+                    <Icones
+                      name={'person-add'}
+                      size={iconSize}
+                      color={iconColor}
+                    />
+                  )}
+                  label={t('drawer.name1')}
+                  labelStyle={[styles.txt_style, {color: iconColor}]}
+                  onPress={async () => {
+                    navigation.navigate('Home');
+                    setClicked();
+                  }}
+                />
+                <Image
+                  style={{
+                    width: 20,
+                    height: 20,
+                    position: 'absolute',
+                    left: 220,
+                    top: 75,
+                  }}
+                  source={require('../../Images/check.png')}
+                />
+              </View>
               <DrawerItem
                 icon={() => (
                   <Icone
@@ -170,10 +197,23 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   />
                 )}
                 label={t('drawer.name')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[
+                  styles.txt_style,
+                  {color: iconColor, flexDirection: 'row'},
+                ]}
                 onPress={async () => {
                   navigation.navigate('Home');
                 }}
+              />
+              <Image
+                style={{
+                  width: 20,
+                  height: 20,
+                  position: 'absolute',
+                  left: 220,
+                  top: 20,
+                }}
+                source={require('../../Images/check.png')}
               />
               <DrawerItem
                 icon={() => (
@@ -214,7 +254,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
             )}
             label={t('drawer.signOut')}
             labelStyle={[styles.txt_style, {color: iconColor}]}
-            onPress={_logOutHandler}
+            onPress={_switchAccountHander}
           />
         </Drawer.Section>
       </ImageBackground>

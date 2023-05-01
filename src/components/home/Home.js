@@ -19,7 +19,8 @@ import {useHomeAction} from './Action';
 const {height, width} = Dimensions.get('screen');
 const Home = () => {
   const {t} = useTranslation();
-  const {isLoading, categoryData, _toggleHandler, Array} = useHomeAction();
+  const {isLoading, categoryData, _toggleHandler, Array, navigation} =
+    useHomeAction();
 
   // const SkipModal = () => {
   //   return (

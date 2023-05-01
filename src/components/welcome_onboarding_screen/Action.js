@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 import {getData} from '../../Api/Api';
 import {base_url} from '../../../env';
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {_AddprofileHandler} from '../../Redux/Action/ProfileAction/ProfileAction';
-=======
-import { getData } from '../../Api/Api';
-import { base_url } from '../../../env';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { _AddprofileHandler, AddProfileDataHandler } from '../../Redux/Action/ProfileAction/ProfileAction';
-import { useNavigation } from '@react-navigation/native';
->>>>>>> 8c75a3395616698c49cbaf9f2749a68009fe7817
+import {
+  _AddprofileHandler,
+  AddProfileDataHandler,
+} from '../../Redux/Action/ProfileAction/ProfileAction';
+import {useNavigation} from '@react-navigation/native';
 
 export const useWelcomeOnboarding = () => {
   const navigation = useNavigation();
@@ -27,7 +22,7 @@ export const useWelcomeOnboarding = () => {
 
   useEffect(() => {
     Dispatch(AddProfileDataHandler(userData));
-  }, [userData])
+  }, [userData]);
 
   // if (numberOfAccount.length > 0) {
   // }
@@ -48,9 +43,6 @@ export const useWelcomeOnboarding = () => {
       console.log('error', error);
     }
   };
-<<<<<<< HEAD
-  return {isLoading, userData, isAccount, numberOfAccount};
-=======
-  return { isLoading, userData, isAccount, numberOfAccount, navigation };
->>>>>>> 8c75a3395616698c49cbaf9f2749a68009fe7817
+
+  return {isLoading, userData, isAccount, numberOfAccount, navigation};
 };
