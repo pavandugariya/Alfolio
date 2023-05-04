@@ -6,7 +6,7 @@ export const getData = async (url, data) => {
   const val = await getUserTokenData();
   const res = await axios
     .get(url, {
-      headers: {Authorization: `Bearer ${val}`, ...data},
+      headers: { Authorization: `Bearer ${val}`, ...data },
     })
     .catch(err => {
       console.log(err, 'error');
@@ -17,14 +17,13 @@ export const getData = async (url, data) => {
 
 export const postData = async (url, data) => {
   const val = await getUserTokenData();
-  const res = await axios
-    .post(url, data, {
-      headers: {Authorization: `Bearer ${val}`},
-    })
-    .catch(err => {
-      return err;
-    });
-  return res;
+  try {
+    const res = await axios.post(url, data,
+      { headers: { Authorization: `Bearer ${val}` } });
+    return res;
+  } catch (error) {
+    return error;
+  }
 };
 
 export const putData = async (url, data) => {
@@ -32,7 +31,7 @@ export const putData = async (url, data) => {
 
   const res = await axios
     .put(url, data, {
-      headers: {Authorization: `Bearer ${val}`},
+      headers: { Authorization: `Bearer ${val}` },
     })
     .catch(err => {
       console.log(err, 'error');
@@ -46,7 +45,7 @@ export const DeletData = async (url, data) => {
 
   const res = await axios
     .delete(url, {
-      headers: {Authorization: `Bearer ${val}`},
+      headers: { Authorization: `Bearer ${val}` },
     })
     .catch(err => {
       console.log(err, 'error');

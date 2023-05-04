@@ -9,8 +9,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
-import QRCode from 'react-native-qrcode-svg';
+import React, { useRef, useState } from 'react';
+// import QRCode from 'react-native-qrcode-svg';
 import RNFetchBlob from 'rn-fetch-blob';
 
 const ScanQRCode = () => {
@@ -89,22 +89,22 @@ const ScanQRCode = () => {
             onChangeText={setQRLogo}
           />
         </View>
-        <QRCode
+        {/* <QRCode
           size={350}
           value={QRTextValue ? QRTextValue : 'NA'}
           logo={{uri: QRLogoImage}}
           logoSize={60}
           logoBackgroundColor="transparent"
           getRef={ref}
-        />
-        <View style={{marginTop: 10}}>
+        /> */}
+        <View style={{ marginTop: 10 }}>
           <TouchableOpacity
             style={styles.newButton}
             onPress={() => GenerateQR()}>
             <Text
               style={[
                 styles.sectionDescription,
-                {color: '#fff', fontWeight: '900'},
+                { color: '#fff', fontWeight: '900' },
               ]}>
               Generate QR
             </Text>
@@ -115,7 +115,7 @@ const ScanQRCode = () => {
             <Text
               style={[
                 styles.sectionDescription,
-                {color: '#fff', fontWeight: '900'},
+                { color: '#fff', fontWeight: '900' },
               ]}>
               Share QR
             </Text>
@@ -124,7 +124,7 @@ const ScanQRCode = () => {
             <Text
               style={[
                 styles.sectionDescription,
-                {color: '#fff', fontWeight: '900'},
+                { color: '#fff', fontWeight: '900' },
               ]}>
               Save QR
             </Text>
