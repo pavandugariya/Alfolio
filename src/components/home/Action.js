@@ -37,7 +37,7 @@ export const useHomeAction = () => {
   const _categoriesDataHadler = async () => {
     try {
       const res = await getData(`${base_url}/partners/categories`);
-      console.log('response data', res.data[0]);
+      // console.log('response data', res.data);
       setCategoryData(res.data);
     } catch (error) {
       console.log(error);

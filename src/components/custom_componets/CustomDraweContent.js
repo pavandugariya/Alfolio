@@ -7,52 +7,58 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icone from 'react-native-vector-icons/Ionicons';
 import Icones from 'react-native-vector-icons/MaterialIcons';
 import {Drawer, Divider} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
 import {globalfonts} from '../../globalUtils/globalutil';
 import {useTranslation} from 'react-i18next';
-import RNSecureStorage from 'rn-secure-storage';
-import {useDispatch, useSelector} from 'react-redux';
-import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
 import {useActionSwitchAccount} from './ActionSwitchAccount';
+import {base_url} from '../../../env';
+import {postData} from '../../Api/Api';
+import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
+import {useDispatch} from 'react-redux';
+import RNSecureStorage from 'rn-secure-storage';
 
 const {height, width} = Dimensions.get('screen');
 const CustomDraweContent = ({iconColor, iconSize}) => {
   const {t} = useTranslation();
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
+  const SignOutDispatch = useDispatch();
 
-  // const _logOutHandler = () => {
-  //   try {
-  //     dispatch(UserTokenHandler(null));
-  //     RNSecureStorage.exists('userToken').then(res => {
-  //       if (res) {
-  //         const response = RNSecureStorage.remove('userToken');
-  //       }
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  const {
-    isAccount,
-    numberOfAccount,
-    userData,
-    clicked,
-    setClicked,
-    _Actionswitchaccount,
-  } = useActionSwitchAccount();
-  // console.log(numberOfAccount.length);
-  const _switchAccountHander = () => {
-    _Actionswitchaccount();
+  const _logOutHandler = () => {
+    try {
+      SignOutDispatch(UserTokenHandler(null));
+      RNSecureStorage.exists('userToken').then(res => {
+        if (res) {
+          const response = RNSecureStorage.remove('userToken');
+          console.log(response);
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  const {
+    clicked,
+    profileData,
+    setClicked,
+    profilAccountHandler,
+    isLoading,
+    navigation,
+  } = useActionSwitchAccount();
+  // console.log('response data', profileData.profileData.currentAccount.id);
+  // const _switchAccountHander = async id => {
+  //   const objData = {
+  //     accountId: id,
+  //   };
+  //   profilAccountHandler();
+  //   const res = await postData(`${base_url}/auth/web/logout`, objData);
+  //   console.log('response', res.accountId);
+  // };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -63,12 +69,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
             <Drawer.Section style={{marginTop: 20}} showDivider={false}>
               <Image
                 source={require('../../Images/logo_name.png')}
-                style={{
-                  height: 34,
-                  width: 123,
-                  marginLeft: 20,
-                  marginBottom: 30,
-                }}
+                style={styles.logo_name_style}
               />
 
               {/* <DrawerItem
@@ -153,82 +154,44 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
           </View>
         </DrawerContentScrollView>
         {clicked ? (
-          <View
-            style={{
-              backgroundColor: '#fff',
-              elevation: 2,
-              paddingVertical: 10,
-              height: 150,
-            }}>
+          <View style={styles.view_data_style}>
+            {isLoading && <ActivityIndicator size={30} color={'#951516'} />}
             <ScrollView>
-              <View>
+              {profileData?.profileData?.accounts?.map((item, id) => {
+                return (
+                  <TouchableOpacity
+                    key={id}
+                    onPress={() => {
+                      profilAccountHandler(item.id);
+                    }}
+                    style={styles.Add_Account_style}>
+                    <Icone name={'person'} size={iconSize} color={iconColor} />
+                    <Text style={styles.txt_item_style}>{item?.firstName}</Text>
+                    {item.id === profileData.profileData.currentAccount.id && (
+                      <Image
+                        style={styles.check_image_style}
+                        source={require('../../Images/check.png')}
+                      />
+                    )}
+                  </TouchableOpacity>
+                );
+              })}
+              <View style={{marginTop: 15}}>
                 <DrawerItem
                   icon={() => (
-                    <Icones
-                      name={'person-add'}
+                    <Icone
+                      name={'add-circle-sharp'}
                       size={iconSize}
                       color={iconColor}
                     />
                   )}
-                  label={t('drawer.name1')}
+                  label={t('drawer.addprofile')}
                   labelStyle={[styles.txt_style, {color: iconColor}]}
                   onPress={async () => {
-                    navigation.navigate('Home');
-                    setClicked();
+                    navigation.navigate('ProfileSetup');
                   }}
-                />
-                <Image
-                  style={{
-                    width: 20,
-                    height: 20,
-                    position: 'absolute',
-                    left: 220,
-                    top: 75,
-                  }}
-                  source={require('../../Images/check.png')}
                 />
               </View>
-              <DrawerItem
-                icon={() => (
-                  <Icone
-                    name={'person-add'}
-                    size={iconSize}
-                    color={iconColor}
-                  />
-                )}
-                label={t('drawer.name')}
-                labelStyle={[
-                  styles.txt_style,
-                  {color: iconColor, flexDirection: 'row'},
-                ]}
-                onPress={async () => {
-                  navigation.navigate('Home');
-                }}
-              />
-              <Image
-                style={{
-                  width: 20,
-                  height: 20,
-                  position: 'absolute',
-                  left: 220,
-                  top: 20,
-                }}
-                source={require('../../Images/check.png')}
-              />
-              <DrawerItem
-                icon={() => (
-                  <Icone
-                    name={'add-circle-sharp'}
-                    size={iconSize}
-                    color={iconColor}
-                  />
-                )}
-                label={t('drawer.addprofile')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
-                onPress={async () => {
-                  navigation.navigate('ProfileSetup');
-                }}
-              />
             </ScrollView>
           </View>
         ) : null}
@@ -254,7 +217,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
             )}
             label={t('drawer.signOut')}
             labelStyle={[styles.txt_style, {color: iconColor}]}
-            onPress={_switchAccountHander}
+            onPress={_logOutHandler}
           />
         </Drawer.Section>
       </ImageBackground>
@@ -279,5 +242,37 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: globalfonts.Regularm,
     fontWeight: '700',
+    flexDirection: 'row',
+    marginLeft: 12,
+    marginTop: 5,
+  },
+  txt_item_style: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#951516',
+    marginLeft: 40,
+  },
+  Add_Account_style: {
+    flexDirection: 'row',
+    marginLeft: 20,
+    paddingTop: 20,
+  },
+  logo_name_style: {
+    height: 34,
+    width: 123,
+    marginLeft: 20,
+    marginBottom: 30,
+  },
+  check_image_style: {
+    width: 18,
+    height: 18,
+    marginLeft: 20,
+    marginTop: 3,
+  },
+  view_data_style: {
+    backgroundColor: '#fff',
+    elevation: 2,
+    paddingVertical: 10,
+    height: 150,
   },
 });

@@ -36,11 +36,10 @@ const ShowMarksheet = () => {
   };
   const shareHandler = async () => {
     const options = {
-      message: 'This is my first link.',
+      message: 'This is show marksheet link.',
       url: 'https://instamobile.io/app-templates/react-native-ecommerce-app-template/ ',
       email: 'gagan.mongoosetech@gmail.com',
-      subject:
-        'React Native Share, a simple tool for share message and file to other apps.',
+      subject: 'Share marksheet',
       recipient: '919165410012',
     };
     try {

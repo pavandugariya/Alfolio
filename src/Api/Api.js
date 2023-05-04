@@ -6,7 +6,7 @@ export const getData = async (url, data) => {
   const val = await getUserTokenData();
   const res = await axios
     .get(url, {
-      headers: { Authorization: `Bearer ${val}`, ...data },
+      headers: {Authorization: `Bearer ${val}`, ...data},
     })
     .catch(err => {
       console.log(err, 'error');
@@ -19,13 +19,11 @@ export const postData = async (url, data) => {
   const val = await getUserTokenData();
   const res = await axios
     .post(url, data, {
-      headers: { Authorization: `Bearer ${val}` },
+      headers: {Authorization: `Bearer ${val}`},
     })
     .catch(err => {
-      console.log(err, 'error');
       return err;
     });
-  console.log(res.message);
   return res;
 };
 
@@ -34,7 +32,7 @@ export const putData = async (url, data) => {
 
   const res = await axios
     .put(url, data, {
-      headers: { Authorization: `Bearer ${val}` },
+      headers: {Authorization: `Bearer ${val}`},
     })
     .catch(err => {
       console.log(err, 'error');
@@ -48,7 +46,7 @@ export const DeletData = async (url, data) => {
 
   const res = await axios
     .delete(url, {
-      headers: { Authorization: `Bearer ${val}` },
+      headers: {Authorization: `Bearer ${val}`},
     })
     .catch(err => {
       console.log(err, 'error');

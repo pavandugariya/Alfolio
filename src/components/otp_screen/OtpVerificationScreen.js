@@ -55,7 +55,7 @@ const OtpVerificationScreen = props => {
     if (otp.length >= 6) {
       try {
         const res = await postData(`${base_url}/auth/login`, dataObj);
-        console.log(res.data);
+        console.log('auth login', res.data);
         if (res.status == 200) {
           showMessage({
             message:
@@ -63,6 +63,12 @@ const OtpVerificationScreen = props => {
             type: 'success',
           });
           setUserToken(res.data.accessToken);
+        }
+        if (res.message) {
+          showMessage({
+            message: res.message,
+            type: 'danger',
+          });
         }
       } catch (error) {
         console.log(error);

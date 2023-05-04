@@ -81,7 +81,7 @@ const Kyc = () => {
               onChangeText={setkycs}
               value={kycs}
               keyboardType="numeric"
-              placeholder="5249 1581 9551"
+              placeholder="Enter Your Aadhar No."
               placeholderTextColor="#000"
               maxLength={12}
             />

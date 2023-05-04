@@ -30,7 +30,7 @@ export const useWelcomeOnboarding = () => {
   const _getUserProfileData = async () => {
     try {
       const response = await getData(`${base_url}/users/me`);
-      // console.log('profil data...', response.data);
+      console.log('profil data...', response.data);
       if (response.status == 200) {
         setUserData(response.data);
         setIsAccount(response.data.currentAccount);
@@ -40,7 +40,7 @@ export const useWelcomeOnboarding = () => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      console.log('error', error);
+      console.log('error...........', error);
     }
   };
 

@@ -34,6 +34,7 @@ import {base_url} from '../../../env';
 import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
 import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
 import {vertScale} from '../../Utility/Layout';
+import {AddProfileDataHandler} from '../../Redux/Action/ProfileAction/ProfileAction';
 
 const ProfileSetup = () => {
   const data = [
@@ -87,7 +88,7 @@ const ProfileSetup = () => {
   const SetProfileAccount = async () => {
     const DataObj = {
       firstName: firstName,
-      middleName: middleName,
+      middleName: '',
       lastName: lastName,
       gender: 'Male',
       dob: '1998-10-15',
@@ -98,6 +99,8 @@ const ProfileSetup = () => {
       const res = await postData(`${base_url}/auth/register-account`, DataObj);
       if (res.status === 201) {
         setUserToken(res.data.accessToken);
+        const response = await getData(`${base_url}/users/me`);
+        AuthDispatch(AddProfileDataHandler(response.data));
       }
       console.log('res.data', res.data);
     } catch (error) {
@@ -110,6 +113,7 @@ const ProfileSetup = () => {
       const res = await RNSecureStorage.set('userToken', token, {
         accessible: ACCESSIBLE.WHEN_UNLOCKED,
       });
+      console.log('lsfjlsfj', res);
       AuthDispatch(UserTokenHandler(token));
       navigation.replace('kyc');
     } catch (error) {
@@ -145,14 +149,14 @@ const ProfileSetup = () => {
       setBadfirstName('First Name is required');
     }
 
-    if (middleName === '') {
-      setBadmiddleName('Middle Name is required');
-      setButtonDisabled(false);
-    } else if (middleName?.length > 2) {
-      setBadmiddleName('');
-    } else {
-      setBadmiddleName('Middle Name is required');
-    }
+    // if (middleName === '') {
+    //   setBadmiddleName('Middle Name is required');
+    //   setButtonDisabled(false);
+    // } else if (middleName?.length > 2) {
+    //   setBadmiddleName('');
+    // } else {
+    //   setBadmiddleName('Middle Name is required');
+    // }
 
     if (lastName === '') {
       setBadlastName('Last Name is required');

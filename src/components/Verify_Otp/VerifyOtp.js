@@ -60,7 +60,7 @@ const VerifyOtp = () => {
               textname={'State'}
               onChangeText={setOtp}
               value={otp}
-              placeholder="5 2 4 9 6 8"
+              placeholder="Enter your OTP"
               placeholderTextColor="#000"
               keyboardType={'number-pad'}
               maxLength={6}

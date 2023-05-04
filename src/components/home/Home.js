@@ -52,7 +52,7 @@ const Home = () => {
 
         <ScrollView>
           <View style={styles.item_top_box}>
-            {Array.map((item, index) => {
+            {categoryData?.map((item, index) => {
               // console.log('item data home', item?.item?.data);
               return (
                 <TouchableOpacity

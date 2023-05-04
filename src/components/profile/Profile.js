@@ -18,11 +18,15 @@ import {useNavigation} from '@react-navigation/native';
 // import {styles} from './styles';
 import {styles} from '../profile/styles';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
+import {ProfileReducer} from '../../Redux/Reducer/ProfileReducer/ProfileReducer';
 
 const Profile = () => {
   const {t} = useTranslation();
   const navigation = useNavigation();
 
+  const _editProfile = useSelector(state => state.ProfileReducer);
+  console.log(_editProfile);
   const toggleHandler = () => {
     navigation.openDrawer();
   };
@@ -56,7 +60,8 @@ const Profile = () => {
           </View>
           <View style={styles.name_top_container}>
             <Text numberOfLines={1} style={styles.name_txt_style}>
-              {t('profile.name')}
+              {/* {t('profile.name')} */}
+              {_editProfile.profileData.currentAccount.firstName}
             </Text>
             <Text numberOfLines={1} style={styles.email_txt_style}>
               {t('profile.email')}

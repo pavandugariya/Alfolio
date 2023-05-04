@@ -14,12 +14,14 @@ import CustomInputField from '../custom_componets/CustomInputField';
 import {Picker} from '@react-native-picker/picker';
 import {styles} from '../edit_profile/styles';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
+import {ProfileReducer} from '../../Redux/Reducer/ProfileReducer/ProfileReducer';
 
 const EditProfile = () => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [selectedLanguage, setSelectedLanguage] = useState();
-
+  // const profilData = useSelector(state => ProfileReducer());
   return (
     <View style={styles.container}>
       <ImageBackground

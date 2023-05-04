@@ -9,6 +9,7 @@ import {
   ScrollView,
   Keyboard,
   TextInput,
+  Linking,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {colors} from './util';
@@ -26,11 +27,17 @@ import {showMessage} from 'react-native-flash-message';
 import {Customcolor} from '../../Utility/Customcolor';
 import {horizScale, vertScale} from '../../Utility/Layout';
 import {fontSize} from '../../Utility/Fontsize';
+import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
+import {useDispatch} from 'react-redux';
+import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
 
 const LoginScreen = () => {
   const {t, i18n, ready} = useTranslation();
   const navigation = useNavigation();
   const [phoneNumber, setphoneNumber] = useState('');
+  const [UserWTToken, setUserWTToken] = useState();
+
+  const AuthDispatch = useDispatch();
 
   const LoginHander = async () => {
     const dataObj = {
@@ -69,15 +76,49 @@ const LoginScreen = () => {
     }
   };
 
-  // useEffect(() => {
-  //     keyChainCode()
-  //     Keychain.getSupportedBiometryType()
-  //         .then(biometryType => {
-  //             if (!!biometryType) console.log(biometryType);
-  //             else console.log(biometryType);
-  //         })
-  // }, [])
+  // google auth handler
 
+  useEffect(() => {
+    Linking.getInitialURL().then(res => console.log(res, 'linking'));
+  }, []);
+
+  const handleOpenURL = ({url}) => {
+    console.log(url, 'redirect');
+
+    if (url.indexOf('?accessToken') !== -1) {
+      if (url) {
+        console.log(url);
+        setUserWTToken(url.substring(34));
+        setUserTokenGoogle(url.substring(34));
+      }
+    }
+  };
+
+  const setUserTokenGoogle = async id => {
+    // console.log(id)
+    const token = id;
+    console.log(token);
+    try {
+      const res = await RNSecureStorage.set('userToken', token, {
+        accessible: ACCESSIBLE.WHEN_UNLOCKED,
+      });
+      AuthDispatch(UserTokenHandler(token));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    // Your code here
+    Linking.addEventListener('url', handleOpenURL);
+  }, []);
+  const GoogleLoginHandler = async () => {
+    try {
+      const res = await Linking.openURL(`${base_url}/auth/google`);
+      console.log('response...', res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const otpVerification = () => {
     // getFinger();
     navigation.navigate('OTP', {pn: phoneNumber});
@@ -224,7 +265,8 @@ const LoginScreen = () => {
               style={styles.btn_parent_style}
               googleImage
               onPress={() => {
-                navigation.navigate('OTP', {pn: phoneNumber});
+                // navigation.navigate('OTP', {pn: phoneNumber});
+                GoogleLoginHandler();
               }}
             />
 
