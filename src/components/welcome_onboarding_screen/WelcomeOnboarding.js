@@ -37,8 +37,8 @@ const WelcomeOnboad = () => {
 
   if (numberOfAccount.length > 0 && !isLoading) {
     setTimeout(() => {
-      navigation.navigate('Home');
-    }, 500);
+      navigation.navigate('Drawer');
+    }, 50);
   }
 
   const toggleHandler = () => {
@@ -46,10 +46,10 @@ const WelcomeOnboad = () => {
 
     if (numberOfAccount.length > 0) {
       setTimeout(() => {
-        navigation.navigate('Home');
+        navigation.navigate('Drawer');
         console.log('hello jack');
         // toggleHandler();
-      }, 300);
+      });
     }
   };
 
@@ -57,9 +57,9 @@ const WelcomeOnboad = () => {
     <ImageBackground
       source={require('../../Images/home_bg2.png')}
       style={styles.container}>
-      <TouchableOpacity onPress={toggleHandler} style={styles.top_icon_box}>
+      {/* <TouchableOpacity onPress={toggleHandler} style={styles.top_icon_box}>
         <Icon name={'reorder-three-outline'} size={35} color={'#000'} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.logo_top_box}>
         <Text style={styles.logo_heading_Text_style}>You</Text>
         <Image

@@ -10,6 +10,7 @@ import {
   Keyboard,
   TextInput,
   Linking,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {colors} from './util';
@@ -36,6 +37,7 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const [phoneNumber, setphoneNumber] = useState('');
   const [UserWTToken, setUserWTToken] = useState();
+  const [isLoading, setisLoading] = useState(false);
 
   const AuthDispatch = useDispatch();
 
@@ -47,13 +49,18 @@ const LoginScreen = () => {
     console.log(dataObj);
     try {
       if (phoneNumber.length >= 10) {
+        setisLoading(true);
+
         const res = await postData(`${base_url}/auth/send-code`, dataObj);
         // const res = {}
+
         if (res.status == 201) {
           showMessage({
             message: `OTP Send Your Mobile No ${phoneNumber}`,
             type: 'success',
           });
+          setisLoading(false);
+
           navigation.navigate('OTP', {pn: phoneNumber});
         } else if (res.message === 'Request failed with status code 500') {
           showMessage({
@@ -68,7 +75,10 @@ const LoginScreen = () => {
         });
       }
     } catch (error) {
+      setisLoading(false);
+
       console.log('error', error);
+
       showMessage({
         message: error.message,
         type: 'default',
@@ -90,6 +100,7 @@ const LoginScreen = () => {
         console.log(url);
         setUserWTToken(url.substring(34));
         setUserTokenGoogle(url.substring(34));
+        setisLoading(false);
       }
     }
   };
@@ -115,8 +126,10 @@ const LoginScreen = () => {
     try {
       const res = await Linking.openURL(`${base_url}/auth/google`);
       console.log('response...', res);
+      setisLoading(false);
     } catch (error) {
       console.error(error);
+      setisLoading(false);
     }
   };
   const otpVerification = () => {
@@ -202,6 +215,9 @@ const LoginScreen = () => {
     <ImageBackground
       source={require('../../Images/loginformbg.png')}
       style={styles.container}>
+      {isLoading && (
+        <ActivityIndicator size={30} color={'#951516'} marginTop={140} />
+      )}
       <View style={styles.logo_top_box}>
         <Image
           style={styles.logo_top_image}

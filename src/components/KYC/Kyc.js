@@ -123,7 +123,7 @@ const Kyc = () => {
               icon_color={'#fff'}
               icon_size={24}
               onPress={() => {
-                navigation.navigate('Home');
+                navigation.navigate('Drawer');
               }}
             />
           </View>

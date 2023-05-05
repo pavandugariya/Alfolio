@@ -34,7 +34,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
       RNSecureStorage.exists('userToken').then(res => {
         if (res) {
           const response = RNSecureStorage.remove('userToken');
-          console.log(response);
+          console.log('res ...', response);
         }
       });
     } catch (error) {
@@ -50,6 +50,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
     isLoading,
     navigation,
   } = useActionSwitchAccount();
+  const currentAccount = profileData?.profileData?.currentAccount;
   // console.log('response data', profileData.profileData.currentAccount.id);
   // const _switchAccountHander = async id => {
   //   const objData = {
@@ -211,6 +212,20 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
               setClicked(!clicked);
             }}
           />
+          <View style={{bottom: 10}}>
+            {profileData?.profileData?.currentAccount && (
+              <TouchableOpacity style={styles.Add_Account_style}>
+                <Icone name={'person'} size={iconSize} color={iconColor} />
+                <Text style={styles.txt_item_style}>
+                  {currentAccount?.firstName}
+                </Text>
+                <Image
+                  style={styles.check_image_style}
+                  source={require('../../Images/check.png')}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
           <DrawerItem
             icon={() => (
               <Icone name={'log-out'} size={iconSize} color={iconColor} />

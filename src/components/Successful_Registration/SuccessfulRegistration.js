@@ -63,7 +63,7 @@ const SuccessfulRegistration = () => {
             // icon_name={'share-social'}
             // onPress={otpVerification}
             onPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Drawer');
             }}
           />
         </View>

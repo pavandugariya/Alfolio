@@ -17,6 +17,7 @@ import VerifyOtp from '../components/Verify_Otp/VerifyOtp';
 import Youdid from '../components/You_Did_Is/Youdid';
 import SuccessfulRegistration from '../components/Successful_Registration/SuccessfulRegistration';
 import {useSelector} from 'react-redux';
+import WelcomeOnboad from '../components/welcome_onboarding_screen/WelcomeOnboarding';
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
@@ -52,6 +53,11 @@ const StackNavigator = () => {
       ) : (
         AuthData?.userToken !== null && (
           <>
+            <Stack.Screen
+              name="WelcomOnboard"
+              component={WelcomeOnboad}
+              options={{headerShown: false}}
+            />
             <Stack.Screen
               name="Drawer"
               component={DrawerNavigator}

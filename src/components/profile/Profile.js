@@ -19,7 +19,6 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../profile/styles';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
-import {ProfileReducer} from '../../Redux/Reducer/ProfileReducer/ProfileReducer';
 
 const Profile = () => {
   const {t} = useTranslation();
@@ -50,18 +49,28 @@ const Profile = () => {
         </TouchableOpacity>
         <View style={styles.img_box_top_container}>
           <View style={styles.img_container}>
-            <Image
-              source={{
-                uri: 'https://cdn-icons-png.flaticon.com/512/147/147144.png',
-              }}
-              style={{height: '100%', width: '100%'}}
-              resizeMode={'contain'}
-            />
+            {_editProfile?.profileData?.currentAccount?.gender === 'Male' ? (
+              <Image
+                source={{
+                  uri: 'https://cdn-icons-png.flaticon.com/512/147/147144.png',
+                }}
+                style={{height: '100%', width: '100%'}}
+                resizeMode={'contain'}
+              />
+            ) : (
+              <Image
+                source={{
+                  uri: 'https://www.shareicon.net/data/512x512/2016/09/15/829452_user_512x512.png',
+                }}
+                style={{height: '100%', width: '100%'}}
+                resizeMode={'contain'}
+              />
+            )}
           </View>
           <View style={styles.name_top_container}>
             <Text numberOfLines={1} style={styles.name_txt_style}>
               {/* {t('profile.name')} */}
-              {_editProfile.profileData.currentAccount.firstName}
+              {_editProfile?.profileData?.currentAccount?.firstName}
             </Text>
             <Text numberOfLines={1} style={styles.email_txt_style}>
               {t('profile.email')}

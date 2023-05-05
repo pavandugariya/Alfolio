@@ -1,10 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { globalcolors, globalfonts } from '../../globalUtils/globalutil';
-const { height, width } = Dimensions.get('screen');
-import { homecolors, shedow } from './util';
-import { Customcolor } from '../../Utility/Customcolor';
-import { horizScale, vertScale } from '../../Utility/Layout';
-import { fontSize } from '../../Utility/Fontsize';
+import {StyleSheet, Dimensions} from 'react-native';
+import {globalcolors, globalfonts} from '../../globalUtils/globalutil';
+const {height, width} = Dimensions.get('screen');
+import {homecolors, shedow} from './util';
+import {Customcolor} from '../../Utility/Customcolor';
+import {horizScale, vertScale} from '../../Utility/Layout';
+import {fontSize} from '../../Utility/Fontsize';
 
 export const styles = StyleSheet.create({
   container: {
@@ -32,10 +32,12 @@ export const styles = StyleSheet.create({
   item_top_box: {
     flex: 1,
     marginHorizontal: 35,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    display: 'flex',
-    flexWrap: 'wrap',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // display: 'flex',
+    // flexWrap: 'wrap',
     top: 10,
     paddingBottom: 30,
   },

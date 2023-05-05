@@ -27,21 +27,21 @@ export const useHomeAction = () => {
       board_name: 'University/board',
     },
   ];
-  useEffect(() => {
-    _categoriesDataHadler();
-    // ProfileHandler();
-  }, []);
+  // useEffect(() => {
+  //   _categoriesDataHadler();
+  //   // ProfileHandler();
+  // }, []);
   const _toggleHandler = () => {
     navigation.openDrawer();
   };
-  const _categoriesDataHadler = async () => {
-    try {
-      const res = await getData(`${base_url}/partners/categories`);
-      // console.log('response data', res.data);
-      setCategoryData(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const _categoriesDataHadler = async () => {
+  //   try {
+  //     const res = await getData(`${base_url}/partners/categories`);
+  //     // console.log('response data', res.data);
+  //     setCategoryData(res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return {isLoading, categoryData, _toggleHandler, Array, navigation};
 };

@@ -17,11 +17,11 @@ const DrawerNavigator = () => {
       drawerContent={() => (
         <CustomDraweContent iconColor={'#951516'} iconSize={24} />
       )}>
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="WelcomOnboard"
         component={WelcomeOnboad}
         options={{headerShown: false}}
-      />
+      /> */}
       <Drawer.Screen
         name="Home"
         component={Home}

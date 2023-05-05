@@ -51,8 +51,22 @@ const Home = () => {
         </View>
 
         <ScrollView>
-          <View style={styles.item_top_box}>
-            {categoryData?.map((item, index) => {
+          <View
+            style={[
+              styles.item_top_box,
+              {justifyContent: 'center', alignItems: 'center'},
+            ]}>
+            <Text
+              style={{
+                alignItems: 'center',
+                fontSize: 20,
+                fontWeight: '700',
+                marginTop: 140,
+                color: 'gray',
+              }}>
+              No Certificate Marksheet
+            </Text>
+            {/* {Array?.map((item, index) => {
               // console.log('item data home', item?.item?.data);
               return (
                 <TouchableOpacity
@@ -80,7 +94,7 @@ const Home = () => {
                   />
                 </TouchableOpacity>
               );
-            })}
+            })} */}
           </View>
         </ScrollView>
       </View>

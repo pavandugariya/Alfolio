@@ -45,7 +45,7 @@ const ProfileSetup = () => {
       name: 'Female',
     },
     {
-      name: 'Others ',
+      name: 'Gender ',
     },
   ];
   const {t} = useTranslation();
@@ -90,7 +90,7 @@ const ProfileSetup = () => {
       firstName: firstName,
       middleName: '',
       lastName: lastName,
-      gender: 'Male',
+      gender: gender,
       dob: '1998-10-15',
       parentOrGuardianOrSpouseName: parentGuardianSpouseName,
     };
@@ -113,7 +113,7 @@ const ProfileSetup = () => {
       const res = await RNSecureStorage.set('userToken', token, {
         accessible: ACCESSIBLE.WHEN_UNLOCKED,
       });
-      console.log('lsfjlsfj', res);
+      console.log('res ...', res);
       AuthDispatch(UserTokenHandler(token));
       navigation.replace('kyc');
     } catch (error) {
@@ -141,12 +141,12 @@ const ProfileSetup = () => {
   const handleSubmit = () => {
     setButtonDisabled(true);
     if (firstName === '') {
-      setBadfirstName('First Name is required');
+      setBadfirstName('First name is required');
       setButtonDisabled(false);
     } else if (firstName?.length > 2) {
       setBadfirstName('');
     } else {
-      setBadfirstName('First Name is required');
+      setBadfirstName('First name is required');
     }
 
     // if (middleName === '') {
@@ -159,21 +159,21 @@ const ProfileSetup = () => {
     // }
 
     if (lastName === '') {
-      setBadlastName('Last Name is required');
+      setBadlastName('Last name is required');
       setButtonDisabled(false);
     } else if (lastName?.length > 2) {
       setBadlastName('');
     } else {
-      setBadlastName('Last Name is required');
+      setBadlastName('Last name is required');
     }
 
     if (parentGuardianSpouseName === '') {
-      setBadfatherName('Last Name is required');
+      setBadfatherName('Parent/Guardian/Spouse is required');
       setButtonDisabled(false);
     } else if (parentGuardianSpouseName?.length > 2) {
       setBadfatherName('');
     } else {
-      setBadfatherName('Last Name is required');
+      setBadfatherName('Parent/Guardian/Spouse is required');
     }
   };
 
@@ -198,7 +198,7 @@ const ProfileSetup = () => {
                 textname={'Full Name'}
                 onChangeText={text => setFirstName(text)}
                 value={firstName}
-                placeholder="Enter your FirstName"
+                placeholder="Enter your first name"
                 placeholderTextColor="#000"
               />
               {/* {BadfirstName === false && (
@@ -224,7 +224,7 @@ const ProfileSetup = () => {
                 textname={'Meddle Name'}
                 onChangeText={setmiddleName}
                 value={middleName}
-                placeholder="Enter your Middle Name"
+                placeholder="Enter your middle name"
                 placeholderTextColor="#000"
               />
               <Text
@@ -245,7 +245,7 @@ const ProfileSetup = () => {
                 textname={'Last Name'}
                 onChangeText={setLastName}
                 value={lastName}
-                placeholder="Enter your LastName"
+                placeholder="Enter your last name"
                 placeholderTextColor="#000"
               />
               <Text
@@ -266,7 +266,7 @@ const ProfileSetup = () => {
                 textname={'Father Name'}
                 onChangeText={setparentGuardianSpouseName}
                 value={parentGuardianSpouseName}
-                placeholder="Parent/Guardian/SpouseName"
+                placeholder="Parent/Guardian/Spouse name"
                 placeholderTextColor="#000"
               />
               <Text
