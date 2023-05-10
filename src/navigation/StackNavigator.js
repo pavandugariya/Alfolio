@@ -1,5 +1,5 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../components/login/LoginScreen';
 import OnboardingScreen from '../components/onboarding-screen/OnboardingScreen';
 import Home from '../components/home/Home';
@@ -16,7 +16,7 @@ import Kyc from '../components/KYC/Kyc';
 import VerifyOtp from '../components/Verify_Otp/VerifyOtp';
 import Youdid from '../components/You_Did_Is/Youdid';
 import SuccessfulRegistration from '../components/Successful_Registration/SuccessfulRegistration';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import WelcomeOnboad from '../components/welcome_onboarding_screen/WelcomeOnboarding';
 const Stack = createNativeStackNavigator();
 
@@ -30,24 +30,24 @@ const StackNavigator = () => {
         <Stack.Screen
           name="splash"
           component={Splash}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
       ) : AuthData?.userToken === null ? (
         <>
           <Stack.Screen
             name="onboarding"
             component={OnboardingScreen}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name="Login"
             component={LoginScreen}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name="OTP"
             component={OtpVerificationScreen}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
         </>
       ) : (
@@ -56,62 +56,62 @@ const StackNavigator = () => {
             <Stack.Screen
               name="WelcomOnboard"
               component={WelcomeOnboad}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="Drawer"
               component={DrawerNavigator}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="PickAccount"
               component={PickAccount}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="ShowMarksheet"
               component={ShowMarksheet}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="SendDocuments"
               component={SendDocuments}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="SendHistory"
               component={SendHistory}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="ProfileSetup"
               component={ProfileSetup}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="kyc"
               component={Kyc}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="verifyOtp"
               component={VerifyOtp}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="youdidis"
               component={Youdid}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="SuccessfulRegistration"
               component={SuccessfulRegistration}
-              options={{headerShown: false}}
+              options={{ headerShown: false }}
             />
           </>
         )

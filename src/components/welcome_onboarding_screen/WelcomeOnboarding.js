@@ -11,35 +11,34 @@ import {
 } from 'react-native';
 import React from 'react';
 
-import {globalshedow} from '../../globalUtils/globalutil';
+import { globalshedow, globalStyle } from '../../globalUtils/globalutil';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
-import {useTranslation} from 'react-i18next';
-import {useWelcomeOnboarding} from './Action';
-import {horizScale, vertScale} from '../../Utility/Layout';
-import {Customcolor} from '../../Utility/Customcolor';
-import {fontSize} from '../../Utility/Fontsize';
-const {height, width} = Dimensions.get('screen');
+import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { useWelcomeOnboarding } from './Action';
+import { horizScale, vertScale } from '../../Utility/Layout';
+import { Customcolor } from '../../Utility/Customcolor';
+import { fontSize } from '../../Utility/Fontsize';
+const { height, width } = Dimensions.get('screen');
 
 const WelcomeOnboad = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
-  const {isLoading, isAccount, numberOfAccount, userData} =
+  const { isLoading, isAccount, numberOfAccount, userData } =
     useWelcomeOnboarding();
-  console.log(numberOfAccount.length);
   if (isLoading) {
     return (
-      <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-        <ActivityIndicator size={50} color={'#951516'} />
+      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+        <ActivityIndicator size={50} color={'#951516'} style={globalStyle.indicator_style} />
       </View>
     );
-  }
+  };
 
-  if (numberOfAccount.length > 0 && !isLoading) {
-    setTimeout(() => {
-      navigation.navigate('Drawer');
-    }, 50);
-  }
+  // if (numberOfAccount.length > 0) {
+  //   setTimeout(() => {
+  //     navigation.navigate('Drawer');
+  //   }, 500);
+  // }
 
   const toggleHandler = () => {
     navigation.openDrawer();
@@ -49,7 +48,7 @@ const WelcomeOnboad = () => {
         navigation.navigate('Drawer');
         console.log('hello jack');
         // toggleHandler();
-      });
+      }, 500);
     }
   };
 

@@ -12,28 +12,28 @@ import {
   Linking,
   ActivityIndicator,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {colors} from './util';
+import React, { useState, useEffect } from 'react';
+import { colors } from './util';
 import ButtonField from '../custom_componets/ButtonField';
-import {globalshedow} from '../../globalUtils/globalutil';
-import {useNavigation} from '@react-navigation/native';
+import { globalshedow, globalStyle } from '../../globalUtils/globalutil';
+import { useNavigation } from '@react-navigation/native';
 import * as Keychain from 'react-native-keychain';
 import GradientBtn from '../custom_componets/GradientBtn';
 
-const {height, width} = Dimensions.get('screen');
-import {useTranslation} from 'react-i18next';
-import {base_url} from '../../../env';
-import {postData} from '../../Api/Api';
-import {showMessage} from 'react-native-flash-message';
-import {Customcolor} from '../../Utility/Customcolor';
-import {horizScale, vertScale} from '../../Utility/Layout';
-import {fontSize} from '../../Utility/Fontsize';
-import RNSecureStorage, {ACCESSIBLE} from 'rn-secure-storage';
-import {useDispatch} from 'react-redux';
-import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
+const { height, width } = Dimensions.get('screen');
+import { useTranslation } from 'react-i18next';
+import { base_url } from '../../../env';
+import { postData } from '../../Api/Api';
+import { showMessage } from 'react-native-flash-message';
+import { Customcolor } from '../../Utility/Customcolor';
+import { horizScale, vertScale } from '../../Utility/Layout';
+import { fontSize } from '../../Utility/Fontsize';
+import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
+import { useDispatch } from 'react-redux';
+import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
 
 const LoginScreen = () => {
-  const {t, i18n, ready} = useTranslation();
+  const { t, i18n, ready } = useTranslation();
   const navigation = useNavigation();
   const [phoneNumber, setphoneNumber] = useState('');
   const [UserWTToken, setUserWTToken] = useState();
@@ -43,25 +43,20 @@ const LoginScreen = () => {
 
   const LoginHander = async () => {
     const dataObj = {
-      mobile: phoneNumber,
+      mobile: '+91' + phoneNumber,
       type: 'authenticate-user',
     };
-    console.log(dataObj);
     try {
       if (phoneNumber.length >= 10) {
         setisLoading(true);
-
         const res = await postData(`${base_url}/auth/send-code`, dataObj);
-        // const res = {}
-
         if (res.status == 201) {
           showMessage({
             message: `OTP Send Your Mobile No ${phoneNumber}`,
             type: 'success',
           });
           setisLoading(false);
-
-          navigation.navigate('OTP', {pn: phoneNumber});
+          navigation.navigate('OTP', { pn: phoneNumber });
         } else if (res.message === 'Request failed with status code 500') {
           showMessage({
             message: 'please wait two minute ',
@@ -74,6 +69,8 @@ const LoginScreen = () => {
           type: 'info',
         });
       }
+      setisLoading(false);
+
     } catch (error) {
       setisLoading(false);
 
@@ -92,7 +89,7 @@ const LoginScreen = () => {
     Linking.getInitialURL().then(res => console.log(res, 'linking'));
   }, []);
 
-  const handleOpenURL = ({url}) => {
+  const handleOpenURL = ({ url }) => {
     console.log(url, 'redirect');
 
     if (url.indexOf('?accessToken') !== -1) {
@@ -134,7 +131,7 @@ const LoginScreen = () => {
   };
   const otpVerification = () => {
     // getFinger();
-    navigation.navigate('OTP', {pn: phoneNumber});
+    navigation.navigate('OTP', { pn: phoneNumber });
     // if (phoneNumber.length >= 10) {
     // } else {
     //   Alert.alert(t('login.alertTitle1'), t('login.alertTitle2'), [
@@ -214,95 +211,93 @@ const LoginScreen = () => {
   return (
     <ImageBackground
       source={require('../../Images/loginformbg.png')}
-      style={styles.container}>
+      style={[StyleSheet.absoluteFillObject, {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        // width: Dimensions.get('window').width,
+        // height: Dimensions.get('window').height,
+      }]}>
       {isLoading && (
-        <ActivityIndicator size={30} color={'#951516'} marginTop={140} />
+        <ActivityIndicator size={40} color={'#951516'} style={globalStyle.indicator_style} />
       )}
-      <View style={styles.logo_top_box}>
-        <Image
-          style={styles.logo_top_image}
-          source={require('../../Images/logo_name.png')}
-        />
-      </View>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={[styles.bottom_view_style, globalshedow]}>
-          <ScrollView>
-            <View style={{alignItems: 'center'}}>
-              <Text style={[styles.txt_title_style, {fontWeight: '700'}]}>
-                {t('login.title')}
-              </Text>
-              <Text
-                style={[
-                  styles.txt_title_style,
-                  {color: '#424242', fontSize: 14, marginVertical: 15},
-                ]}>
-                {t('login.title2')}
-              </Text>
-            </View>
-            <View style={{marginTop: 10}}>
-              <TextInput
-                placeholder="9754930302"
-                placeholderTextColor={'#8a8282'}
-                value={phoneNumber}
-                onChangeText={e => {
-                  setphoneNumber(e);
-                }}
-                maxLength={10}
-                keyboardType={'number-pad'}
-                style={styles.inputText_phone}
-              />
-              <Text style={styles.mobile_text_style}>{t('login.mobile')}</Text>
-              <Text
-                style={{
-                  position: 'absolute',
-                  top: 8,
-                  left: 10,
-                  fontSize: 15,
-                  color: '#514f4f',
-                }}>
-                +91 |
-              </Text>
-            </View>
-            <Text style={styles.or_text_style}>OR</Text>
-            {/* <ButtonField
-              loginBtnText={t('login.btnText2')}
-              bgColor={colors}
-              color={'#fff'}
-              // marginTop={40}
-              // height={40}
-              borderRadius={5}
-              // onPress={otpVerification}
-            /> */}
-            <ButtonField
-              color={'#951516'}
-              bgColor={'#fff'}
-              elevation={5}
-              loginBtnText={t('login.btnText2')}
-              style={styles.btn_parent_style}
-              googleImage
-              onPress={() => {
-                // navigation.navigate('OTP', {pn: phoneNumber});
-                GoogleLoginHandler();
-              }}
-            />
-
-            <GradientBtn
-              loginBtnText={t('login.btnText')}
-              bgColor={'#951516'}
-              bgColor2={'#951516'}
-              color={'#fff'}
-              marginTop={20}
-              height={40}
-              borderRadius={5}
-              icon_color={'#fff'}
-              icon_size={24}
-              // icon_name={'share-social'}
-              onPress={() => LoginHander()}
-            />
-          </ScrollView>
+      <ScrollView >
+        <View style={styles.logo_top_box}>
+          <Image
+            style={styles.logo_top_image}
+            source={require('../../Images/logo_name.png')}
+          />
         </View>
-      </TouchableWithoutFeedback>
-    </ImageBackground>
+        <View style={[styles.bottom_view_style]}>
+          <View style={{ alignItems: 'center' }}>
+            <Text style={[styles.txt_title_style, { fontWeight: '700' }]}>
+              {t('login.title')}
+            </Text>
+            <Text
+              style={[
+                styles.txt_title_style,
+                { color: '#424242', fontSize: 14, marginVertical: 15 },
+              ]}>
+              {t('login.title2')}
+            </Text>
+          </View>
+          <View style={{ marginTop: 10 }}>
+            <TextInput
+              placeholder="9754930302"
+              placeholderTextColor={'#8a8282'}
+              value={phoneNumber}
+              onChangeText={e => {
+                setphoneNumber(e);
+              }}
+              maxLength={10}
+              keyboardType={'number-pad'}
+              style={styles.inputText_phone}
+            />
+            <Text style={styles.mobile_text_style}>{t('login.mobile')}</Text>
+            <Text
+              style={{
+                position: 'absolute',
+                top: 8,
+                left: 10,
+                fontSize: 15,
+                color: '#514f4f',
+              }}>
+              +91 |
+            </Text>
+          </View>
+          <Text style={styles.or_text_style}>OR</Text>
+
+          <ButtonField
+            color={'#951516'}
+            bgColor={'#fff'}
+            elevation={5}
+            loginBtnText={t('login.btnText2')}
+            style={styles.btn_parent_style}
+            googleImage
+            onPress={() => {
+              // navigation.navigate('OTP', {pn: phoneNumber});
+              GoogleLoginHandler();
+            }}
+          />
+
+          <GradientBtn
+            loginBtnText={t('login.btnText')}
+            bgColor={'#951516'}
+            bgColor2={'#951516'}
+            color={'#fff'}
+            marginTop={20}
+            height={40}
+            borderRadius={5}
+            icon_color={'#fff'}
+            icon_size={24}
+            // icon_name={'share-social'}
+            onPress={() => LoginHander()}
+          />
+        </View>
+
+      </ScrollView>
+
+    </ImageBackground >
   );
 };
 
@@ -311,28 +306,24 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'contain',
+
   },
   logo_top_box: {
     width: width,
-    height: height * 0.23,
+    height: height * 0.20,
     justifyContent: 'flex-end',
     alignItems: 'center',
+
   },
   bottom_view_style: {
-    // width: width * 0.95,
     width: '100%',
     backgroundColor: Customcolor.white,
-    position: 'relative',
-    bottom: 0,
+    paddingHorizontal: 25,
+    paddingVertical: vertScale(50),
+    marginTop: 50,
     borderTopEndRadius: vertScale(20),
     borderTopLeftRadius: vertScale(20),
     borderRadius: 20,
-    paddingHorizontal: horizScale(20),
-    paddingVertical: vertScale(30),
-    top: vertScale(70),
     alignSelf: 'center',
   },
   txt_title_style: {
@@ -350,7 +341,7 @@ const styles = StyleSheet.create({
     width: '60%',
     height: vertScale(45),
     backgroundColor: '#fff',
-    borderRadius: 40,
+    borderRadius: 30,
     elevation: 5,
     justifyContent: 'space-evenly',
     alignItems: 'center',

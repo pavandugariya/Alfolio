@@ -1,10 +1,10 @@
-import {StyleSheet, Dimensions} from 'react-native';
-import {globalcolors, globalfonts} from '../../globalUtils/globalutil';
-const {height, width} = Dimensions.get('screen');
-import {homecolors, shedow} from './util';
-import {Customcolor} from '../../Utility/Customcolor';
-import {horizScale, vertScale} from '../../Utility/Layout';
-import {fontSize} from '../../Utility/Fontsize';
+import { StyleSheet, Dimensions } from 'react-native';
+import { globalcolors, globalfonts } from '../../globalUtils/globalutil';
+const { height, width } = Dimensions.get('screen');
+import { homecolors, shedow } from './util';
+import { Customcolor } from '../../Utility/Customcolor';
+import { horizScale, vertScale } from '../../Utility/Layout';
+import { fontSize } from '../../Utility/Fontsize';
 
 export const styles = StyleSheet.create({
   container: {
@@ -84,8 +84,8 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: vertScale(20),
     borderTopLeftRadius: vertScale(20),
     borderRadius: 20,
-    paddingHorizontal: horizScale(40),
-    paddingVertical: vertScale(60),
+    paddingHorizontal: horizScale(30),
+    paddingVertical: vertScale(25),
     opacity: 0.8,
     alignSelf: 'center',
   },
@@ -122,4 +122,13 @@ export const styles = StyleSheet.create({
     color: Customcolor.textcolor,
     marginRight: horizScale(10),
   },
+  text_input_style: {
+    alignSelf: 'center',
+    fontSize: 14,
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 5,
+    height: 40,
+    paddingHorizontal: 20,
+  }
 });

@@ -1,17 +1,20 @@
-import {StyleSheet, Text, View, Image, ImageBackground} from 'react-native';
-import React, {useEffect} from 'react';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import React, { useEffect } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {useNavigation} from '@react-navigation/native';
-import {globalfonts, globalStyle} from '../../globalUtils/globalutil';
-import {useDispatch} from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { globalfonts, globalStyle } from '../../globalUtils/globalutil';
+import { useDispatch } from 'react-redux';
 import {
   _splashLoadingHandler,
   UserTokenHandler,
 } from '../../Redux/Action/AuthAction/AuthAction';
 import RNSecureStorage from 'rn-secure-storage';
-import {Customcolor} from '../../Utility/Customcolor';
-import {horizScale, vertScale} from '../../Utility/Layout';
-import {fontSize} from '../../Utility/Fontsize';
+import { Customcolor } from '../../Utility/Customcolor';
+import { horizScale, vertScale } from '../../Utility/Layout';
+import { fontSize } from '../../Utility/Fontsize';
+import { getData } from '../../Api/Api';
+import { AddProfileDataHandler } from '../../Redux/Action/ProfileAction/ProfileAction';
+import { base_url } from '../../../env';
 
 const Splash = () => {
   const navigation = useNavigation();
@@ -31,6 +34,7 @@ const Splash = () => {
             .then(value => {
               console.log('get user token..>', value); // Will return direct value
               dispatch(UserTokenHandler(value));
+              _getUserProfileData();
             })
             .catch(err => {
               console.log(err);
@@ -39,6 +43,17 @@ const Splash = () => {
       });
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const _getUserProfileData = async () => {
+    try {
+      const response = await getData(`${base_url}/users/me`);
+      if (response.status == 200) {
+        dispatch(AddProfileDataHandler(response?.data));
+      }
+    } catch (error) {
+      console.log('error...........', error);
     }
   };
   return (

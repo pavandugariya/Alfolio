@@ -7,33 +7,90 @@ import {
   Dimensions,
   ActivityIndicator,
   ScrollView,
+  TextInput,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
-import {styles} from '../home/styles';
-import {globalshedow as shedow} from '../../globalUtils/globalutil';
-import {useTranslation} from 'react-i18next';
-import {useHomeAction} from './Action';
+import { styles } from '../home/styles';
+import { globalshedow, globalshedow as shedow, globalStyle } from '../../globalUtils/globalutil';
+import { useTranslation } from 'react-i18next';
+import { useHomeAction } from './Action';
+import GradientBtn from '../custom_componets/GradientBtn';
+import CustomInputField from '../custom_componets/CustomInputField';
 
-const {height, width} = Dimensions.get('screen');
+const { height, width } = Dimensions.get('screen');
 const Home = () => {
-  const {t} = useTranslation();
-  const {isLoading, categoryData, _toggleHandler, Array, navigation} =
-    useHomeAction();
+  const { t } = useTranslation();
+  const { isLoading, setIsLoading, categoryData, _toggleHandler, Array, navigation, currentAccount, _generatWallerHandler, _passwordHandler, password } = useHomeAction();
 
-  // const SkipModal = () => {
-  //   return (
-  //     <View style={{color: '#fff'}}>
-  //       <Text>lsjgfslf</Text>
-  //     </View>
-  //   );
-  // };
+  const VerifyAccountView = () => {
+    if (!currentAccount?.verified)
+      return <View style={[styles.bottom_view_style, globalshedow]}>
+        <Text style={styles.subheading_text_style}>
+          {` Please Verified Your Account, \n
+          To Gain Access`}
+        </Text>
+        <GradientBtn
+          loginBtnText={'Verify'}
+          bgColor={'#D25C34'}
+          bgColor2={'#951516'}
+          color={'#fff'}
+          height={40}
+          borderRadius={5}
+          icon_color={'#fff'}
+          onPress={() => {
+            navigation.navigate('kyc');
+          }}
+        />
+      </View>
+    else if (currentAccount?.wallet === null)
+      return (<View style={[styles.bottom_view_style, globalshedow]}>
+        <Text style={styles.subheading_text_style}>{`Finish Your Account Setup`}</Text>
+        <TextInput
+          placeholder='Enter secure password '
+          value={password}
+          onChangeText={(e) => _passwordHandler(e)}
+          placeholderTextColor={'#000'}
+          style={styles.text_input_style}
+        />
+
+        <GradientBtn
+          loginBtnText={'Complete'}
+          bgColor={'#D25C34'}
+          bgColor2={'#951516'}
+          color={'#fff'}
+          height={40}
+          borderRadius={5}
+          icon_color={'#fff'}
+          onPress={_generatWallerHandler}
+        />
+
+      </View>)
+    else return (<View
+      style={[
+        styles.item_top_box,
+        { justifyContent: 'center', alignItems: 'center' },
+      ]}>
+      <Text
+        style={{
+          alignItems: 'center',
+          fontSize: 20,
+          fontWeight: '700',
+          marginTop: 140,
+          color: 'gray',
+        }}>
+        No Certificate Marksheet
+      </Text>
+    </View>)
+  };
+
+
   return (
     <ImageBackground
       source={require('../../Images/home_bg2.png')}
       style={styles.container}>
-      {isLoading && <ActivityIndicator size={50} color={'#951516'} />}
+      {isLoading && <ActivityIndicator size={40} color={'#951516'} style={globalStyle.indicator_style} />}
       <TouchableOpacity onPress={_toggleHandler} style={styles.top_icon_box}>
         <Icon name={'reorder-three-outline'} size={35} color={'#000'} />
       </TouchableOpacity>
@@ -50,23 +107,9 @@ const Home = () => {
           />
         </View>
 
+        {VerifyAccountView()}
         <ScrollView>
-          <View
-            style={[
-              styles.item_top_box,
-              {justifyContent: 'center', alignItems: 'center'},
-            ]}>
-            <Text
-              style={{
-                alignItems: 'center',
-                fontSize: 20,
-                fontWeight: '700',
-                marginTop: 140,
-                color: 'gray',
-              }}>
-              No Certificate Marksheet
-            </Text>
-            {/* {Array?.map((item, index) => {
+          {/* {Array?.map((item, index) => {
               // console.log('item data home', item?.item?.data);
               return (
                 <TouchableOpacity
@@ -95,7 +138,6 @@ const Home = () => {
                 </TouchableOpacity>
               );
             })} */}
-          </View>
         </ScrollView>
       </View>
     </ImageBackground>

@@ -6,32 +6,24 @@ import {
   ImageBackground,
   Dimensions,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {
   globalcolors,
   globalfonts,
   globalStyle,
 } from '../../globalUtils/globalutil';
-import {TextInput} from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
-import {useTranslation} from 'react-i18next';
-import {Customcolor} from '../../Utility/Customcolor';
-import {fontSize} from '../../Utility/Fontsize';
-import {useVerifyAction} from './ActionVerify';
+import { useTranslation } from 'react-i18next';
+import { Customcolor } from '../../Utility/Customcolor';
+import { fontSize } from '../../Utility/Fontsize';
+import { useVerifyAction } from './ActionVerify';
 
 const VerifyOtp = () => {
-  const {t} = useTranslation();
-  const {
-    validationOtp,
-    seterrOtp,
-    _otpSubmitHandler,
-    AuthDispatch,
-    otp,
-    setOtp,
-    errOtp,
-  } = useVerifyAction();
+  const { t } = useTranslation();
+  const { _otpSubmitHandler, otp, setOtp, } = useVerifyAction();
   return (
     <>
       <ImageBackground
@@ -39,7 +31,7 @@ const VerifyOtp = () => {
         blurRadius={50}
         style={styles.container}>
         <View style={styles.input_box_style}>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Text style={styles.verify_otp_style}>Verify Otp</Text>
           </View>
 
@@ -56,7 +48,7 @@ const VerifyOtp = () => {
               {t('VerifyOtp.Verify')}
             </Text>
             <TextInput
-              style={[styles.input_text_style, {paddingRight: 40}]}
+              style={[styles.input_text_style, { paddingRight: 40 }]}
               textname={'State'}
               onChangeText={setOtp}
               value={otp}
@@ -65,26 +57,25 @@ const VerifyOtp = () => {
               keyboardType={'number-pad'}
               maxLength={6}
             />
-            <Text style={{color: 'red'}}>{errOtp}</Text>
-          </View>
 
-          <GradientBtn
-            loginBtnText={'Verify'}
-            bgColor={'#D25C34'}
-            bgColor2={'#951516'}
-            color={'#fff'}
-            marginTop={20}
-            height={40}
-            borderRadius={5}
-            icon_color={'#fff'}
-            icon_size={24}
-            // icon_name={'share-social'}
-            // onPress={otpVerification}
-            onPress={() => {
-              _otpSubmitHandler();
-              validationOtp();
-            }}
-          />
+          </View>
+          {
+            otp.length >= 6 &&
+            <GradientBtn
+              loginBtnText={'Verify'}
+              bgColor={'#D25C34'}
+              bgColor2={'#951516'}
+              color={'#fff'}
+              marginTop={20}
+              height={40}
+              borderRadius={5}
+              icon_color={'#fff'}
+              icon_size={24}
+              // icon_name={'share-social'}
+              // onPress={otpVerification}
+              onPress={_otpSubmitHandler}
+            />
+          }
         </View>
       </ImageBackground>
     </>

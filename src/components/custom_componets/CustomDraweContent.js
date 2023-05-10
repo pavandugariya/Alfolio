@@ -9,23 +9,23 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import React, {useState} from 'react';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import React, { useState } from 'react';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icone from 'react-native-vector-icons/Ionicons';
 import Icones from 'react-native-vector-icons/MaterialIcons';
-import {Drawer, Divider} from 'react-native-paper';
-import {globalfonts} from '../../globalUtils/globalutil';
-import {useTranslation} from 'react-i18next';
-import {useActionSwitchAccount} from './ActionSwitchAccount';
-import {base_url} from '../../../env';
-import {postData} from '../../Api/Api';
-import {UserTokenHandler} from '../../Redux/Action/AuthAction/AuthAction';
-import {useDispatch} from 'react-redux';
+import { Drawer, Divider } from 'react-native-paper';
+import { globalfonts, globalStyle } from '../../globalUtils/globalutil';
+import { useTranslation } from 'react-i18next';
+import { useActionSwitchAccount } from './ActionSwitchAccount';
+import { base_url } from '../../../env';
+import { postData } from '../../Api/Api';
+import { UserTokenHandler } from '../../Redux/Action/AuthAction/AuthAction';
+import { useDispatch } from 'react-redux';
 import RNSecureStorage from 'rn-secure-storage';
 
-const {height, width} = Dimensions.get('screen');
-const CustomDraweContent = ({iconColor, iconSize}) => {
-  const {t} = useTranslation();
+const { height, width } = Dimensions.get('screen');
+const CustomDraweContent = ({ iconColor, iconSize }) => {
+  const { t } = useTranslation();
   const SignOutDispatch = useDispatch();
 
   const _logOutHandler = () => {
@@ -51,23 +51,15 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
     navigation,
   } = useActionSwitchAccount();
   const currentAccount = profileData?.profileData?.currentAccount;
-  // console.log('response data', profileData.profileData.currentAccount.id);
-  // const _switchAccountHander = async id => {
-  //   const objData = {
-  //     accountId: id,
-  //   };
-  //   profilAccountHandler();
-  //   const res = await postData(`${base_url}/auth/web/logout`, objData);
-  //   console.log('response', res.accountId);
-  // };
+
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require('../../Images/drawer_bg.png')}
         style={styles.bg_img_style}>
         <DrawerContentScrollView>
-          <View style={{flex: 1, height: height * 0.7}}>
-            <Drawer.Section style={{marginTop: 20}} showDivider={false}>
+          <View style={{ flex: 1, height: height * 0.7 }}>
+            <Drawer.Section style={{ marginTop: 20 }} showDivider={false}>
               <Image
                 source={require('../../Images/logo_name.png')}
                 style={styles.logo_name_style}
@@ -88,7 +80,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'home'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen1')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Home');
                 }}
@@ -98,7 +90,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'person'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen2')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Profile');
                 }}
@@ -108,7 +100,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'star'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen3')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Achivement');
                 }}
@@ -122,7 +114,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   />
                 )}
                 label={t('drawer.screen4')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Notification');
                 }}
@@ -136,7 +128,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   />
                 )}
                 label={t('drawer.screen5')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('ScanQrCode');
                 }}
@@ -146,7 +138,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   <Icone name={'settings'} size={iconSize} color={iconColor} />
                 )}
                 label={t('drawer.screen6')}
-                labelStyle={[styles.txt_style, {color: iconColor}]}
+                labelStyle={[styles.txt_style, { color: iconColor }]}
                 onPress={() => {
                   navigation.navigate('Settings');
                 }}
@@ -156,14 +148,19 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
         </DrawerContentScrollView>
         {clicked ? (
           <View style={styles.view_data_style}>
-            {isLoading && <ActivityIndicator size={30} color={'#951516'} />}
+            {isLoading && <ActivityIndicator size={30} color={'#951516'} style={globalStyle.indicator_style} />}
             <ScrollView>
               {profileData?.profileData?.accounts?.map((item, id) => {
                 return (
                   <TouchableOpacity
                     key={id}
                     onPress={() => {
-                      profilAccountHandler(item.id);
+                      if (item.id === profileData.profileData.currentAccount.id) {
+                        setClicked(false)
+                        navigation.navigate('Home')
+                      } else {
+                        profilAccountHandler(item.id);
+                      }
                     }}
                     style={styles.Add_Account_style}>
                     <Icone name={'person'} size={iconSize} color={iconColor} />
@@ -177,7 +174,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                   </TouchableOpacity>
                 );
               })}
-              <View style={{marginTop: 15}}>
+              <View style={{ marginTop: 15 }}>
                 <DrawerItem
                   icon={() => (
                     <Icone
@@ -187,7 +184,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
                     />
                   )}
                   label={t('drawer.addprofile')}
-                  labelStyle={[styles.txt_style, {color: iconColor}]}
+                  labelStyle={[styles.txt_style, { color: iconColor }]}
                   onPress={async () => {
                     navigation.navigate('ProfileSetup');
                   }}
@@ -196,8 +193,8 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
             </ScrollView>
           </View>
         ) : null}
-        <Divider bold={true} style={{backgroundColor: iconColor}} />
-        <Drawer.Section style={{marginBottom: 20}} showDivider={false}>
+        <Divider bold={true} style={{ backgroundColor: iconColor }} />
+        <Drawer.Section style={{ marginBottom: 20 }} showDivider={false}>
           <DrawerItem
             icon={() => (
               <Icones
@@ -207,12 +204,12 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
               />
             )}
             label={t('drawer.switchAccount')}
-            labelStyle={[styles.txt_style, {color: iconColor}]}
+            labelStyle={[styles.txt_style, { color: iconColor }]}
             onPress={async () => {
               setClicked(!clicked);
             }}
           />
-          <View style={{bottom: 10}}>
+          <View style={{ bottom: 10 }}>
             {profileData?.profileData?.currentAccount && (
               <TouchableOpacity style={styles.Add_Account_style}>
                 <Icone name={'person'} size={iconSize} color={iconColor} />
@@ -231,7 +228,7 @@ const CustomDraweContent = ({iconColor, iconSize}) => {
               <Icone name={'log-out'} size={iconSize} color={iconColor} />
             )}
             label={t('drawer.signOut')}
-            labelStyle={[styles.txt_style, {color: iconColor}]}
+            labelStyle={[styles.txt_style, { color: iconColor }]}
             onPress={_logOutHandler}
           />
         </Drawer.Section>

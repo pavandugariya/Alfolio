@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {globalfonts} from '../../globalUtils/globalutil';
+import { globalfonts } from '../../globalUtils/globalutil';
 
 const CustomInputField = ({
   leftIcon,
@@ -48,6 +48,7 @@ const CustomInputField = ({
           secureTextEntry={isVisible}
           color={colors}
           {...rest}
+          style={{ flex: 1 }}
         />
       </View>
 
@@ -60,7 +61,7 @@ const CustomInputField = ({
             name={iconName}
             size={24}
             color="#5956E9"
-            // style={styles.rightIcon_style}
+          // style={styles.rightIcon_style}
           />
         </TouchableOpacity>
       )}

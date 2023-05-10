@@ -6,51 +6,51 @@ import {
   ImageBackground,
   Dimensions,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {
   globalcolors,
   globalfonts,
   globalStyle,
 } from '../../globalUtils/globalutil';
-import {TextInput} from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 import GradientBtn from '../custom_componets/GradientBtn';
 import CustomInputField from '../custom_componets/CustomInputField';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {postData} from '../../Api/Api';
-import {base_url} from '../../../env';
-import {vertScale} from '../../Utility/Layout';
+import { postData } from '../../Api/Api';
+import { base_url } from '../../../env';
+import { vertScale } from '../../Utility/Layout';
 
 const Kyc = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
-  const [kycs, setkycs] = useState();
 
   const navigation = useNavigation();
-  const {height, width} = Dimensions.get('screen');
+  const { height, width } = Dimensions.get('screen');
+  const [aadharNumber, setAadharNumber] = useState('');
+  const [aadharNumberValidation, setAadharNumberValidation] = useState(true)
 
-  // const sendOtpHander = async () => {
-  //   const ObjData = {
-  //     identificationNumber: '859654145698',
-  //   };
-  //   const res = await postData(`${base_url}/auth/send-code`, ObjData);
-  //   console.log(res);
-  // };
 
-  const [errorKyc, setRrrorKyc] = useState('');
+  const _sendAadharOtpHandler = () => {
 
-  const validationkyc = () => {
-    if (kycs === '') {
-      setRrrorKyc('KYC is required');
-    } else if (kycs?.length === 12) {
-      setRrrorKyc('');
-      navigation.navigate('verifyOtp');
+    if (aadharNumber.length == 12 && aadharNumberValidation) {
+      navigation.navigate('verifyOtp', { aadharNumber: aadharNumber })
     } else {
-      setRrrorKyc('KYC is required');
+      setAadharNumberValidation(false)
     }
+
   };
+  const _aadharNumberValidationHandler = (val) => {
+    const regex = /^[0-9\b]+$/;
+    if (regex.test(val) || val == '') {
+      setAadharNumber(val);
+      setAadharNumberValidation(true)
+    } else {
+      setAadharNumberValidation(false);
+    }
+  }
 
   return (
     <>
@@ -59,7 +59,7 @@ const Kyc = () => {
         blurRadius={50}
         style={styles.container}>
         <View style={styles.input_box_style}>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Text
               style={{
                 fontFamily: '',
@@ -76,25 +76,20 @@ const Kyc = () => {
               {t('kyc.Aadhar')}
             </Text>
             <TextInput
-              style={[styles.input_text_style, {paddingRight: 40}]}
+              style={[styles.input_text_style, { paddingRight: 40 }]}
               textname={'Kyc'}
-              onChangeText={setkycs}
-              value={kycs}
+              onChangeText={(e) => _aadharNumberValidationHandler(e)}
+              value={aadharNumber}
               keyboardType="numeric"
               placeholder="Enter Your Aadhar No."
               placeholderTextColor="#000"
               maxLength={12}
             />
-            <Text
-              style={{
-                color: 'red',
-                position: 'absolute',
-                marginTop: vertScale(65),
-              }}>
-              {errorKyc}
-            </Text>
-          </View>
 
+          </View>
+          {!aadharNumberValidation &&
+            <Animatable.Text animation={'slideInLeft'} style={globalStyle.validate_text_style}>Enter Correct Aadhar Number </Animatable.Text>
+          }
           <GradientBtn
             loginBtnText={'Send Otp'}
             bgColor={'#D25C34'}
@@ -108,7 +103,7 @@ const Kyc = () => {
             // icon_name={'share-social'}
             // onPress={otpVerification}
             onPress={() => {
-              validationkyc();
+              _sendAadharOtpHandler();
             }}
           />
           <View style={styles.skip_button_bottom}>

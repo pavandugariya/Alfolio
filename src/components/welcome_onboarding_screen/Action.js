@@ -1,12 +1,12 @@
-import {getData} from '../../Api/Api';
-import {base_url} from '../../../env';
-import {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import { getData } from '../../Api/Api';
+import { base_url } from '../../../env';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   _AddprofileHandler,
   AddProfileDataHandler,
 } from '../../Redux/Action/ProfileAction/ProfileAction';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 export const useWelcomeOnboarding = () => {
   const navigation = useNavigation();
@@ -15,27 +15,31 @@ export const useWelcomeOnboarding = () => {
   const [isAccount, setIsAccount] = useState(false);
   const [numberOfAccount, setNumberOfAccount] = useState([]);
   const Dispatch = useDispatch();
-
+  const profileData = useSelector(state => state.ProfileReducer);
   useEffect(() => {
-    _getUserProfileData();
+    if (profileData?.profileData?.accounts?.length > 0) {
+      navigation.replace('Drawer');
+    } else {
+      _getUserProfileData();
+    }
   }, []);
 
-  useEffect(() => {
-    Dispatch(AddProfileDataHandler(userData));
-  }, [userData]);
-
-  // if (numberOfAccount.length > 0) {
-  // }
 
   const _getUserProfileData = async () => {
     try {
       const response = await getData(`${base_url}/users/me`);
-      console.log('profil data...', response.data);
+      // console.log('profil data...', response.data);
       if (response.status == 200) {
+        if (response.data.accounts.length > 0) {
+          console.log('emter');
+          navigation.replace('Drawer');
+        }
         setUserData(response.data);
         setIsAccount(response.data.currentAccount);
         setNumberOfAccount(response.data.accounts);
         setIsLoading(false);
+        Dispatch(AddProfileDataHandler(response.data));
+
       }
       setIsLoading(false);
     } catch (error) {
@@ -44,5 +48,5 @@ export const useWelcomeOnboarding = () => {
     }
   };
 
-  return {isLoading, userData, isAccount, numberOfAccount, navigation};
+  return { isLoading, userData, isAccount, numberOfAccount, navigation };
 };

@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import QRCodeScanner from 'react-native-qrcode-scanner';
-import {RNCamera} from 'react-native-camera';
-import {Button} from 'react-native-paper';
+import React, { useState } from 'react';
+// import QRCodeScanner from 'react-native-qrcode-scanner';
+import { RNCamera } from 'react-native-camera';
+import { Button } from 'react-native-paper';
 
 const ScanQRCode = () => {
   const [on, setOn] = useState(on);
@@ -24,7 +24,7 @@ const ScanQRCode = () => {
   };
   return (
     <>
-      <QRCodeScanner
+      {/* <QRCodeScanner
         reactivateTimeout={1000}
         reactivate={true}
         onRead={onSuccess}
@@ -42,7 +42,7 @@ const ScanQRCode = () => {
             <Text style={styles.buttonText}>OK. Got it!</Text>
           </TouchableOpacity>
         }
-      />
+      /> */}
       <Button title={'torch'} onPress={torchcontroll} />
     </>
   );

@@ -1,45 +1,62 @@
-import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
-import {showMessage} from 'react-native-flash-message';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useState } from 'react';
+import { showMessage } from 'react-native-flash-message';
 // import {Dimensions} from 'react-native/types';
-import {useDispatch} from 'react-redux';
-import {base_url} from '../../../env';
-import {postData} from '../../Api/Api';
+import { useDispatch } from 'react-redux';
+import { base_url } from '../../../env';
+import { postData, getData } from '../../Api/Api';
+import { AddProfileDataHandler } from '../../Redux/Action/ProfileAction/ProfileAction';
 
 export const useVerifyAction = () => {
-  const [otp, setOtp] = useState();
+
 
   const navigation = useNavigation();
-  // const {height, width} = Dimensions.get('screen');
+  const route = useRoute();
+  const dispatch = useDispatch();
+  const aadharNumber = route.params.aadharNumber;
+
   const AuthDispatch = useDispatch();
+  const [otp, setOtp] = useState('');
 
   const _otpSubmitHandler = async () => {
     const dataObj = {
-      identificationNumber: '859654145998',
+      identificationNumber: aadharNumber,
       verificationCode: otp,
-    };
-    console.log(dataObj);
+    }
     try {
-      const res = await postData(`${base_url}/auth/verify-account`, dataObj);
-      console.log('response data', res.data);
-      navigation.navigate('SuccessfulRegistration');
+      const res = await postData(`${base_url}/accounts/me/verify`, dataObj);
+      if (res.data) {
+        _getUserProfileData();
+        navigation.replace('SuccessfulRegistration');
+        showMessage({
+          message: res?.data?.status,
+          type: 'success',
+        })
+      }
+      if (res?.response?.data?.message) {
+        showMessage({
+          message: res?.response?.data?.message,
+          type: 'default',
+        })
+      }
+      // navigation.replace('SuccessfulRegistration');
     } catch (error) {
       console.log(error);
     }
   };
 
-  const [errOtp, seterrOtp] = useState();
-  const validationOtp = () => {
-    if (otp === '') {
-      seterrOtp('sucessfully');
-    } else {
-      seterrOtp('Enter the opt');
+  const _getUserProfileData = async () => {
+    try {
+      const response = await getData(`${base_url}/users/me`);
+      if (response.status == 200) {
+        dispatch(AddProfileDataHandler(response?.data));
+      }
+    } catch (error) {
+      console.log('error...........', error);
     }
   };
 
   return {
-    validationOtp,
-    seterrOtp,
     _otpSubmitHandler,
     AuthDispatch,
     otp,

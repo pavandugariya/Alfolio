@@ -7,28 +7,30 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
-import {globalfonts, globalStyle} from '../../globalUtils/globalutil';
+import { globalfonts, globalStyle } from '../../globalUtils/globalutil';
 import CustomHeader from '../custom_componets/CustomHeader';
 import GradientBtn from '../custom_componets/GradientBtn';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {profileutils} from './utils';
-import {useNavigation} from '@react-navigation/native';
+import { profileutils } from './utils';
+import { useNavigation } from '@react-navigation/native';
 // import {styles} from './styles';
-import {styles} from '../profile/styles';
-import {useTranslation} from 'react-i18next';
-import {useSelector} from 'react-redux';
+import { styles } from '../profile/styles';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const _editProfile = useSelector(state => state.ProfileReducer);
-  console.log(_editProfile);
+  const profileData = useSelector(state => state.ProfileReducer);
+  const currentAccount = profileData?.profileData?.currentAccount;
+  console.log(currentAccount);
   const toggleHandler = () => {
     navigation.openDrawer();
   };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -36,9 +38,9 @@ const Profile = () => {
         style={globalStyle.bg_image_style}>
         <CustomHeader
           header_name={t('profile.profile')}
-          // left_icon={'chevron-back'}
+        // left_icon={'chevron-back'}
 
-          // leftOnpress={() => navigation.goBack()}
+        // leftOnpress={() => navigation.goBack()}
         />
         <TouchableOpacity
           onPress={() => {
@@ -49,12 +51,12 @@ const Profile = () => {
         </TouchableOpacity>
         <View style={styles.img_box_top_container}>
           <View style={styles.img_container}>
-            {_editProfile?.profileData?.currentAccount?.gender === 'Male' ? (
+            {currentAccount?.gender === 'Male' ? (
               <Image
                 source={{
                   uri: 'https://cdn-icons-png.flaticon.com/512/147/147144.png',
                 }}
-                style={{height: '100%', width: '100%'}}
+                style={{ height: '100%', width: '100%' }}
                 resizeMode={'contain'}
               />
             ) : (
@@ -62,19 +64,18 @@ const Profile = () => {
                 source={{
                   uri: 'https://www.shareicon.net/data/512x512/2016/09/15/829452_user_512x512.png',
                 }}
-                style={{height: '100%', width: '100%'}}
+                style={{ height: '100%', width: '100%' }}
                 resizeMode={'contain'}
               />
             )}
           </View>
           <View style={styles.name_top_container}>
             <Text numberOfLines={1} style={styles.name_txt_style}>
-              {/* {t('profile.name')} */}
-              {_editProfile?.profileData?.currentAccount?.firstName}
+              {currentAccount?.firstName + " " + currentAccount?.lastName}
             </Text>
-            <Text numberOfLines={1} style={styles.email_txt_style}>
+            {/* <Text numberOfLines={1} style={styles.email_txt_style}>
               {t('profile.email')}
-            </Text>
+            </Text> */}
             <GradientBtn
               loginBtnText={t('profile.edit profile')}
               bgColor2={'#D84B23'}

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 export const globalcolors = {
   icon_color: '#951516',
   text_color: '#951516',
@@ -30,5 +30,18 @@ export const globalStyle = StyleSheet.create({
     width: null,
     height: null,
     resizeMode: 'contain',
+  },
+  validate_text_style:
+  {
+    color: 'red',
+    marginBottom: 5,
+    fontSize: 14,
+    fontFamily: globalfonts.Medium_m,
+  },
+  indicator_style: {
+    position: 'absolute',
+    top: '50%',
+    left: '45%',
+    zIndex: 100,
   },
 });
