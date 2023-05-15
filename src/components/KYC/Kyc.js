@@ -45,6 +45,7 @@ const Kyc = () => {
   const _aadharNumberValidationHandler = (val) => {
     const regex = /^[0-9\b]+$/;
     if (regex.test(val) || val == '') {
+      let format = val.toString().replace(/\d{4}(?=.)/g, '$& ');
       setAadharNumber(val);
       setAadharNumberValidation(true)
     } else {

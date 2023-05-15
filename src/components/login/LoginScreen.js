@@ -11,6 +11,7 @@ import {
   TextInput,
   Linking,
   ActivityIndicator,
+  KeyboardAvoidingView,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { colors } from './util';
@@ -209,26 +210,28 @@ const LoginScreen = () => {
   };
 
   return (
-    <ImageBackground
-      source={require('../../Images/loginformbg.png')}
-      style={[StyleSheet.absoluteFillObject, {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        // width: Dimensions.get('window').width,
-        // height: Dimensions.get('window').height,
-      }]}>
-      {isLoading && (
-        <ActivityIndicator size={40} color={'#951516'} style={globalStyle.indicator_style} />
-      )}
-      <ScrollView >
+    <KeyboardAvoidingView style={styles.container} behavior='padding'>
+
+      <ImageBackground
+        source={require('../../Images/loginformbg.png')}
+        style={[StyleSheet.absoluteFillObject, {
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          // width: Dimensions.get('window').width,
+          // height: Dimensions.get('window').height,
+        }]}>
+        {isLoading && (
+          <ActivityIndicator size={40} color={'#951516'} style={globalStyle.indicator_style} />
+        )}
+        {/* <ScrollView > */}
         <View style={styles.logo_top_box}>
           <Image
             style={styles.logo_top_image}
             source={require('../../Images/logo_name.png')}
           />
         </View>
-        <View style={[styles.bottom_view_style]}>
+        <View style={[styles.bottom_view_style]}        >
           <View style={{ alignItems: 'center' }}>
             <Text style={[styles.txt_title_style, { fontWeight: '700' }]}>
               {t('login.title')}
@@ -295,9 +298,11 @@ const LoginScreen = () => {
           />
         </View>
 
-      </ScrollView>
+        {/* </ScrollView> */}
 
-    </ImageBackground >
+      </ImageBackground >
+    </KeyboardAvoidingView>
+
   );
 };
 
@@ -313,18 +318,19 @@ const styles = StyleSheet.create({
     height: height * 0.20,
     justifyContent: 'flex-end',
     alignItems: 'center',
-
   },
   bottom_view_style: {
     width: '100%',
     backgroundColor: Customcolor.white,
     paddingHorizontal: 25,
     paddingVertical: vertScale(50),
-    marginTop: 50,
+    // marginTop: 50,
     borderTopEndRadius: vertScale(20),
     borderTopLeftRadius: vertScale(20),
     borderRadius: 20,
     alignSelf: 'center',
+    position: 'absolute',
+    bottom: 0
   },
   txt_title_style: {
     color: Customcolor.textcolor,

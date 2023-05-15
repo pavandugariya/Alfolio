@@ -4,12 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 import { base_url } from '../../../env';
 import { useSelector } from 'react-redux';
 import * as  ethers from "ethers";
-import { pbkdf2 } from "@ethersproject/crypto";
-import { pbkdf2Sync } from 'crypto';
+
 
 // import { pbkdf2Sync } from "crypto"; // fast implementation in your enviornment
 
-const { HDNode, providers, utils, Wallet } = ethers;
 import { Alert, NativeModules } from 'react-native';
 // module.exports = NativeModules.HelloWorld;
 
@@ -69,20 +67,20 @@ export const useHomeAction = () => {
   }
 
   const _generatWallerHandler = async () => {
-    setIsLoading(true)
+    // setIsLoading(true)
     try {
-      const start = performance.now();
+      //   const start = performance.now();
 
-      function customPbkdf2(password, salt, iterations, keylen, algo) {
-        console.log("custom pbkdf2");
-        return pbkdf2Sync(password, salt, iterations, keylen, algo);
-      }
+      //   function customPbkdf2(password, salt, iterations, keylen, algo) {
+      //     console.log("custom pbkdf2");
+      //     return pbkdf2Sync(password, salt, iterations, keylen, algo);
+      //   }
 
-      pbkdf2.register(customPbkdf2);
+      //   pbkdf2.register(customPbkdf2);
 
-      console.log("creating wallet");
-      const wallet = Wallet.createRandom();
-      console.log(wallet.address);
+      //   console.log("creating wallet");
+      //   const wallet = Wallet.createRandom();
+      //   console.log(wallet.address);
 
 
       // // console.log("res", ethers.wordlists);
